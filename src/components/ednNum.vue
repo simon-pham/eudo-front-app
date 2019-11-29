@@ -1,0 +1,35 @@
+<template>
+  <v-text-field ref="input" v-model="numberInput" @keypress="numCheck()" v-bind="$attrs">
+    <template v-slot:append v-if="$attrs.tooltip">
+      <v-tooltip top>
+        <template v-slot:activator="{ on }">
+          <v-icon v-on="on" style="cursor:pointer;">mdi-help-circle-outline</v-icon>
+        </template>
+        {{ $attrs.tooltip }}
+      </v-tooltip>
+    </template>
+  </v-text-field>
+</template>
+
+<script>
+export default {
+  inheritAttrs: false,
+  data() {
+    return {
+      regEx: /[0-9+-.,]/,
+      numberInput: this.value,
+    }
+  },
+  methods: {
+    numCheck() {
+      let evt = evt ? evt : window.event
+      let val = evt.key
+      if (val.match(this.regEx)) {
+        return val
+      } else {
+        evt.preventDefault()
+      }
+    },
+  },
+}
+</script>
