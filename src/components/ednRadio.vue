@@ -1,6 +1,7 @@
 <template>
   <v-radio-group v-model="inputEl" :mandatory="false" v-bind="$attrs">
     <v-radio
+      :ripple="false"
       :color="$vuetify.theme.currentTheme.primary"
       :checked="radio.checked"
       :radios="radios"
@@ -17,19 +18,19 @@ export default {
   props: {
     radios: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   inheritAttrs: false,
   data() {
     return {
-      inputEl: this.value,
-    }
+      inputEl: this.value
+    };
   },
   watch: {
     inputEl(val) {
-      this.$emit('input', val)
-    },
-  },
-}
+      this.$emit("input", val);
+    }
+  }
+};
 </script>

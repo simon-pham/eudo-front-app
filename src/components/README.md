@@ -26,6 +26,8 @@ export default new Vuetify({
   theme: {
     themes: {
       light: {
+        primary:'#bb1515',
+        secondary:'#c4c4c4'
         //Pour l'instant il faut faire ces décalartions manuellement.
       },
     },
@@ -71,6 +73,7 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
   - Page Web
   - Lien Web
   - Fichier
+  - Loader
 - Les utilisateurs
   - Utilisateurs
   - Groupe
@@ -233,12 +236,27 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 ```
 
 ---
+## Heure `<edn-load/>`
+
+|    Paramètre     |   Type   |  |
+| :--------------: | :------: | ------ |
+|    **message:**    | `String` |  |
+|    **form:**    | `String` |  |
+|  **-->**      | `simple` | `double` |
+
+#### Exemple
+
+```html
+<edn-load message="Chargement en cours" form="double" />
+```
+
+---
 
 
 # Changelog
 
 @0.1.3
-- Complément de documentation
+- Ajout de edn-load
 
 @0.1.2
 - bugfixes

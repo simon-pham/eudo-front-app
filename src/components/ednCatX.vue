@@ -1,38 +1,26 @@
 <template>
-  <v-select
-    v-model="selectedItem"
-    :items="items"
+  <edn-cat
     multiple
-    type="text"
     v-bind="$attrs"
-  >
-    <template v-slot:append v-if="tooltip">
-      <v-tooltip top>
-        <template v-slot:activator="{ on }">
-          <v-icon v-on="on" style="cursor:pointer;"
-            >mdi-help-circle-outline</v-icon
-          >
-        </template>
-        {{ tooltip }}
-      </v-tooltip>
-    </template>
-  </v-select>
+    :items="$attrs.items"
+    v-model="inputEl"
+  ></edn-cat>
 </template>
-
 <script>
 export default {
   inheritAttrs: false,
-  props: {
-    tooltip: String,
-    items: Array
-  },
+  components: {},
+  props: {},
   data() {
-    return { selectedItem: this.value };
+    return {
+      inputEl: this.value
+    };
   },
   watch: {
-    selectedItem(val) {
+    inputEl(val) {
       this.$emit("input", val);
     }
   }
 };
 </script>
+<style lang='stylus'></style>

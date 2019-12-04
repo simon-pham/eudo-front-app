@@ -1,7 +1,12 @@
 <template>
-  <v-app>
+  <v-app :ripple="false">
     <form ref="form">
       <v-container>
+        <v-row class="align-center justify-space-around">
+
+        <edn-load message="edn-load" form="double"></edn-load>
+        <edn-load message="edn-load" form="simple"></edn-load>
+        </v-row>
         <edn-num :label="'edn-num'" v-model="inptNum" tooltip="NOMBRE"></edn-num>
         <edn-field :label="'edn-field'" v-model="inptText"></edn-field>
         <edn-cat :label="'edn-cat'" v-model="selectedCat" :items="cat"></edn-cat>
@@ -20,10 +25,12 @@
         <edn-switch :label="'edn-switch'"></edn-switch>
         <edn-radio :label="'edn-radio'" :radios="radios"></edn-radio>
         <edn-color :label="'edn-color'"></edn-color>
-        <edn-line right>
+          <v-row class="justify-center align-self-center">
+
           <edn-btn submit>Valider</edn-btn>
           <edn-btn @click.native="resetForm" alternate>Annuler</edn-btn>
-        </edn-line>
+          </v-row>
+          
       </v-container>
     </form>
   </v-app>

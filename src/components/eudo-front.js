@@ -13,6 +13,7 @@ import EdnRadio from './ednRadio';
 import EdnTime from './ednTime';
 import EdnLine from './ednLine';
 import EdnColor from './ednColor';
+import EdnLoad from './ednLoad';
 
 
 const eudoFront = {
@@ -32,6 +33,7 @@ const eudoFront = {
     Vue.component('edn-time', EdnTime)
     Vue.component('edn-line', EdnLine)
     Vue.component('edn-color', EdnColor)
+    Vue.component('edn-load', EdnLoad)
 
   },
 }

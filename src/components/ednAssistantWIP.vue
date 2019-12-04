@@ -1,7 +1,6 @@
 <template>
     <div class="edn-assistant">
         <div class="stepHead"></div>
-    
     <slot></slot>
         <div class="stpLnk"></div>
     </div>
