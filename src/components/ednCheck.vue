@@ -1,5 +1,5 @@
 <template>
-  <v-checkbox v-model="inputEl" v-bind="$attrs" :color="$vuetify.theme.primary">
+  <v-checkbox v-model="inputEl" v-bind="$attrs" :color="$vuetify.theme.currentTheme.primary">
     <template v-slot:append v-if="$attrs.tooltip">
       <v-tooltip top>
         <template v-slot:activator="{ on }">

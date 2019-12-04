@@ -27,8 +27,6 @@ export default new Vuetify({
     themes: {
       light: {
         //Pour l'instant il faut faire ces décalartions manuellement.
-        primary: '#bb1515',
-        secondary: '#c4c4c4',
       },
     },
   },
@@ -58,6 +56,7 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
   - `Numériques`
 - Les temporels
   - `Date`
+  - `Heure`
 - Les cliquables
   - Logique
   - `Bouton`
@@ -89,8 +88,6 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 |     **id:**      | `Number` |
 |    **order:**    | `Number` |
 |  **charsMax:**   | `Number` |
-|   **primary:**   | `String` |
-|  **secondary:**  | `String` |
 
 #### Exemple :
 
@@ -111,8 +108,6 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 |     **id:**      | `Number` |
 |    **order:**    | `Number` |
 |  **charsMax:**   | `Number` |
-|   **primary:**   | `String` |
-|  **secondary:**  | `String` |
 |   **catalog:**   | `Array`  |
 
 #### Exemple
@@ -134,8 +129,6 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 |     **id:**      | `Number` |
 |    **order:**    | `Number` |
 |  **charsMax:**   | `Number` |
-|   **primary:**   | `String` |
-|  **secondary:**  | `String` |
 |   **catalog:**   | `Array`  |
 
 #### Exemple
@@ -157,8 +150,6 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 |     **id:**      | `Number` |
 |    **order:**    | `Number` |
 |  **charsMax:**   | `Number` |
-|   **primary:**   | `String` |
-|  **secondary:**  | `String` |
 |    **html:**     |  `Bool`  |
 
 #### Exemple
@@ -175,8 +166,6 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 |   **tooltip:**   | `String` |
 |    **label:**    | `String` |
 |     **id:**      | `Number` |
-|   **primary:**   | `String` |
-|  **secondary:**  | `String` |
 
 #### Exemple
 
@@ -197,8 +186,6 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 |     **id:**      | `Number` |
 |    **order:**    | `Number` |
 |  **charsMax:**   | `Number` |
-|   **primary:**   | `String` |
-|  **secondary:**  | `String` |
 
 #### Exemple
 
@@ -207,3 +194,76 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 ```
 
 ---
+
+## Date `<edn-date/>`
+
+|    Paramètre     |   Type   |
+| :--------------: | :------: |
+|   **tooltip:**   | `String` |
+| **placeholder:** | `String` |
+|    **label:**    | `String` |
+|  **required:**   |  `Bool`  |
+|     **id:**      | `Number` |
+|    **order:**    | `Number` |
+|  **charsMax:**   | `Number` |
+
+#### Exemple
+
+```html
+<edn-date :label="Choississez votre date de rendez-vous" />
+```
+
+---
+## Heure `<edn-time/>`
+
+|    Paramètre     |   Type   |
+| :--------------: | :------: |
+|   **tooltip:**   | `String` |
+| **placeholder:** | `String` |
+|    **label:**    | `String` |
+|  **required:**   |  `Bool`  |
+|     **id:**      | `Number` |
+|    **order:**    | `Number` |
+|  **charsMax:**   | `Number` |
+
+#### Exemple
+
+```html
+<edn-date :label="Choississez votre heure de rendez-vous" />
+```
+
+---
+
+
+# Changelog
+
+@0.1.3
+- Complément de documentation
+
+@0.1.2
+- bugfixes
+
+@0.1.1
+- bugfixes
+
+@0.1.0
+- Passage à Vuetify 2.0
+- Ajout de l'edn color picker
+
+@0.0.6
+- Bugfixes
+
+@0.0.5
+- Bugfixes
+
+@0.0.4
+- Bugfixes
+
+@0.0.3
+- Bugfixes
+
+@0.0.2
+- Correction de bug d'import de dépendances
+
+@0.0.1
+- Initialisation du package de référence

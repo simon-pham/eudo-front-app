@@ -9,7 +9,7 @@
   >
     <template v-slot:activator="{ on }">
       <v-text-field v-model="color" :label="$attrs.label" v-on="on">
-        <template v-slot:prepend>
+        <template v-slot:append>
           <v-icon :color="color">mdi-square</v-icon>
         </template>
       </v-text-field>
@@ -31,8 +31,8 @@ export default {
       menu: null,
       color: "#FFFFFF",
       colors: {
-        primary: this.$vuetify.theme.primary,
-        secondary: this.$vuetify.theme.secondary
+        primary: this.$vuetify.theme.currentTheme.primary,
+        secondary: this.$vuetify.theme.currentTheme.secondary
       }
     };
   },

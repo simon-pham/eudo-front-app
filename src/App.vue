@@ -1,43 +1,31 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-content class="mx-6">
-      <edn-field :label="'Nom'"></edn-field>
-      <edn-memo :size="'normal'" :label="'Memo'"></edn-memo>
-      <edn-color :label="'Couleur'"></edn-color>
-    </v-content>
+    <form ref="form">
+      <v-container>
+        <edn-num :label="'edn-num'" v-model="inptNum" tooltip="NOMBRE"></edn-num>
+        <edn-field :label="'edn-field'" v-model="inptText"></edn-field>
+        <edn-cat :label="'edn-cat'" v-model="selectedCat" :items="cat"></edn-cat>
+        <edn-cat-x
+          :label="'edn-cat-x'"
+          v-model="ingredient"
+          :items="recette"
+          tooltip="Selection de catégories"
+        ></edn-cat-x>
+        <edn-date v-model="date" :label="'edn-date'" />
+        <edn-time v-model="time" :label="'edn-time'" />
+        <edn-memo :label="'edn-memo'" v-model="inptMemo" :size="'normal'"></edn-memo>
+        <edn-mail :label="'edn-mail'" />
+        <edn-phone :label="'edn-phone'" v-model="phone"></edn-phone>
+        <edn-check :label="'edn-check'"></edn-check>
+        <edn-switch :label="'edn-switch'"></edn-switch>
+        <edn-radio :label="'edn-radio'" :radios="radios"></edn-radio>
+        <edn-color :label="'edn-color'"></edn-color>
+        <edn-line right>
+          <edn-btn submit>Valider</edn-btn>
+          <edn-btn @click.native="resetForm" alternate>Annuler</edn-btn>
+        </edn-line>
+      </v-container>
+    </form>
   </v-app>
 </template>
 
@@ -47,8 +35,46 @@ export default {
 
   components: {},
 
-  data: () => ({
-    //
-  })
+  data() {
+    return {
+      civility: ['M.', 'Mme'],
+      citiesList: [],
+      loading: false,
+      inptNum: '',
+      inptText: '',
+      inptMemo: '',
+      ingredient: [],
+      recette: [
+        'Cat 1', 
+        'Cat 2', 
+        'Cat 3', 
+        'Cat 4', 
+        'Cat 5', 
+        ],
+      cat: [
+        'Cat 1', 
+        'Cat 2', 
+        'Cat 3', 
+        'Cat 4', 
+        'Cat 5', 
+        ],
+      selectedCat: '',
+      radios: [
+        {
+          label: 'Choix 1',
+          value: '1',
+        },
+        {
+          label: 'Choix 2',
+          value: '2',
+        },
+      ],
+      copied: false,
+      contentAbc: 'abcdefghijklmnopqtrsuvwxyz',
+      date: null,
+      time: null,
+      phone: String,
+    }
+  },
 };
 </script>

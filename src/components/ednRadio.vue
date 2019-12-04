@@ -1,7 +1,7 @@
 <template>
   <v-radio-group v-model="inputEl" :mandatory="false" v-bind="$attrs">
     <v-radio
-      :color="$vuetify.theme.primary"
+      :color="$vuetify.theme.currentTheme.primary"
       :checked="radio.checked"
       :radios="radios"
       v-for="(radio, id) in radios"

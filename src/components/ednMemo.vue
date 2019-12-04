@@ -1,13 +1,7 @@
 <template>
   <div
     class="cstmQl"
-    :style="
-      '--primary:' +
-        this.$vuetify.theme.primary +
-        ';--secondary:' +
-        this.$vuetify.theme.secondary +
-        ';'
-    "
+
     v-bind="$attrs"
   >
     <div class="memoLabel">{{ $attrs.label }}</div>
@@ -34,23 +28,13 @@ export default {
   components: {
     quillEditor
   },
-  props: {
-    placeholder: {
-      type: String,
-      default: () => "Tapez votre texte ici"
-    },
-    theme: {
-      type: String,
-      default: () => "snow"
-    }
-  },
   data() {
     return {
       inputEl: this.value,
       content: "",
       editorOption: {
-        theme: this.theme,
-        placeholder: this.placeholder,
+        theme: "snow",
+        placeholder: "Tapez votre texte ici",
         modules: {
           toolbar: [
             ["bold", "italic", "underline", "strike"],
@@ -84,14 +68,14 @@ div.cstmQl {
 
   &:focus-within {
     & div.memoLabel {
-      color: var(--primary);
+      color: var(--v-primary-base);
     }
   }
 
   & div.memoLabel {
     font-size: 12px;
     margin-bottom: 0.2em;
-    color: var(--secondary);
+    color: var(--v-secondary-base);
   }
 
   div.quill-editor {
@@ -128,7 +112,7 @@ div.cstmQl {
         transform: scaleX(0);
         bottom: 0;
         height: 2px;
-        background-color: var(--primary);
+        background-color: var(--v-primary-base);
         z-index: 10;
         display: block;
       }

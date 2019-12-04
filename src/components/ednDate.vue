@@ -32,11 +32,10 @@ export default {
   data() {
     return {
       menu: null,
-      time: null,
       date: null,
       colors: {
-        primary: this.$vuetify.theme.primary,
-        secondary: this.$vuetify.theme.secondary,
+        primary: this.$vuetify.theme.currentTheme.primary,
+        secondary: this.$vuetify.theme.currentTheme.secondary,
       },
     }
   },
@@ -46,7 +45,7 @@ export default {
     },
   },
   mounted() {
-    this.$vuetify.theme.primary
+    this.$vuetify.theme.currentTheme.primary
   },
 }
 </script>

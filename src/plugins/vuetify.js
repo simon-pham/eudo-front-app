@@ -7,6 +7,8 @@ Vue.use(Vuetify);
 
 export default new Vuetify({
   theme: {
+    primary:"#bb1515",
+    secondary:"#c4c4c4",
     options: {
       customProperties: true,
     },

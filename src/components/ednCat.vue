@@ -28,8 +28,8 @@ export default {
     return {
       selectedItem: this.value,
       colors: {
-        primary: this.$vuetify.theme.primary,
-        secondary: this.$vuetify.theme.secondary,
+        primary: this.$vuetify.theme.currentTheme.primary,
+        secondary: this.$vuetify.theme.currentTheme.secondary,
       },
     }
   },
