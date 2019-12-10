@@ -24,6 +24,9 @@ Vue.use(eudoFront);
 export default new Vuetify({
   iconfont: 'mdi',
   theme: {
+    options: {
+      customProperties: true,
+    },
     themes: {
       light: {
         primary:'#bb1515',
@@ -95,7 +98,7 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 #### Exemple :
 
 ```html
-<edn-field :label="Prénom" :required="true" />
+<edn-field label="Prénom" :required="true" />
 ```
 
 ---
@@ -116,7 +119,7 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 #### Exemple
 
 ```html
-<edn-cat :label="Ville" :catalog="cities" />
+<edn-cat label="Ville" :catalog="cities" />
 ```
 
 ---
@@ -137,7 +140,7 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 #### Exemple
 
 ```html
-<edn-cat :label="Passions" :catalog="passions" />
+<edn-cat label="Passions" :catalog="passions" />
 ```
 
 ---
@@ -158,7 +161,7 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 #### Exemple
 
 ```html
-<edn-memo :label="Description" />
+<edn-memo label="Description" />
 ```
 
 ---
@@ -166,14 +169,13 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 
 |    Paramètre     |   Type   |
 | :--------------: | :------: |
-|   **tooltip:**   | `String` |
 |    **label:**    | `String` |
 |     **id:**      | `Number` |
 
 #### Exemple
 
 ```html
-<edn-btn :label="Valider" />
+<edn-btn label="Valider" @click.native="action()" />
 ```
 
 ---
@@ -193,7 +195,7 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 #### Exemple
 
 ```html
-<edn-num :label="Âge" />
+<edn-num label="Âge" />
 ```
 
 ---
@@ -213,7 +215,7 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 #### Exemple
 
 ```html
-<edn-date :label="Choississez votre date de rendez-vous" />
+<edn-date label="Choississez votre date de rendez-vous" />
 ```
 
 ---
@@ -232,7 +234,7 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 #### Exemple
 
 ```html
-<edn-date :label="Choississez votre heure de rendez-vous" />
+<edn-date label="Choississez votre heure de rendez-vous" />
 ```
 
 ---
@@ -242,7 +244,9 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 | :--------------: | :------: | ------ |
 |    **message:**    | `String` |  |
 |    **form:**    | `String` |  |
-|  **-->**      | `simple` | `double` |
+|  **-->**      | `'simple'` | `'double'` |
+|    **anim:**    | `String` |  |
+|  **-->**      | `'dots'` | `'blink'` |
 
 #### Exemple
 
@@ -254,6 +258,17 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 
 
 # Changelog
+@0.1.7
+- Ajouts de paramètres supplémentaires sur edn-load
+
+@0.1.6
+- Correction de la doc
+
+@0.1.5
+- Désactivation de l'ednPhone
+
+@0.1.4
+- Correction de dépendances manquantes
 
 @0.1.3
 - Ajout de edn-load

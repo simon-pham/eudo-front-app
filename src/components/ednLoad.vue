@@ -8,7 +8,7 @@
     <div v-if="$attrs.form == 'double'" class="double">
       <div class="loadInside"></div>
     </div>
-    <span class="msg">
+    <span :class="['msg',$attrs.anim]">
       {{ $attrs.message }}
     </span>
   </div>
@@ -38,15 +38,36 @@ export default {
     opacity: 0;
   }
 }
+@keyframes dots {
+  0% {
+    content: "";
+  }
+  25% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  100% {
+    content: "...";
+  }
+}
 @keyframes loop {
   100% {
     transform: rotate(360deg);
   }
 }
 span.msg {
+  &.blink {
+    animation: blink 3s infinite alternate-reverse;
+  }
+  &.dots::after {
+    content:'';
+    animation: dots 3s infinite;
+
+  }
   display: block;
   margin-top: 0.5em;
-  animation: blink 1s infinite alternate-reverse;
   text-align: center;
 }
 div.simple {

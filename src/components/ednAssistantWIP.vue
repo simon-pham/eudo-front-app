@@ -23,7 +23,7 @@ export default {
 <style lang="stylus">
     div.edn-assistant
         > div.step
-            display inlin-block
+            display inline-block
         > div.stpLnk
             height 2px
             width 100%

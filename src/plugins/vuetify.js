@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify/lib';
 import fr from 'vuetify/es5/locale/fr';
+import eudoFront from '../components/eudo-front'
 
 
 Vue.use(Vuetify);
+Vue.use(eudoFront);
 
 export default new Vuetify({
   theme: {

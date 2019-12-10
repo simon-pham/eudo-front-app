@@ -1,16 +1,16 @@
 <template>
-    <div :class="['btn',alternate?'alt':'']">
-      <div class="mask">
-        <div class="rect-left"></div>
-        <div class="rect-top"></div>
-        <span><slot></slot></span>
-      </div>
+  <div :class="['btn', alternate ? 'alt' : '']">
+    <div class="mask">
+      <div class="rect-left"></div>
+      <div class="rect-top"></div>
+      <span><slot></slot></span>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-  inheritAttrs:false,
+  inheritAttrs: false,
   props: {
     alternate: {
       type: Boolean,
@@ -32,37 +32,40 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 div.btn {
-  user-select none
+  user-select: none;
   margin: 0.6em 0.3em;
   transition: transform 0.25s;
+
   &.alt {
-    background-color: #dadada;
+    background-color: var(--secondary);
     text-align: center;
     line-height: 2.4em;
     color: white;
+
     &:hover {
       transform: scale(0.98);
     }
-  > div.mask {
-      > div {
-          &.rect {
-            &-top,&-left {
-              display none 
-            }
 
+    > div.mask {
+      > div {
+        &.rect {
+          &-top, &-left {
+            display: none;
           }
         }
-        background:none;
-        background-color:#727272
-      } 
-    } 
-  &:hover {
-    // transform: scale(1.1);
-    // transition: transform 0.25s;
+      }
+
+      background: none;
+      background-color: #727272;
+    }
   }
+
+  &:hover {
+  }
+
   &:active {
     transform: scale(0.95);
-    transition: transform 0.10s;
+    transition: transform 0.1s;
   }
 
   cursor: pointer;
