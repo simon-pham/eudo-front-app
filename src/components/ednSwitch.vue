@@ -1,6 +1,5 @@
 <template>
   <v-switch :ripple="false" v-model="inputEl" v-bind="$attrs" :color="$vuetify.theme.currentTheme.primary" 
-    :rules="$attrs.required ? [value => !!value || typeof $attrs.required == 'string' && $attrs.required!='' ? $attrs.required:'Veuillez remplir ce champs.'] : []"
   >
     <template v-slot:append v-if="$attrs.tooltip">
       <v-tooltip top>

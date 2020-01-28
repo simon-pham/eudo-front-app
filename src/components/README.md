@@ -86,7 +86,7 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 |   **tooltip:**   |     `String`     |
 | **placeholder:** |     `String`     |
 |    **label:**    |     `String`     |
-|  **required:**   | `Bool && String` |
+|  **required:**   | `Bool || String` |
 |     **id:**      |     `Number`     |
 |    **order:**    |     `Number`     |
 |  **charsMax:**   |     `Number`     |
@@ -109,7 +109,7 @@ par défaut.
 |   **tooltip:**   | `String` |
 | **placeholder:** | `String` |
 |    **label:**    | `String` |
-|  **required:**   |  `Bool`  |
+|  **required:**   | `Bool ou String` |
 |     **id:**      | `Number` |
 |    **order:**    | `Number` |
 |  **charsMax:**   | `Number` |
@@ -130,7 +130,7 @@ par défaut.
 |   **tooltip:**   | `String` |
 | **placeholder:** | `String` |
 |    **label:**    | `String` |
-|  **required:**   |  `Bool`  |
+|  **required:**   | `Bool ou String` |
 |     **id:**      | `Number` |
 |    **order:**    | `Number` |
 |  **charsMax:**   | `Number` |
@@ -151,7 +151,7 @@ par défaut.
 |   **tooltip:**   | `String` |
 | **placeholder:** | `String` |
 |    **label:**    | `String` |
-|  **required:**   |  `Bool`  |
+|  **required:**   | `Bool ou String` |
 |     **id:**      | `Number` |
 |    **order:**    | `Number` |
 |  **charsMax:**   | `Number` |
@@ -188,7 +188,7 @@ par défaut.
 |   **tooltip:**   | `String` |
 | **placeholder:** | `String` |
 |    **label:**    | `String` |
-|  **required:**   |  `Bool`  |
+|  **required:**   | `Bool ou String` |
 |     **id:**      | `Number` |
 |    **order:**    | `Number` |
 |  **charsMax:**   | `Number` |
@@ -208,7 +208,7 @@ par défaut.
 |   **tooltip:**   | `String` |                                       |
 | **placeholder:** | `String` |                                       |
 |    **label:**    | `String` |                                       |
-|  **required:**   |  `Bool`  |                                       |
+|  **required:**   | `Bool ou String` |
 |     **id:**      | `Number` |                                       |
 |    **order:**    | `Number` |                                       |
 |  **charsMax:**   | `Number` |                                       |
@@ -229,7 +229,7 @@ par défaut.
 |   **tooltip:**   | `String` |
 | **placeholder:** | `String` |
 |    **label:**    | `String` |
-|  **required:**   |  `Bool`  |
+|  **required:**   | `Bool ou String` |
 |     **id:**      | `Number` |
 |    **order:**    | `Number` |
 |  **charsMax:**   | `Number` |
@@ -277,10 +277,10 @@ par défaut.
 
 # Changelog
 
-#### @0.1.10
+#### @0.1.11
 
-- `<edn-field>`
-  - correction des `required` qui ne fonctionnaient pas bien. Désormais, il faudra préciser si le required à true, ou passer une string précisant le message à transmettre. voir ex.
+- `<edn-*>`
+  - correction des `required` qui ne fonctionnaient pas bien. Désormais, il faudra préciser si le required à true, ou passer une string précisant le message à transmettre. voir doc du composant concerné.
 
 #### @0.1.10
 

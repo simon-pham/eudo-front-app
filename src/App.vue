@@ -1,38 +1,53 @@
 <template>
   <v-app :ripple="false">
     <form ref="form">
-      <v-container>
+      <v-container @click.ctrl="fill()">
         <v-row class="align-center justify-space-around">
           <edn-load message="edn-load" form="double" anim="dots"></edn-load>
           <edn-load message="edn-load" form="simple" anim="blink"></edn-load>
           <edn-load message="edn-load" form="fill"></edn-load>
         </v-row>
-        <edn-num label="edn-num" v-model="inptNum" tooltip="NOMBRE"></edn-num>
-        <edn-field label="edn-field" v-model="inptText" :required="true" ></edn-field>
-        <edn-cat label="edn-cat" v-model="selectedCat" :items="cat"></edn-cat>
+        <edn-num
+          label="edn-num"
+          v-model="inptNum"
+          tooltip="NOMBRE"
+          :required="true"
+        ></edn-num>
+        <edn-field
+          label="edn-field"
+          v-model="inptText"
+          :required="true"
+        ></edn-field>
+        <edn-cat label="edn-cat" v-model="selectedCat" :items="cat" :required="true"></edn-cat>
         <edn-cat-x
           label="edn-cat-x"
           v-model="ingredient"
           :items="recette"
           tooltip="Selection de catégories"
+          :required="true"
         ></edn-cat-x>
-        <edn-date v-model="date" label="edn-date" />
-        <edn-time v-model="time" label="edn-time" />
+        <edn-date v-model="date" label="edn-date" :required="true"/>
+        <edn-time v-model="time" label="edn-time" :required="true"/>
         <edn-memo
-          
           label="edn-memo"
           v-model="inptMemo"
           :size="'normal'"
+          :required="true"
         ></edn-memo>
-        <edn-mail label="edn-mail" v-model="mail" />
-        <edn-phone label="edn-phone" v-model="phone"></edn-phone>
-        <edn-check label="edn-check" v-model="checked"></edn-check>
-        <edn-switch label="edn-switch" v-model="switched"></edn-switch>
-        <edn-radio label="edn-radio" :radios="radios" v-model="radioSelect"></edn-radio>
+        <edn-mail label="edn-mail" v-model="mail" :required="true"/>
+        <edn-phone label="edn-phone" v-model="phone" :required="true"></edn-phone>
+        <edn-check label="edn-check" v-model="checked" :required="true"></edn-check>
+        <edn-switch label="edn-switch" v-model="switched" :required="true"></edn-switch>
+        <edn-radio
+          label="edn-radio"
+          :radios="radios"
+          v-model="radioSelect"
+          :required="true"
+        ></edn-radio>
         <edn-color label="edn-color" v-model="selectedColor"></edn-color>
         <v-row class="justify-center align-self-center">
           <edn-btn submit>Valider</edn-btn>
-          <edn-btn @click.native="resetForm" alternate >Annuler</edn-btn>
+          <edn-btn @click.native="resetForm" alternate>Annuler</edn-btn>
         </v-row>
       </v-container>
     </form>
@@ -50,18 +65,18 @@ export default {
       civility: ["M.", "Mme"],
       citiesList: [],
       loading: false,
-      inptNum: 654654,
-      mail:"clara@arre.fr",
-      checked:true,
-      switched:true,
+      inptNum: null,
+      mail: "",
+      checked: true,
+      switched: true,
       inptText: "",
-      inptMemo: "dzaazddzazdazda",
-      ingredient: ["Cat 1","Cat 2","Cat 4"],
-      recette: ["Cat 1", "Cat 2", "Cat 3", "Cat 4", "Cat 5"],
+      inptMemo: "",
+      ingredient: [],
+      recette: ["Cat 3", "Cat 4", "Cat 5"],
       cat: ["Cat 1", "Cat 2", "Cat 3", "Cat 4", "Cat 5"],
-      selectedCat: "Cat 3",
-      radioSelect:null,
-      selectedColor:"#bb1515",
+      selectedCat: "",
+      radioSelect: null,
+      selectedColor: "",
       radios: [
         {
           label: "Choix 1",
@@ -74,13 +89,11 @@ export default {
       ],
       copied: false,
       contentAbc: "abcdefghijklmnopqtrsuvwxyz",
-      date: "2020-01-18",
-      time: "12:54",
-      phone: "0654658794",
+      date: "",
+      time: "",
+      phone: ""
     };
   },
-  methods:{
-  
-  }
+  methods: {}
 };
 </script>

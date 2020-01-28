@@ -1,5 +1,6 @@
 <template>
-  <div :class="['cstmQl', $attrs.disabled ? 'disabled' : '']" v-bind="$attrs">
+<v-text-field v-bind="$attrs">
+  <div :class="['cstmQl', $attrs.disabled ? 'disabled' : '']" >
     <div class="memoLabel">{{ $attrs.label }}</div>
     <quill-editor
       ref="myTextEditor"
@@ -10,6 +11,7 @@
     >
     </quill-editor>
   </div>
+</v-text-field>
 </template>
 
 <script>
