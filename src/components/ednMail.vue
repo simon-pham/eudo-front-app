@@ -15,6 +15,9 @@
 
 <script>
 export default {
+  props: {
+    value:String
+  },
   inheritAttrs: false,
   data() {
     return {

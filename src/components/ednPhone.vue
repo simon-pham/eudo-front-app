@@ -1,5 +1,7 @@
 <template>
-  <v-text-field v-model="inputEl" v-mask="mask" type="tel" v-bind="$attrs">
+  <v-text-field v-model="inputEl" v-mask="mask" type="tel" v-bind="$attrs" 
+    :rules="$attrs.required ? [value => !!value || typeof $attrs.required == 'string' && $attrs.required!='' ? $attrs.required:'Veuillez remplir ce champs.'] : []"
+  >
     <template v-slot:append v-if="$attrs.tooltip">
       <v-tooltip top>
         <template v-slot:activator="{ on }">
@@ -21,6 +23,9 @@ Vue.use(VueTheMask);
 
 export default {
   inheritAttrs: false,
+  props:{
+    value:String
+  },
   data() {
     return {
       inputEl: this.value,
@@ -28,8 +33,8 @@ export default {
     };
   },
   watch: {
-    inputEl(val) {
-      this.$emit("input", val);
+    inputEl() {
+      this.$emit("input", this.value);
     }
   }
 };

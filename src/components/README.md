@@ -12,37 +12,33 @@ npm install eudo-front
 
 ```js
 //vuetify.js
-import Vue from 'vue';
-import Vuetify from 'vuetify/lib';
-import eudoFront from 'eudo-front'
-import '@mdi/font/css/materialdesignicons.css'
+import Vue from "vue";
+import Vuetify from "vuetify/lib";
+import eudoFront from "eudo-front";
+import "@mdi/font/css/materialdesignicons.css";
 
-
-Vue.use(Vuetify)
+Vue.use(Vuetify);
 Vue.use(eudoFront);
 
 export default new Vuetify({
-  iconfont: 'mdi',
+  iconfont: "mdi",
   theme: {
     options: {
-      customProperties: true,
+      customProperties: true
     },
     themes: {
       light: {
-        primary:'#bb1515',
-        secondary:'#c4c4c4'
+        primary: "#bb1515",
+        secondary: "#c4c4c4"
         //Pour l'instant il faut faire ces décalartions manuellement.
-      },
-    },
-  },
+      }
+    }
+  }
 });
-
 ```
 
 Il faut bien prendre en considération que eudoFront n'est qu'un plugin de Vuetify à ce stade.
 N'éspérez pas utiliser eudo-front sur un projet from scratch.
-
-
 
 ## LISTE DES COMPOSANTS
 
@@ -85,20 +81,23 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 
 ## Champs `<edn-field/>`
 
-|    Paramètre     |   Type   |
-| :--------------: | :------: |
-|   **tooltip:**   | `String` |
-| **placeholder:** | `String` |
-|    **label:**    | `String` |
-|  **required:**   |  `Bool`  |
-|     **id:**      | `Number` |
-|    **order:**    | `Number` |
-|  **charsMax:**   | `Number` |
+|    Paramètre     |       Type       |
+| :--------------: | :--------------: |
+|   **tooltip:**   |     `String`     |
+| **placeholder:** |     `String`     |
+|    **label:**    |     `String`     |
+|  **required:**   | `Bool && String` |
+|     **id:**      |     `Number`     |
+|    **order:**    |     `Number`     |
+|  **charsMax:**   |     `Number`     |
 
 #### Exemple :
 
 ```html
-<edn-field label="Prénom" :required="true" />
+<edn-field label="Prénom" :required="true" /> // Ce cas enclenchera la valeur
+par défaut.
+
+<edn-field label="Prénom" :required="Le prénom n'est pas rempli" /> // Celui-ci utilisera me message passé en prop comme message de validation.
 ```
 
 ---
@@ -165,17 +164,19 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 ```
 
 ---
+
 ## Bouton `<edn-btn/>`
 
-|    Paramètre     |   Type   |
-| :--------------: | :------: |
-|    **label:**    | `String` |
-|     **id:**      | `Number` |
+| Paramètre  |   Type   |
+| :--------: | :------: |
+| **label:** | `String` |
+|  **id:**   | `Number` |
+| **color:** | `String` |
 
 #### Exemple
 
 ```html
-<edn-btn label="Valider" @click.native="action()" />
+<edn-btn label="Valider" @click.native="action()" color="#bb1515" />
 ```
 
 ---
@@ -202,23 +203,25 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 
 ## Date `<edn-date/>`
 
-|    Paramètre     |   Type   |
-| :--------------: | :------: |
-|   **tooltip:**   | `String` |
-| **placeholder:** | `String` |
-|    **label:**    | `String` |
-|  **required:**   |  `Bool`  |
-|     **id:**      | `Number` |
-|    **order:**    | `Number` |
-|  **charsMax:**   | `Number` |
+|    Paramètre     |   Type   |             Documentation             |
+| :--------------: | :------: | :-----------------------------------: |
+|   **tooltip:**   | `String` |                                       |
+| **placeholder:** | `String` |                                       |
+|    **label:**    | `String` |                                       |
+|  **required:**   |  `Bool`  |                                       |
+|     **id:**      | `Number` |                                       |
+|    **order:**    | `Number` |                                       |
+|  **charsMax:**   | `Number` |                                       |
+|   **format:**    | `String` | [Moment.js](https://www.momentjs.com) |
 
 #### Exemple
 
 ```html
-<edn-date label="Choississez votre date de rendez-vous" />
+<edn-date label="Choississez votre date de rendez-vous" format="DD-MM-YYYY" />
 ```
 
 ---
+
 ## Heure `<edn-time/>`
 
 |    Paramètre     |   Type   |
@@ -238,15 +241,16 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 ```
 
 ---
+
 ## Heure `<edn-load/>`
 
-|    Paramètre     |   Type   |  |
-| :--------------: | :------: | ------ |
-|    **message:**    | `String` |  |
-|    **form:**    | `String` |  |
-|  **-->**      | `'simple'` | `'double'` |
-|    **anim:**    | `String` |  |
-|  **-->**      | `'dots'` | `'blink'` |
+|  Paramètre   |    Type    |            |
+| :----------: | :--------: | ---------- |
+| **message:** |  `String`  |            |
+|  **form:**   |  `String`  |            |
+|   **-->**    | `'simple'` | `'double'` |
+|  **anim:**   |  `String`  |            |
+|   **-->**    |  `'dots'`  | `'blink'`  |
 
 #### Exemple
 
@@ -256,47 +260,105 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 
 ---
 
+## Heure `<edn-radio/>`
+
+|  Paramètre  |   Type   |     |
+| :---------: | :------: | --- |
+| **label:**  | `String` |     |
+| **radios:** | `Array`  |     |
+
+#### Exemple
+
+```html
+<edn-radio message="Chargement en cours" :radios="radios" />
+```
+
+---
 
 # Changelog
-@0.1.7
+
+#### @0.1.10
+
+- `<edn-field>`
+  - correction des `required` qui ne fonctionnaient pas bien. Désormais, il faudra préciser si le required à true, ou passer une string précisant le message à transmettre. voir ex.
+
+#### @0.1.10
+
+- `<edn-*>`
+  - Uniformisation des composant pour qu'ils reprennent bien les valeurs passés en v-model.
+- `<edn-field>`
+  - Correction de la bidirectionnalitée de l'edn-field, désormais il se met à jour et hérite de la String que l'on lui passe en premier lieu.
+  - Simplification des rules, il suffit juste d'utiliser la prop `required` afin d'enclencher la vérification sur les champs concernés.
+- `<edn-date/>`
+  - Correction de `<edn-date/>` qui ne remontait pas la date aux parents.
+  - Ajout d'un attribut `format` permettant de formatter les dates du picker.
+  - Ajout du framework Moment.js
+- `<edn-memo/>`
+  - Ajout du `disabled` sur l'edn-memo. Pour l'instant le texte du v-model ne sera que de l'html
+
+#### @0.1.9
+
+- Ajout de la possibilité de changer la couleur de l'edn-btn
+
+#### @0.1.8
+
+- Reduction de la taille des boutons de base
+- Correction d'un bug au niveau du v-model de l'edn-radio
+- Changement de l'emplacement de la couleur sur edn-color
+
+#### @0.1.7
+
 - Ajouts de paramètres supplémentaires sur edn-load
 
-@0.1.6
+#### @0.1.6
+
 - Correction de la doc
 
-@0.1.5
+#### @0.1.5
+
 - Désactivation de l'ednPhone
 
-@0.1.4
+#### @0.1.4
+
 - Correction de dépendances manquantes
 
-@0.1.3
+#### @0.1.3
+
 - Ajout de edn-load
 
-@0.1.2
+#### @0.1.2
+
 - bugfixes
 
-@0.1.1
+#### @0.1.1
+
 - bugfixes
 
-@0.1.0
+#### @0.1.0
+
 - Passage à Vuetify 2.0
 - Ajout de l'edn color picker
 
-@0.0.6
+#### @0.0.6
+
 - Bugfixes
 
-@0.0.5
+#### @0.0.5
+
 - Bugfixes
 
-@0.0.4
+#### @0.0.4
+
 - Bugfixes
 
-@0.0.3
+#### @0.0.3
+
 - Bugfixes
 
-@0.0.2
+#### @0.0.2
+
 - Correction de bug d'import de dépendances
 
-@0.0.1
+#### @0.0.1
+
 - Initialisation du package de référence

@@ -1,14 +1,11 @@
 <template>
-  <div
-    class="cstmQl"
-
-    v-bind="$attrs"
-  >
+  <div :class="['cstmQl', $attrs.disabled ? 'disabled' : '']" v-bind="$attrs">
     <div class="memoLabel">{{ $attrs.label }}</div>
     <quill-editor
       ref="myTextEditor"
       :class="$attrs.size"
       v-model="content"
+      :value="handleInput()"
       :options="editorOption"
     >
     </quill-editor>
@@ -25,13 +22,15 @@ import { quillEditor } from "vue-quill-editor";
 
 export default {
   inheritAttrs: false,
+  props: {
+    value: ""
+  },
   components: {
     quillEditor
   },
   data() {
     return {
-      inputEl: this.value,
-      content: "",
+      content: this.value,
       editorOption: {
         theme: "snow",
         placeholder: "Tapez votre texte ici",
@@ -55,9 +54,9 @@ export default {
       }
     };
   },
-  watch: {
-    inputEl(val) {
-      this.$emit("input", val);
+  methods: {
+    handleInput(e) {
+      this.$emit("input", this.content);
     }
   }
 };
@@ -119,6 +118,31 @@ div.cstmQl {
 
       position: relative;
     }
+  }
+
+  &.disabled * {
+    :hover {
+      &:focus-within {
+        & div.memoLabel {
+          color: #ccc !important;
+          pointer-events: none;
+        }
+      }
+
+      color: #ccc !important;
+      // fill #ccc !important
+      stroke: #ccc !important;
+      pointer-events: none;
+    }
+
+    :before {
+      color: #ccc !important;
+    }
+
+    color: #ccc !important;
+    // fill #ccc !important
+    stroke: #ccc !important;
+    pointer-events: none;
   }
 }
 </style>

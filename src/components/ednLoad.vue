@@ -1,5 +1,8 @@
 <template>
   <div v-bind="$attrs">
+    <div id="loadingElement" v-if="$attrs.form == 'fill'" :class="$attrs.form">
+      <div></div>
+    </div>
     <div
       id="loadingElement"
       v-if="$attrs.form == 'simple'"
@@ -8,7 +11,7 @@
     <div v-if="$attrs.form == 'double'" class="double">
       <div class="loadInside"></div>
     </div>
-    <span :class="['msg',$attrs.anim]">
+    <span :class="['msg', $attrs.anim]">
       {{ $attrs.message }}
     </span>
   </div>
@@ -30,6 +33,14 @@ export default {
 
 
 <style lang='scss'>
+@keyframes fill {
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 100%;
+  }
+}
 @keyframes blink {
   0% {
     opacity: 1;
@@ -62,9 +73,10 @@ span.msg {
     animation: blink 3s infinite alternate-reverse;
   }
   &.dots::after {
-    content:'';
+    content: "";
     animation: dots 3s infinite;
-
+    display: inline-block;
+    width: 0;
   }
   display: block;
   margin-top: 0.5em;
@@ -76,8 +88,6 @@ div.simple {
   width: 10em;
   border-radius: 100%;
   animation: loop 1s steps(25) infinite;
-}
-div.simple {
   > div {
     width: 0.5em;
     height: 0.4em;
@@ -121,5 +131,22 @@ div.double {
   border-radius: 50em;
   border: dashed 7px var(--v-primary-base);
   animation: loop 2s infinite linear;
+}
+div.fill {
+  display: block;
+  width: 1em;
+  height: 4em;
+  border: solid 2px var(--v-primary-base);
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  > div {
+    animation: fill infinite 5s linear;
+    background-color: var(--v-primary-base);
+    height: 0%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
 }
 </style>

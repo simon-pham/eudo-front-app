@@ -9,7 +9,12 @@
     min-width="290px"
   >
     <template v-slot:activator="{ on }">
-      <v-text-field v-model="time" :label="$attrs.label" readonly v-on="on"></v-text-field>
+      <v-text-field
+        v-model="time"
+        :label="$attrs.label"
+        readonly
+        v-on="on"
+      ></v-text-field>
     </template>
 
     <v-time-picker
@@ -26,21 +31,24 @@
 <script>
 export default {
   inheritAttrs: false,
+   props: {
+    value: String
+  },
   data() {
     return {
       menu: null,
-      time: null,
+      time: this.value,
       colors: {
         primary: this.$vuetify.theme.currentTheme.primary,
-        secondary: this.$vuetify.theme.currentTheme.secondary,
-      },
-    }
+        secondary: this.$vuetify.theme.currentTheme.secondary
+      }
+    };
   },
   watch: {
-    picker(val) {
-      this.$emit('input', val)
-    },
-  },
-}
+    time() {
+      this.$emit("input", this.time);
+    }
+  }
+};
 </script>
 

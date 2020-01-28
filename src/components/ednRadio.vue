@@ -8,7 +8,7 @@
       v-for="(radio, id) in radios"
       :key="id"
       :label="radio.label"
-      :value="radio.value + id"
+      :value="radio.value"
     ></v-radio>
   </v-radio-group>
 </template>

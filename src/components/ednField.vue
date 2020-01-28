@@ -1,5 +1,10 @@
 <template>
-  <v-text-field v-model="inputEl" type="text" v-bind="$attrs">
+  <v-text-field
+    type="text"
+    v-model="content"
+    v-bind="$attrs"
+    :rules="$attrs.required ? [value => !!value || typeof $attrs.required == 'string' && $attrs.required!='' ? $attrs.required:'Veuillez remplir ce champs.'] : []"
+  >
     <template v-slot:append v-if="$attrs.tooltip">
       <v-tooltip top>
         <template v-slot:activator="{ on }">
@@ -16,14 +21,17 @@
 <script>
 export default {
   inheritAttrs: false,
+  props: {
+    value: ""
+  },
   data() {
     return {
-      inputEl: this.value
+      content: this.value,
     };
   },
-  watch: {
-    inputEl(val) {
-      this.$emit("input", val);
+  methods: {
+    handleInput(e) {
+      this.$emit("input", this.content);
     }
   }
 };

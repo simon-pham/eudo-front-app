@@ -1,10 +1,19 @@
 <template>
-  <div :class="['btn', alternate ? 'alt' : '']">
+<div>
+
+  <div v-if="alternate" :style="{backgroundColor:color}" class="btn alt">
+       <div class="mask">
+      
+      <span><slot></slot></span>
+    </div>
+    </div>
+  <div v-else class="btn">
     <div class="mask">
       <div class="rect-left"></div>
       <div class="rect-top"></div>
       <span><slot></slot></span>
     </div>
+  </div>
   </div>
 </template>
 
@@ -16,13 +25,13 @@ export default {
       type: Boolean,
       default: () => false
     },
-    sm: {
-      type: Boolean,
-      default: () => false
-    },
     disable: {
       type: Boolean,
       default: () => false
+    },
+    color:{
+      type:String,
+      default:()=>'#727272'
     }
   }
 };
@@ -32,14 +41,12 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 div.btn {
+  
   user-select: none;
-  margin: 0.6em 0.3em;
   transition: transform 0.25s;
 
   &.alt {
-    background-color: var(--secondary);
     text-align: center;
-    line-height: 2.4em;
     color: white;
 
     &:hover {
@@ -56,7 +63,6 @@ div.btn {
       }
 
       background: none;
-      background-color: #727272;
     }
   }
 
@@ -70,22 +76,24 @@ div.btn {
 
   cursor: pointer;
   overflow: hidden;
-  width: 9em;
-  height: 2.3em;
   position: relative;
   border-radius: 0.2em;
-  font-size: 1.4em;
 
   & div {
     &.rect {
+      
       &-top {
-        transform: rotate(-30deg) translate(0.1em, -3em);
-        transition: 0.15s 0.25s transform;
+        transform: rotate(-30deg);
+        left: -30%;
+        bottom: 140%;
+        transition: 0.15s 0.25s;
       }
 
       &-left {
-        transform: rotate(-30deg) translate(-2em, 0em);
-        transition: 0.25s 0.05s transform;
+        transform: rotate(-30deg) 
+        left:-50%;
+        top:20%;
+        transition: 0.25s 0.05s;
       }
     }
   }
@@ -93,11 +101,15 @@ div.btn {
   &:hover {
     & div.rect {
       &-top {
-        transform: rotate(-30deg) translate(0.1em, -1em);
+        transform: rotate(-30deg)
+        bottom: 60%;
+        left: -10%;
       }
 
       &-left {
-        transform: rotate(-30deg) translate(-0.7em, 0em);
+        transform: rotate(-30deg)
+        left:-24%;
+        top:0%; 
       }
     }
   }
@@ -113,13 +125,11 @@ div.btn {
       text-align: center;
       width: 100%;
       display: block;
-      line-height: 2.3em;
       color: white;
       font-family: 'Cabin', sans-serif;
     }
 
-    width: 100%;
-    height: 100%;
+    padding:0.2em 1.6em;
     background: linear-gradient(309deg, #d13076 0%, #fc4a4a 53%, #bb1515 100%);
     position: relative;
 
@@ -127,17 +137,16 @@ div.btn {
       background-color: #bb1515;
       opacity: 0.5;
       position: absolute;
-      transform-origin: bottom left;
 
       &.rect {
         &-left {
-          height: 4em;
-          width: 2.5em;
+          height: 150%;
+          width: 40%;
         }
 
         &-top {
-          height: 3em;
-          width: 6em;
+          height: 130%;
+          width: 70%;
         }
       }
     }

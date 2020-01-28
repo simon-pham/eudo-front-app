@@ -1,6 +1,9 @@
 <template>
   <!-- Ajout d'un icon de développement du catalogue -->
-  <v-select v-model="selectedItem" :items="items" type="text" v-bind="$attrs">
+  <v-select v-model="selectedItem" :items="items" type="text" v-bind="$attrs" 
+    :rules="$attrs.required ? [value => !!value || typeof $attrs.required == 'string' && $attrs.required!='' ? $attrs.required:'Veuillez remplir ce champs.'] : []"
+  
+  >
     <template v-slot:append-outer-icon v-if="tooltip">
       <v-tooltip top>
         <template v-slot:activator="{ on }">
@@ -23,6 +26,7 @@ export default {
   props: {
     tooltip: String,
     items: Array,
+    value:""
   },
   data() {
     return {

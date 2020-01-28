@@ -9,7 +9,7 @@
   >
     <template v-slot:activator="{ on }">
       <v-text-field v-model="color" :label="$attrs.label" v-on="on">
-        <template v-slot:append>
+        <template v-slot:prepend>
           <v-icon :color="color">mdi-square</v-icon>
         </template>
       </v-text-field>
@@ -26,10 +26,16 @@
 <script>
 export default {
   inheritAttrs: false,
+  props:{
+    value:{
+      type:String,
+      default:()=>"#FFFFFF"
+    }
+  },
   data() {
     return {
       menu: null,
-      color: "#FFFFFF",
+      color: this.value,
       colors: {
         primary: this.$vuetify.theme.currentTheme.primary,
         secondary: this.$vuetify.theme.currentTheme.secondary
@@ -37,8 +43,8 @@ export default {
     };
   },
   watch: {
-    picker(val) {
-      this.$emit("input", val);
+    color() {
+      this.$emit('input',this.color)
     }
   }
 };

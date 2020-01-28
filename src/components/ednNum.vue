@@ -1,5 +1,7 @@
 <template>
-  <v-text-field ref="input" v-model="numberInput" @keypress="numCheck()" v-bind="$attrs">
+  <v-text-field ref="input" v-model="numberInput" @keypress="numCheck()" v-bind="$attrs"
+    :rules="$attrs.required ? [value => !!value || typeof $attrs.required == 'string' && $attrs.required!='' ? $attrs.required:'Veuillez remplir ce champs.'] : []"
+  >
     <template v-slot:append v-if="$attrs.tooltip">
       <v-tooltip top>
         <template v-slot:activator="{ on }">
@@ -14,6 +16,9 @@
 <script>
 export default {
   inheritAttrs: false,
+   props: {
+    value: ""
+  },
   data() {
     return {
       regEx: /[0-9+-.,]/,
@@ -25,6 +30,7 @@ export default {
       let evt = evt ? evt : window.event
       let val = evt.key
       if (val.match(this.regEx)) {
+        this.$emit("input", this.numberInput);
         return val
       } else {
         evt.preventDefault()

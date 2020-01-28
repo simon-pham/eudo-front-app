@@ -7,8 +7,10 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "component-minify": "^1.2.0",
     "core-js": "^3.4.3",
     "eudo-front": "^0.1.4",
+    "moment": "^2.24.0",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "vue": "^2.6.10",
