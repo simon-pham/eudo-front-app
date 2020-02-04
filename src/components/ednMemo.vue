@@ -1,6 +1,5 @@
 <template>
-<v-text-field v-bind="$attrs">
-  <div :class="['cstmQl', $attrs.disabled ? 'disabled' : '']" >
+  <div :class="['cstmQl', $attrs.disabled ? 'disabled' : '']" v-bind="$attrs">
     <div class="memoLabel">{{ $attrs.label }}</div>
     <quill-editor
       ref="myTextEditor"
@@ -11,7 +10,6 @@
     >
     </quill-editor>
   </div>
-</v-text-field>
 </template>
 
 <script>
@@ -21,9 +19,12 @@ import "quill/dist/quill.bubble.css";
 
 import hljs from "highlight.js";
 import { quillEditor } from "vue-quill-editor";
+import { VApp } from 'vuetify/lib'
+
 
 export default {
   inheritAttrs: false,
+  extends:[VApp],
   props: {
     value: ""
   },

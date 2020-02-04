@@ -3,7 +3,7 @@
     type="text"
     v-model="content"
     v-bind="$attrs"
-    :rules="$attrs.required ? [value => !!value || typeof $attrs.required == 'string' && $attrs.required!='' ? $attrs.required:'Veuillez remplir ce champs.'] : []"
+    :rules="rules"
   >
     <template v-slot:append v-if="$attrs.tooltip">
       <v-tooltip top>
@@ -19,14 +19,19 @@
 </template>
 
 <script>
+import { ednRequired } from "./mixins/ednRequired";
+
+
 export default {
   inheritAttrs: false,
+  mixins:[ednRequired],
   props: {
     value: ""
   },
   data() {
     return {
       content: this.value,
+      
     };
   },
   methods: {

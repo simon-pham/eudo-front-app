@@ -123,7 +123,7 @@ par défaut.
 
 ---
 
-## Catalogue multiple `<edn-catX/>`
+## Catalogue multiple `<edn-cat-x/>`
 
 |    Paramètre     |   Type   |
 | :--------------: | :------: |
@@ -136,10 +136,11 @@ par défaut.
 |  **charsMax:**   | `Number` |
 |   **catalog:**   | `Array`  |
 
+
 #### Exemple
 
 ```html
-<edn-cat label="Passions" :catalog="passions" />
+<edn-cat-x label="Passions" :catalog="passions" />
 ```
 
 ---
@@ -148,14 +149,11 @@ par défaut.
 
 |    Paramètre     |   Type   |
 | :--------------: | :------: |
-|   **tooltip:**   | `String` |
 | **placeholder:** | `String` |
 |    **label:**    | `String` |
-|  **required:**   | `Bool ou String` |
-|     **id:**      | `Number` |
-|    **order:**    | `Number` |
-|  **charsMax:**   | `Number` |
-|    **html:**     |  `Bool`  |
+|    **disabled:**    | `Bool` |
+|  **size:**   |  `String`  |            |
+|   **-->**    |  `'normal'`  | `'large'`  |
 
 #### Exemple
 
@@ -277,10 +275,15 @@ par défaut.
 
 # Changelog
 
+#### @0.1.12
+- `<edn-*>`
+  - Correction des ``required`` qui ne se vérifiaient jamais.
+  - Ajout d'un mixin pour uniformiser le code du required 
+
 #### @0.1.11
 
 - `<edn-*>`
-  - correction des `required` qui ne fonctionnaient pas bien. Désormais, il faudra préciser si le required à true, ou passer une string précisant le message à transmettre. voir doc du composant concerné.
+  - correction des `required` qui ne fonctionnaient pas bien. Désormais, il faudra désormais définir le required à true, ou passer une string précisant le message à transmettre. voir doc ``<edn-field/>``.
 
 #### @0.1.10
 

@@ -14,7 +14,7 @@
         readonly
         :value="date ? $moment(date).format(format) : ''"
         v-on="on"
-    :rules="$attrs.required ? [value => !!value || typeof $attrs.required == 'string' && $attrs.required!='' ? $attrs.required:'Veuillez remplir ce champs.'] : []"
+    
 
       ></v-text-field>
     </template>
@@ -36,8 +36,11 @@
   </v-menu>
 </template>
 <script>
+import { ednRequired } from "./mixins/ednRequired";
+
 export default {
   inheritAttrs: false,
+    mixins:[ednRequired],
   props: {
     format: {
       type: String,

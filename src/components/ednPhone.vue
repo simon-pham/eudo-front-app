@@ -1,6 +1,6 @@
 <template>
   <v-text-field v-model="inputEl" v-mask="mask" type="tel" v-bind="$attrs" 
-    :rules="$attrs.required ? [value => !!value || typeof $attrs.required == 'string' && $attrs.required!='' ? $attrs.required:'Veuillez remplir ce champs.'] : []"
+    
   >
     <template v-slot:append v-if="$attrs.tooltip">
       <v-tooltip top>
@@ -19,10 +19,12 @@
 import VueTheMask from "vue-the-mask";
 import Vue from "vue";
 
+import { ednRequired } from "./mixins/ednRequired";
 Vue.use(VueTheMask);
 
 export default {
   inheritAttrs: false,
+    mixins:[ednRequired],
   props:{
     value:String
   },

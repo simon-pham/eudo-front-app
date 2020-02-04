@@ -9,7 +9,6 @@
       :key="id"
       :label="radio.label"
       :value="radio.value"
-    :rules="$attrs.required ? [value => !!value || typeof $attrs.required == 'string' && $attrs.required!='' ? $attrs.required:'Merci de faire un choix.'] : []"
     ></v-radio>
   </v-radio-group>
 </template>

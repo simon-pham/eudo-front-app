@@ -1,7 +1,7 @@
 <template>
   <!-- Ajout d'un icon de développement du catalogue -->
   <v-select v-model="selectedItem" :items="items" type="text" v-bind="$attrs" 
-    :rules="$attrs.required ? [value => !!value || typeof $attrs.required == 'string' && $attrs.required!='' ? $attrs.required:'Veuillez remplir ce champs.'] : []"
+    
   
   >
     <template v-slot:append-outer-icon v-if="tooltip">
@@ -17,11 +17,13 @@
 
 <script>
 import { VSelect } from 'vuetify/lib'
+import { ednRequired } from "./mixins/ednRequired";
 
 export default {
   component: {
     VSelect,
   },
+  mixins:[ednRequired],
   inheritAttrs: false,
   props: {
     tooltip: String,

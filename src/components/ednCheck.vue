@@ -1,6 +1,5 @@
 <template>
   <v-checkbox :ripple="false" v-model="inputEl" v-bind="$attrs" :color="$vuetify.theme.currentTheme.primary" 
-    :rules="$attrs.required ? [value => !!value || typeof $attrs.required == 'string' && $attrs.required!='' ? $attrs.required:'Merci de cocher cette case.'] : []"
   
   >
     <template v-slot:append v-if="$attrs.tooltip">
@@ -15,8 +14,13 @@
 </template>
 
 <script>
+import { ednRequired } from "./mixins/ednRequired";
+
+
 export default {
   inheritAttrs: false,
+    mixins:[ednRequired],
+
    props: {
     value: false
   },

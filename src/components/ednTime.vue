@@ -28,9 +28,14 @@
     </v-time-picker>
   </v-menu>
 </template>
+
+
 <script>
+import { ednRequired } from "./mixins/ednRequired";
+
 export default {
   inheritAttrs: false,
+  mixins:[ednRequired],
    props: {
     value: String
   },

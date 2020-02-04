@@ -11,20 +11,20 @@
           label="edn-num"
           v-model="inptNum"
           tooltip="NOMBRE"
-          :required="true"
+          required="Mange des pommes !"
         ></edn-num>
         <edn-field
           label="edn-field"
           v-model="inptText"
-          :required="true"
+          :required="'Merci !'"
         ></edn-field>
-        <edn-cat label="edn-cat" v-model="selectedCat" :items="cat" :required="true"></edn-cat>
+        <edn-cat label="edn-cat" v-model="selectedCat" :items="cat" :required="'Il faut remplir les champs !'"></edn-cat>
         <edn-cat-x
           label="edn-cat-x"
           v-model="ingredient"
           :items="recette"
           tooltip="Selection de catégories"
-          :required="true"
+        
         ></edn-cat-x>
         <edn-date v-model="date" label="edn-date" :required="true"/>
         <edn-time v-model="time" label="edn-time" :required="true"/>
@@ -32,7 +32,7 @@
           label="edn-memo"
           v-model="inptMemo"
           :size="'normal'"
-          :required="true"
+        
         ></edn-memo>
         <edn-mail label="edn-mail" v-model="mail" :required="true"/>
         <edn-phone label="edn-phone" v-model="phone" :required="true"></edn-phone>
@@ -42,7 +42,7 @@
           label="edn-radio"
           :radios="radios"
           v-model="radioSelect"
-          :required="true"
+        
         ></edn-radio>
         <edn-color label="edn-color" v-model="selectedColor"></edn-color>
         <v-row class="justify-center align-self-center">
