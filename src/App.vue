@@ -16,33 +16,47 @@
         <edn-field
           label="edn-field"
           v-model="inptText"
-          :required="'Merci !'"
+          :required="'Mange mon schouimps !'"
         ></edn-field>
-        <edn-cat label="edn-cat" v-model="selectedCat" :items="cat" :required="'Il faut remplir les champs !'"></edn-cat>
+        <edn-cat
+          label="edn-cat"
+          v-model="selectedCat"
+          :items="cat"
+          :required="'Il faut remplir les champs !'"
+        ></edn-cat>
         <edn-cat-x
           label="edn-cat-x"
           v-model="ingredient"
           :items="recette"
           tooltip="Selection de catégories"
-        
         ></edn-cat-x>
-        <edn-date v-model="date" label="edn-date" :required="true"/>
-        <edn-time v-model="time" label="edn-time" :required="true"/>
+        <edn-date v-model="date" label="edn-date" :required="true" />
+        <edn-time v-model="time" label="edn-time" :required="true" />
         <edn-memo
           label="edn-memo"
           v-model="inptMemo"
           :size="'normal'"
-        
         ></edn-memo>
-        <edn-mail label="edn-mail" v-model="mail" :required="true"/>
-        <edn-phone label="edn-phone" v-model="phone" :required="true"></edn-phone>
-        <edn-check label="edn-check" v-model="checked" :required="true"></edn-check>
-        <edn-switch label="edn-switch" v-model="switched" :required="true"></edn-switch>
+        <edn-mail label="edn-mail" v-model="mail" :required="true" />
+        <edn-phone
+          label="edn-phone"
+          v-model="phone"
+          :required="true"
+        ></edn-phone>
+        <edn-check
+          label="edn-check"
+          v-model="checked"
+          :required="true"
+        ></edn-check>
+        <edn-switch
+          label="edn-switch"
+          v-model="switched"
+          :required="true"
+        ></edn-switch>
         <edn-radio
           label="edn-radio"
           :radios="radios"
           v-model="radioSelect"
-        
         ></edn-radio>
         <edn-color label="edn-color" v-model="selectedColor"></edn-color>
         <v-row class="justify-center align-self-center">

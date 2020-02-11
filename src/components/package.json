@@ -1,10 +1,11 @@
 {
   "name": "eudo-front",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Framework eudonet",
   "main": "eudo-front.js",
   "author": "Pierre Nowak",
   "license": "MIT",
+  "releaseNote": "deede",
   "scripts": {
     "build": "vue-cli-service build"
   },

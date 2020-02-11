@@ -276,9 +276,10 @@ par défaut.
 # Changelog
 
 #### @0.1.12
+- Mise à jour et précisions au niveau de la doc.
 - `<edn-*>`
   - Correction des ``required`` qui ne se vérifiaient jamais.
-  - Ajout d'un mixin pour uniformiser le code du required 
+  - Ajout d'un mixins pour uniformiser le code du required.
 
 #### @0.1.11
 

@@ -4,7 +4,7 @@ export const ednRequired = {
 
   data() {
     return {
-      rules:this.isRequired()
+      rules: this.isRequired()
 
     }
   },
