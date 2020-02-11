@@ -49,21 +49,24 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
   - Etiquette
   - Séparateur
 - Les caractères
-  - `Champs`
-  - `Catalogue`
-  - `Choix multiple`
-  - `Mémo`
+  - `Champs - <edn-field>`
+  - `Catalogue <edn-cat>`
+  - `Choix multiple <edn-cat-x>`
+  - `Mémo <edn-memo>`
 - Les numériques
-  - `Numériques`
+  - `Numériques <edn-num>`
 - Les temporels
-  - `Date`
-  - `Heure`
+  - `Date <edn-date>`
+  - `Heure <edn-time>`
 - Les cliquables
-  - Logique
-  - `Bouton`
+  - `Radio <edn-radio>`
+  - `Checkboxes <edn-check>`
+  - `Switches <edn-switch>`
+  - `Bouton <edn-btn>`
+  - `Color-picker <edn-color>`
 - Les coordonnées
-  - `Téléphone`
-  - `E-Mail`
+  - `Téléphone <edn-phone>`
+  - `E-Mail <edn-mail>` 
   - Réseau social
   - Géolocalisation
 - Les visuels
@@ -118,7 +121,7 @@ par défaut.
 #### Exemple
 
 ```html
-<edn-cat label="Ville" :catalog="cities" />
+<edn-cat label="Ville" :items="cities" />
 ```
 
 ---
@@ -140,7 +143,7 @@ par défaut.
 #### Exemple
 
 ```html
-<edn-cat-x label="Passions" :catalog="passions" />
+<edn-cat-x label="Passions" :items="passions" />
 ```
 
 ---
@@ -274,6 +277,19 @@ par défaut.
 ---
 
 # Changelog
+
+#### @0.1.14
+- `<edn-mail>`
+  - le test du format du mail n'est réalisé que si du texte est inséré dans le champs, si le champs est vide, aucun test ne sera fait.
+
+
+
+#### @0.1.13
+- Mise à jour et précisions au niveau de la doc.
+- `<edn-mail>`
+  - Uniformisation de la mixin `required`, désormais les régles ne seront appliquées que si `required` est renseigné.
+- `<edn-cat>`
+  - Désormais `required` est bien pris en compte.
 
 #### @0.1.12
 - Mise à jour et précisions au niveau de la doc.

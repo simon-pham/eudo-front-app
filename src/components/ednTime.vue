@@ -14,6 +14,8 @@
         :label="$attrs.label"
         readonly
         v-on="on"
+    :rules="rules"
+
       ></v-text-field>
     </template>
 

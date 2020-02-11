@@ -8,7 +8,7 @@
     min-width="290px"
   >
     <template v-slot:activator="{ on }">
-      <v-text-field v-model="color" :label="$attrs.label" v-on="on">
+      <v-text-field v-model="color" :label="$attrs.label" v-on="on" :rules="rules" >
         <template v-slot:prepend>
           <v-icon :color="color">mdi-square</v-icon>
         </template>

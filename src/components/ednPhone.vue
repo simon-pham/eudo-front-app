@@ -1,6 +1,5 @@
 <template>
-  <v-text-field v-model="inputEl" v-mask="mask" type="tel" v-bind="$attrs" 
-    
+  <v-text-field v-model="inputEl" v-mask="mask" type="tel" v-bind="$attrs" :rules="rules"
   >
     <template v-slot:append v-if="$attrs.tooltip">
       <v-tooltip top>

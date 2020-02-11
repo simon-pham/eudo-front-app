@@ -7,6 +7,7 @@
     transition="fade-transition"
     offset-y
     min-width="290px"
+    
   >
     <template v-slot:activator="{ on }">
       <v-text-field
@@ -14,6 +15,7 @@
         readonly
         :value="date ? $moment(date).format(format) : ''"
         v-on="on"
+    :rules="rules"
     
 
       ></v-text-field>

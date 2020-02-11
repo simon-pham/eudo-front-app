@@ -1,5 +1,5 @@
 <template>
-  <v-text-field ref="input" v-model="numberInput" @keypress="numCheck()" v-bind="$attrs"
+  <v-text-field ref="input" v-model="numberInput" @keypress="numCheck()" v-bind="$attrs" :rules="rules"
     
   >
     <template v-slot:append v-if="$attrs.tooltip">

@@ -4,6 +4,7 @@
     v-bind="$attrs"
     :items="$attrs.items"
     v-model="inputEl"
+    :rules="rules"
 
   ></edn-cat>
 </template>

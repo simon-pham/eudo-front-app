@@ -37,7 +37,7 @@
           v-model="inptMemo"
           :size="'normal'"
         ></edn-memo>
-        <edn-mail label="edn-mail" v-model="mail" :required="true" />
+        <edn-mail label="edn-mail" v-model="mail"  />
         <edn-phone
           label="edn-phone"
           v-model="phone"
@@ -77,6 +77,7 @@ export default {
   data() {
     return {
       civility: ["M.", "Mme"],
+      msgRequis:"Champs requis !",
       citiesList: [],
       loading: false,
       inptNum: null,
