@@ -11,11 +11,11 @@
     <template v-slot:activator="{ on }">
       <v-text-field
         v-model="time"
-        :label="$attrs.label"
+        :disabled="$attrs.disabled"
         readonly
+        :label="$attrs.label"
         v-on="on"
-    :rules="rules"
-
+        :rules="rules"
       ></v-text-field>
     </template>
 
@@ -37,8 +37,8 @@ import { ednRequired } from "./mixins/ednRequired";
 
 export default {
   inheritAttrs: false,
-  mixins:[ednRequired],
-   props: {
+  mixins: [ednRequired],
+  props: {
     value: String
   },
   data() {

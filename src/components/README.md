@@ -66,7 +66,7 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
   - `Color-picker <edn-color>`
 - Les coordonnées
   - `Téléphone <edn-phone>`
-  - `E-Mail <edn-mail>` 
+  - `E-Mail <edn-mail>`
   - Réseau social
   - Géolocalisation
 - Les visuels
@@ -100,23 +100,24 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 <edn-field label="Prénom" :required="true" /> // Ce cas enclenchera la valeur
 par défaut.
 
-<edn-field label="Prénom" :required="Le prénom n'est pas rempli" /> // Celui-ci utilisera me message passé en prop comme message de validation.
+<edn-field label="Prénom" :required="Le prénom n'est pas rempli" /> // Celui-ci
+utilisera me message passé en prop comme message de validation.
 ```
 
 ---
 
 ## Catalogue `<edn-cat/>`
 
-|    Paramètre     |   Type   |
-| :--------------: | :------: |
-|   **tooltip:**   | `String` |
-| **placeholder:** | `String` |
-|    **label:**    | `String` |
+|    Paramètre     |       Type       |
+| :--------------: | :--------------: |
+|   **tooltip:**   |     `String`     |
+| **placeholder:** |     `String`     |
+|    **label:**    |     `String`     |
 |  **required:**   | `Bool ou String` |
-|     **id:**      | `Number` |
-|    **order:**    | `Number` |
-|  **charsMax:**   | `Number` |
-|   **catalog:**   | `Array`  |
+|     **id:**      |     `Number`     |
+|    **order:**    |     `Number`     |
+|  **charsMax:**   |     `Number`     |
+|   **catalog:**   |     `Array`      |
 
 #### Exemple
 
@@ -128,17 +129,16 @@ par défaut.
 
 ## Catalogue multiple `<edn-cat-x/>`
 
-|    Paramètre     |   Type   |
-| :--------------: | :------: |
-|   **tooltip:**   | `String` |
-| **placeholder:** | `String` |
-|    **label:**    | `String` |
+|    Paramètre     |       Type       |
+| :--------------: | :--------------: |
+|   **tooltip:**   |     `String`     |
+| **placeholder:** |     `String`     |
+|    **label:**    |     `String`     |
 |  **required:**   | `Bool ou String` |
-|     **id:**      | `Number` |
-|    **order:**    | `Number` |
-|  **charsMax:**   | `Number` |
-|   **catalog:**   | `Array`  |
-
+|     **id:**      |     `Number`     |
+|    **order:**    |     `Number`     |
+|  **charsMax:**   |     `Number`     |
+|   **catalog:**   |     `Array`      |
 
 #### Exemple
 
@@ -150,13 +150,15 @@ par défaut.
 
 ## Mémo `<edn-memo/>`
 
-|    Paramètre     |   Type   |
-| :--------------: | :------: |
-| **placeholder:** | `String` |
-|    **label:**    | `String` |
-|    **disabled:**    | `Bool` |
-|  **size:**   |  `String`  |            |
-|   **-->**    |  `'normal'`  | `'large'`  |
+|    Paramètre     |       Type       |           |            |
+| :--------------: | :--------------: | :-------: | :--------: |
+| **placeholder:** |     `String`     |           |            |
+|  **required:**   | `Bool ou String` |
+|    **html:**     |      `Bool`      |           |            |
+|    **label:**    |     `String`     |           |            |
+|  **disabled:**   |      `Bool`      |           |            |
+|    **size:**     |     `String`     |           |            |
+|     **-->**      |    `'normal'`    | `'large'` | `'fatass'` |
 
 #### Exemple
 
@@ -184,15 +186,15 @@ par défaut.
 
 ## Numérique `<edn-num/>`
 
-|    Paramètre     |   Type   |
-| :--------------: | :------: |
-|   **tooltip:**   | `String` |
-| **placeholder:** | `String` |
-|    **label:**    | `String` |
+|    Paramètre     |       Type       |
+| :--------------: | :--------------: |
+|   **tooltip:**   |     `String`     |
+| **placeholder:** |     `String`     |
+|    **label:**    |     `String`     |
 |  **required:**   | `Bool ou String` |
-|     **id:**      | `Number` |
-|    **order:**    | `Number` |
-|  **charsMax:**   | `Number` |
+|     **id:**      |     `Number`     |
+|    **order:**    |     `Number`     |
+|  **charsMax:**   |     `Number`     |
 
 #### Exemple
 
@@ -204,16 +206,16 @@ par défaut.
 
 ## Date `<edn-date/>`
 
-|    Paramètre     |   Type   |             Documentation             |
-| :--------------: | :------: | :-----------------------------------: |
-|   **tooltip:**   | `String` |                                       |
-| **placeholder:** | `String` |                                       |
-|    **label:**    | `String` |                                       |
+|    Paramètre     |       Type       |             Documentation             |
+| :--------------: | :--------------: | :-----------------------------------: |
+|   **tooltip:**   |     `String`     |                                       |
+| **placeholder:** |     `String`     |                                       |
+|    **label:**    |     `String`     |                                       |
 |  **required:**   | `Bool ou String` |
-|     **id:**      | `Number` |                                       |
-|    **order:**    | `Number` |                                       |
-|  **charsMax:**   | `Number` |                                       |
-|   **format:**    | `String` | [Moment.js](https://www.momentjs.com) |
+|     **id:**      |     `Number`     |                                       |
+|    **order:**    |     `Number`     |                                       |
+|  **charsMax:**   |     `Number`     |                                       |
+|   **format:**    |     `String`     | [Moment.js](https://www.momentjs.com) |
 
 #### Exemple
 
@@ -225,15 +227,15 @@ par défaut.
 
 ## Heure `<edn-time/>`
 
-|    Paramètre     |   Type   |
-| :--------------: | :------: |
-|   **tooltip:**   | `String` |
-| **placeholder:** | `String` |
-|    **label:**    | `String` |
+|    Paramètre     |       Type       |
+| :--------------: | :--------------: |
+|   **tooltip:**   |     `String`     |
+| **placeholder:** |     `String`     |
+|    **label:**    |     `String`     |
 |  **required:**   | `Bool ou String` |
-|     **id:**      | `Number` |
-|    **order:**    | `Number` |
-|  **charsMax:**   | `Number` |
+|     **id:**      |     `Number`     |
+|    **order:**    |     `Number`     |
+|  **charsMax:**   |     `Number`     |
 
 #### Exemple
 
@@ -278,13 +280,29 @@ par défaut.
 
 # Changelog
 
+#### @0.1.17
+
+- Désormais `edn-memo` hérite de l'api Vuetify (voir doc)
+
+#### @0.1.16
+
+- Mise à jour de toutes les dépendances
+- Lors de l'ajout du readonly sur les `edn-time` et `edn-date` les deux synstaxes sont possible à savoir `:readonly="true"` et `readonly`
+- Ajout de la prise en compte du `disabled` sur les `edn-time` et `edn-date` les deux synstaxes sont possible à savoir `:readonly="true"` et `readonly`
+- Ajout de la prise en compte du `disabled` sur les `edn-color`
+
+#### @0.1.15
+
+- Correction de la syntaxe de `edn-cat` et `edn-cat-x` au niveau de la doc
+- ajout de la prise en compte du readonly sur les `edn-time` et `edn-date`
+
 #### @0.1.14
+
 - `<edn-mail>`
   - le test du format du mail n'est réalisé que si du texte est inséré dans le champs, si le champs est vide, aucun test ne sera fait.
 
-
-
 #### @0.1.13
+
 - Mise à jour et précisions au niveau de la doc.
 - `<edn-mail>`
   - Uniformisation de la mixin `required`, désormais les régles ne seront appliquées que si `required` est renseigné.
@@ -292,15 +310,16 @@ par défaut.
   - Désormais `required` est bien pris en compte.
 
 #### @0.1.12
+
 - Mise à jour et précisions au niveau de la doc.
 - `<edn-*>`
-  - Correction des ``required`` qui ne se vérifiaient jamais.
+  - Correction des `required` qui ne se vérifiaient jamais.
   - Ajout d'un mixins pour uniformiser le code du required.
 
 #### @0.1.11
 
 - `<edn-*>`
-  - correction des `required` qui ne fonctionnaient pas bien. Désormais, il faudra désormais définir le required à true, ou passer une string précisant le message à transmettre. voir doc ``<edn-field/>``.
+  - correction des `required` qui ne fonctionnaient pas bien. Désormais, il faudra désormais définir le required à true, ou passer une string précisant le message à transmettre. voir doc `<edn-field/>`.
 
 #### @0.1.10
 

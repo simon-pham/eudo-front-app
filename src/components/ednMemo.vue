@@ -1,14 +1,26 @@
 <template>
-  <div :class="['cstmQl', $attrs.disabled ? 'disabled' : '']" v-bind="$attrs">
-    <div class="memoLabel">{{ $attrs.label }}</div>
-    <quill-editor
-      ref="myTextEditor"
-      :class="$attrs.size"
+  <div v-if="$attrs.html == '' || $attrs.html">
+    <div :class="['cstmQl', $attrs.disabled ? 'disabled' : '']" v-bind="$attrs">
+      <div class="memoLabel">{{ $attrs.label }}</div>
+      <v-input :rules="rules" v-model="content">
+        <quill-editor
+          ref="myTextEditor"
+          :class="$attrs.size"
+          v-model="content"
+          :value="handleInput()"
+          :options="editorOption"
+        />
+      </v-input>
+    </div>
+  </div>
+  <div v-else>
+    <v-textarea
+      :label="$attrs.label"
       v-model="content"
+      :rules="rules"
       :value="handleInput()"
-      :options="editorOption"
     >
-    </quill-editor>
+    </v-textarea>
   </div>
 </template>
 
@@ -18,13 +30,15 @@ import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
 
 import hljs from "highlight.js";
-import { quillEditor } from "vue-quill-editor";
-import { VApp } from 'vuetify/lib'
+import { ednRequired } from "./mixins/ednRequired";
 
+// import toolbar from "quill/modules/toolbar";
+import { quillEditor } from "vue-quill-editor";
+// import validatable from "vuetify/lib/mixins/validatable";
 
 export default {
   inheritAttrs: false,
-  extends:[VApp],
+  mixins: [ednRequired],
   props: {
     value: ""
   },
@@ -81,6 +95,8 @@ div.cstmQl {
   }
 
   div.quill-editor {
+    flex: 1;
+
     &.normal {
       > div.ql-container {
         height: 10rem;

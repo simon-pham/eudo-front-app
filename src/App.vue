@@ -30,14 +30,21 @@
           :items="recette"
           tooltip="Selection de catégories"
         ></edn-cat-x>
-        <edn-date v-model="date" label="edn-date" :required="true" />
+        <edn-date v-model="dateInpt" label="edn-date" :required="true" />
         <edn-time v-model="time" label="edn-time" :required="true" />
+        <!-- <edn-memo
+          label="edn-memo"
+          v-model="inptMemo"
+          required="jobbi"
+        ></edn-memo> -->
         <edn-memo
           label="edn-memo"
           v-model="inptMemo"
           :size="'normal'"
+          required="jobba"
+          html
         ></edn-memo>
-        <edn-mail label="edn-mail" v-model="mail"  />
+        <edn-mail label="edn-mail" v-model="mail" :required="true" />
         <edn-phone
           label="edn-phone"
           v-model="phone"
@@ -58,7 +65,11 @@
           :radios="radios"
           v-model="radioSelect"
         ></edn-radio>
-        <edn-color label="edn-color" v-model="selectedColor"></edn-color>
+        <edn-color
+          disabled
+          label="edn-color"
+          v-model="selectedColor"
+        ></edn-color>
         <v-row class="justify-center align-self-center">
           <edn-btn submit>Valider</edn-btn>
           <edn-btn @click.native="resetForm" alternate>Annuler</edn-btn>
@@ -77,14 +88,15 @@ export default {
   data() {
     return {
       civility: ["M.", "Mme"],
-      msgRequis:"Champs requis !",
+      msgRequis: "Champs requis !",
       citiesList: [],
       loading: false,
       inptNum: null,
       mail: "",
       checked: true,
       switched: true,
-      inptText: "",
+      inptText: "Coucou !",
+      dateInpt: "2020-02-06",
       inptMemo: "",
       ingredient: [],
       recette: ["Cat 3", "Cat 4", "Cat 5"],

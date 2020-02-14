@@ -7,17 +7,15 @@
     transition="fade-transition"
     offset-y
     min-width="290px"
-    
   >
     <template v-slot:activator="{ on }">
       <v-text-field
-        :label="$attrs.label"
+        :disabled="$attrs.disabled"
         readonly
+        :label="$attrs.label"
         :value="date ? $moment(date).format(format) : ''"
         v-on="on"
-    :rules="rules"
-    
-
+        :rules="rules"
       ></v-text-field>
     </template>
     <v-date-picker
@@ -30,7 +28,7 @@
       :first-day-of-week="1"
     >
       <v-spacer></v-spacer>
-      <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+      <v-btn text color="primary" @click="menu = false">Annuler</v-btn>
       <v-btn text color="primary" @click="$refs.menu.save(date), handleInput()"
         >OK</v-btn
       >
@@ -42,13 +40,13 @@ import { ednRequired } from "./mixins/ednRequired";
 
 export default {
   inheritAttrs: false,
-    mixins:[ednRequired],
+  mixins: [ednRequired],
   props: {
     format: {
       type: String,
-      default: () => "DD-MM-YYYY",
+      default: () => "DD-MM-YYYY"
     },
-    value:String
+    value: String
   },
   data() {
     return {

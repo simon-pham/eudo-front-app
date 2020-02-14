@@ -8,7 +8,14 @@
     min-width="290px"
   >
     <template v-slot:activator="{ on }">
-      <v-text-field v-model="color" :label="$attrs.label" v-on="on" :rules="rules" >
+      <v-text-field
+        v-model="color"
+        :label="$attrs.label"
+        v-on="on"
+        :rules="rules"
+        :disabled="$attrs.disabled"
+        :readonly="$attrs.readonly"
+      >
         <template v-slot:prepend>
           <v-icon :color="color">mdi-square</v-icon>
         </template>
@@ -24,17 +31,16 @@
   </v-menu>
 </template>
 <script>
-
-  import { ednRequired } from "./mixins/ednRequired";
+import { ednRequired } from "./mixins/ednRequired";
 
 export default {
   inheritAttrs: false,
-  mixins:[ednRequired],
+  mixins: [ednRequired],
 
-  props:{
-    value:{
-      type:String,
-      default:()=>"#FFFFFF"
+  props: {
+    value: {
+      type: String,
+      default: () => "#FFFFFF"
     }
   },
   data() {
@@ -49,7 +55,7 @@ export default {
   },
   watch: {
     color() {
-      this.$emit('input',this.color)
+      this.$emit("input", this.color);
     }
   }
 };
