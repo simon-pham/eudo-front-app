@@ -7,23 +7,9 @@
           <edn-load message="edn-load" form="simple" anim="blink"></edn-load>
           <edn-load message="edn-load" form="fill"></edn-load>
         </v-row>
-        <edn-num
-          label="edn-num"
-          v-model="inptNum"
-          tooltip="NOMBRE"
-          required="Mange des pommes !"
-        ></edn-num>
-        <edn-field
-          label="edn-field"
-          v-model="inptText"
-          :required="'Mange mon schouimps !'"
-        ></edn-field>
-        <edn-cat
-          label="edn-cat"
-          v-model="selectedCat"
-          :items="cat"
-          :required="'Il faut remplir les champs !'"
-        ></edn-cat>
+        <edn-num label="edn-num" v-model="inptNum" tooltip="NOMBRE"></edn-num>
+        <edn-field label="edn-field" v-model="inptText"></edn-field>
+        <edn-cat label="edn-cat" v-model="selectedCat" :items="cat"></edn-cat>
         <edn-cat-x
           label="edn-cat-x"
           v-model="ingredient"
@@ -32,44 +18,26 @@
         ></edn-cat-x>
         <edn-date v-model="dateInpt" label="edn-date" :required="true" />
         <edn-time v-model="time" label="edn-time" :required="true" />
-        <!-- <edn-memo
-          label="edn-memo"
-          v-model="inptMemo"
-          required="jobbi"
-        ></edn-memo> -->
         <edn-memo
           label="edn-memo"
           v-model="inptMemo"
           :size="'normal'"
-          required="jobba"
           html
         ></edn-memo>
         <edn-mail label="edn-mail" v-model="mail" :required="true" />
-        <edn-phone
-          label="edn-phone"
-          v-model="phone"
-          :required="true"
-        ></edn-phone>
+        <edn-phone label="edn-phone" v-model="phone"></edn-phone>
         <edn-check
           label="edn-check"
           v-model="checked"
           :required="true"
         ></edn-check>
-        <edn-switch
-          label="edn-switch"
-          v-model="switched"
-          :required="true"
-        ></edn-switch>
+        <edn-switch label="edn-switch" v-model="switched"></edn-switch>
         <edn-radio
           label="edn-radio"
           :radios="radios"
           v-model="radioSelect"
         ></edn-radio>
-        <edn-color
-          disabled
-          label="edn-color"
-          v-model="selectedColor"
-        ></edn-color>
+        <edn-color label="edn-color" v-model="selectedColor"></edn-color>
         <v-row class="justify-center align-self-center">
           <edn-btn submit>Valider</edn-btn>
           <edn-btn @click.native="resetForm" alternate>Annuler</edn-btn>
@@ -95,8 +63,8 @@ export default {
       mail: "",
       checked: true,
       switched: true,
-      inptText: "Coucou !",
-      dateInpt: "2020-02-06",
+      inptText: "",
+      dateInpt: "",
       inptMemo: "",
       ingredient: [],
       recette: ["Cat 3", "Cat 4", "Cat 5"],
@@ -114,7 +82,6 @@ export default {
           value: "2"
         }
       ],
-      copied: false,
       contentAbc: "abcdefghijklmnopqtrsuvwxyz",
       date: "",
       time: "",
