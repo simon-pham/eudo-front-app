@@ -3,32 +3,19 @@
     multiple
     v-bind="$attrs"
     :items="$attrs.items"
-    v-model="inputEl"
+    v-model="content"
     :rules="rules"
-
   ></edn-cat>
 </template>
 <script>
 import { ednRequired } from "./mixins/ednRequired";
-
+import { ednVModel } from "./mixins/ednVModel";
 
 export default {
   inheritAttrs: false,
-    mixins:[ednRequired],
-
+  mixins: [ednRequired, ednVModel],
   props: {
-    value:Array
-  },
-  data() {
-    return {
-      inputEl: this.value
-    };
-  },
-  watch: {
-    inputEl(val) {
-      this.$emit("input", val);
-    }
+    value: Array
   }
 };
 </script>
-<style lang='stylus'></style>

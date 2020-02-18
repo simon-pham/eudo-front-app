@@ -3,14 +3,14 @@
     ref="menu"
     v-model="menu"
     :close-on-content-click="false"
-    :return-value.sync="time"
+    :return-value.sync="content"
     transition="fade-transition"
     offset-y
     min-width="290px"
   >
     <template v-slot:activator="{ on }">
       <v-text-field
-        v-model="time"
+        v-model="content"
         :disabled="$attrs.disabled"
         readonly
         :label="$attrs.label"
@@ -23,9 +23,9 @@
       :color="colors.primary"
       :format="'24hr'"
       v-bind="$attrs"
-      @click:minute="$refs.menu.save(time)"
+      @click:minute="$refs.menu.save(content)"
       close-on-content-click="false"
-      v-model="time"
+      v-model="content"
     >
     </v-time-picker>
   </v-menu>
@@ -34,31 +34,20 @@
 
 <script>
 import { ednRequired } from "./mixins/ednRequired";
+import { ednVModel } from "./mixins/ednVModel";
 
 export default {
   inheritAttrs: false,
-  mixins: [ednRequired],
-  props: {
-    value: String
-  },
+  mixins: [ednRequired,ednVModel],
   data() {
     return {
       menu: null,
-      time: this.value,
       colors: {
         primary: this.$vuetify.theme.currentTheme.primary,
         secondary: this.$vuetify.theme.currentTheme.secondary
       }
     };
   },
-  watch: {
-    time() {
-      this.$emit("input", this.time);
-    }
-    // value() {
-    //   console.log(this.value);
-    // }
-  }
 };
 </script>
 

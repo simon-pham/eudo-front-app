@@ -1,5 +1,5 @@
 <template>
-  <v-text-field v-model="inputEl" type="text" v-bind="$attrs" :rules="rules">
+  <v-text-field v-model="content" type="text" v-bind="$attrs" :rules="rules">
     <template v-slot:append v-if="$attrs.tooltip">
       <v-tooltip top>
         <template v-slot:activator="{ on }">
@@ -15,23 +15,10 @@
 
 <script>
 import { ednRequired } from "./mixins/ednRequired";
+import { ednVModel } from "./mixins/ednVModel";
 export default {
-  mixins: [ednRequired],
-  props: {
-    value: String
-  },
+  mixins: [ednRequired, ednVModel],
   inheritAttrs: false,
-  data() {
-    return {
-      inputEl: this.value
-    };
-  },
-
-  watch: {
-    inputEl(val) {
-      this.$emit("input", val);
-    }
-  },
   mounted() {
     this.rules.push(
       v =>

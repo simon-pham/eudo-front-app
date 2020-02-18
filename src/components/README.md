@@ -11,17 +11,21 @@ npm install eudo-front
 ## Initialisation du composant
 
 ```js
-//vuetify.js
+//main.js
 import Vue from "vue";
-import Vuetify from "vuetify/lib";
-import eudoFront from "eudo-front";
-import "@mdi/font/css/materialdesignicons.css";
+import App from "./App.vue";
+import Vuetify from "vuetify";
+import fr from "vuetify/es5/locale/fr";
+import eudoFront from "./components/eudo-front";
+import "vuetify/dist/vuetify.min.css";
 
-Vue.use(Vuetify);
+Vue.prototype.$moment = moment;
 Vue.use(eudoFront);
 
-export default new Vuetify({
-  iconfont: "mdi",
+const opts = {
+  icons: {
+    iconfont: "mdi"
+  },
   theme: {
     options: {
       customProperties: true
@@ -29,12 +33,27 @@ export default new Vuetify({
     themes: {
       light: {
         primary: "#bb1515",
-        secondary: "#c4c4c4"
-        //Pour l'instant il faut faire ces décalartions manuellement.
+        secondary: "#757575",
+        accent: "#82B1FF",
+        error: "#FF5252",
+        info: "#2196F3",
+        success: "#4CAF50",
+        warning: "#FFC107"
       }
     }
+  },
+  lang: {
+    locales: { fr },
+    current: "fr"
   }
-});
+};
+Vue.use(Vuetify);
+
+new Vue({
+  vuetify: new Vuetify(opts),
+  render: h => h(App)
+}).$mount("#app");
+
 ```
 
 Il faut bien prendre en considération que eudoFront n'est qu'un plugin de Vuetify à ce stade.
@@ -279,6 +298,16 @@ utilisera me message passé en prop comme message de validation.
 ---
 
 # Changelog
+
+
+
+#### @0.1.18
+
+- Après que `@Aagne` ait remonté un soucis de tranfert de v-model sur certains composants, un nouveau mixin a été créé `ednVModel.js` afin de faire hériter ce comportement à tout les composants.
+![alt text](./images/ednVModel.png "Avant/Après ednVModel.js")
+Ci-dessus screenshot du nettoyage des composants grâce à `ednVModel.js`
+- Désormais chaque version aura une VM utilisable en ligne avec un environnement de développement éditable. [VM eudofront 0.1.17](https://codesandbox.io/s/vmeudo-front-0117-x7yx2)
+- Vuetify n'est plus installé sous forme de plug-in, voir initialisation du projet au début de ce document.
 
 #### @0.1.17
 

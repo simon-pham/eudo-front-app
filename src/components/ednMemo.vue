@@ -6,7 +6,7 @@
           ref="myTextEditor"
           :class="$attrs.size"
           v-model="content"
-          :value="handleInput()"
+    
           :options="editorOption"
         />
       </v-input>
@@ -17,7 +17,7 @@
       :label="$attrs.label"
       v-model="content"
       :rules="rules"
-      :value="handleInput()"
+    
     >
     </v-textarea>
   </div>
@@ -30,6 +30,7 @@ import "quill/dist/quill.bubble.css";
 
 import hljs from "highlight.js";
 import { ednRequired } from "./mixins/ednRequired";
+import { ednVModel } from "./mixins/ednVModel";
 
 // import toolbar from "quill/modules/toolbar";
 import { quillEditor } from "vue-quill-editor";
@@ -37,16 +38,12 @@ import { quillEditor } from "vue-quill-editor";
 
 export default {
   inheritAttrs: false,
-  mixins: [ednRequired],
-  props: {
-    value: ""
-  },
+  mixins: [ednRequired, ednVModel],
   components: {
     quillEditor
   },
   data() {
     return {
-      content: this.value,
       editorOption: {
         theme: "snow",
         placeholder: "Tapez votre texte ici",
@@ -70,11 +67,6 @@ export default {
       }
     };
   },
-  methods: {
-    handleInput(e) {
-      this.$emit("input", this.content);
-    }
-  }
 };
 </script>
 <style lang="stylus">

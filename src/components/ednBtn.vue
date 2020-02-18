@@ -1,19 +1,17 @@
 <template>
-<div>
-
-  <div v-if="alternate" :style="{backgroundColor:color}" class="btn alt">
-       <div class="mask">
-      
-      <span><slot></slot></span>
+  <div>
+    <div v-if="alternate" :style="{ backgroundColor: color }" class="btn alt">
+      <div class="mask">
+        <span><slot></slot></span>
+      </div>
     </div>
+    <div v-else class="btn">
+      <div class="mask">
+        <div class="rect-left"></div>
+        <div class="rect-top"></div>
+        <span><slot></slot></span>
+      </div>
     </div>
-  <div v-else class="btn">
-    <div class="mask">
-      <div class="rect-left"></div>
-      <div class="rect-top"></div>
-      <span><slot></slot></span>
-    </div>
-  </div>
   </div>
 </template>
 
@@ -29,9 +27,9 @@ export default {
       type: Boolean,
       default: () => false
     },
-    color:{
-      type:String,
-      default:()=>'#727272'
+    color: {
+      type: String,
+      default: () => "#727272"
     }
   }
 };
@@ -41,7 +39,6 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 div.btn {
-  
   user-select: none;
   transition: transform 0.25s;
 
@@ -81,7 +78,6 @@ div.btn {
 
   & div {
     &.rect {
-      
       &-top {
         transform: rotate(-30deg);
         left: -30%;
@@ -90,9 +86,9 @@ div.btn {
       }
 
       &-left {
-        transform: rotate(-30deg) 
-        left:-50%;
-        top:20%;
+        transform: rotate(-30deg);
+        left: -50%;
+        top: 20%;
         transition: 0.25s 0.05s;
       }
     }
@@ -101,15 +97,15 @@ div.btn {
   &:hover {
     & div.rect {
       &-top {
-        transform: rotate(-30deg)
+        transform: rotate(-30deg);
         bottom: 60%;
         left: -10%;
       }
 
       &-left {
-        transform: rotate(-30deg)
-        left:-24%;
-        top:0%; 
+        transform: rotate(-30deg);
+        left: -24%;
+        top: 0%;
       }
     }
   }
@@ -129,7 +125,7 @@ div.btn {
       font-family: 'Cabin', sans-serif;
     }
 
-    padding:0.2em 1.6em;
+    padding: 0.2em 1.6em;
     background: linear-gradient(309deg, #d13076 0%, #fc4a4a 53%, #bb1515 100%);
     position: relative;
 

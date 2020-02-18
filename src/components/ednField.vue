@@ -3,7 +3,6 @@
     type="text"
     v-model="content"
     v-bind="$attrs"
-    :value="handleInput()"
     :rules="rules"
   >
     <template v-slot:append v-if="$attrs.tooltip">
@@ -21,22 +20,11 @@
 
 <script>
 import { ednRequired } from "./mixins/ednRequired";
+import { ednVModel } from "./mixins/ednVModel";
 
 export default {
   inheritAttrs: false,
-  mixins: [ednRequired],
-  props: {
-    value: ""
-  },
-  data() {
-    return {
-      content: this.value
-    };
-  },
-  methods: {
-    handleInput(e) {
-      this.$emit("input", this.content);
-    }
-  }
+  mixins: [ednRequired, ednVModel],
+
 };
 </script>

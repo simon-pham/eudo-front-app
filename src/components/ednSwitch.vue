@@ -13,20 +13,10 @@
 </template>
 
 <script>
-export default {
+import { ednVModel } from "./mixins/ednVModel";
+
+export default {  
+  mixins: [ednVModel],
   inheritAttrs: false,
-  props:{
-    value:Boolean
-  },
-  data() {
-    return {
-      inputEl: this.value,
-    }
-  },
-  watch: {
-    inputEl() {
-      this.$emit('input', this.inputEl)
-    },
-  },
 }
 </script>

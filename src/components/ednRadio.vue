@@ -1,5 +1,5 @@
 <template>
-  <v-radio-group v-model="inputEl" :mandatory="false" v-bind="$attrs">
+  <v-radio-group v-model="content" :mandatory="false" v-bind="$attrs">
     <v-radio
       :ripple="false"
       :color="$vuetify.theme.currentTheme.primary"
@@ -14,7 +14,11 @@
 </template>
 
 <script>
+import { ednVModel } from "./mixins/ednVModel";
+
+
 export default {
+  mixins: [ednVModel],
   props: {
     radios: {
       type: Array,
@@ -22,15 +26,5 @@ export default {
     }
   },
   inheritAttrs: false,
-  data() {
-    return {
-      inputEl: this.value
-    };
-  },
-  watch: {
-    inputEl(val) {
-      this.$emit("input", val);
-    }
-  }
 };
 </script>

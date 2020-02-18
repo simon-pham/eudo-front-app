@@ -1,9 +1,9 @@
 <template>
   <!-- Ajout d'un icon de développement du catalogue -->
   <v-select
-    v-model="selectedItem"
+    v-model="content"
     :rules="rules"
-    :items="items"
+  
     type="text"
     v-bind="$attrs"
   >
@@ -22,28 +22,14 @@
 
 <script>
 import { ednRequired } from "./mixins/ednRequired";
+import { ednVModel } from "./mixins/ednVModel";
+
 
 export default {
-  mixins: [ednRequired],
+  mixins: [ednRequired,ednVModel],
   inheritAttrs: false,
   props: {
     tooltip: String,
-    items: Array,
-    value: ""
-  },
-  data() {
-    return {
-      selectedItem: this.value,
-      colors: {
-        primary: this.$vuetify.theme.currentTheme.primary,
-        secondary: this.$vuetify.theme.currentTheme.secondary
-      }
-    };
-  },
-  watch: {
-    selectedItem(val) {
-      this.$emit("input", val);
-    }
   }
 };
 </script>

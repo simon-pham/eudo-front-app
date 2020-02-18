@@ -1,5 +1,5 @@
 <template>
-  <v-text-field v-model="inputEl" v-mask="mask" type="tel" v-bind="$attrs" :rules="rules"
+  <v-text-field v-model="content" v-mask="mask" type="tel" v-bind="$attrs" :rules="rules"
   >
     <template v-slot:append v-if="$attrs.tooltip">
       <v-tooltip top>
@@ -19,24 +19,17 @@ import VueTheMask from "vue-the-mask";
 import Vue from "vue";
 
 import { ednRequired } from "./mixins/ednRequired";
+import { ednVModel } from "./mixins/ednVModel";
+
 Vue.use(VueTheMask);
 
 export default {
   inheritAttrs: false,
-    mixins:[ednRequired],
-  props:{
-    value:String
-  },
+  mixins:[ednRequired,ednVModel],
   data() {
     return {
-      inputEl: this.value,
       mask: "##.##.##.##.##"
     };
-  },
-  watch: {
-    inputEl() {
-      this.$emit("input", this.value);
-    }
   }
 };
 </script>
