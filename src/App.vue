@@ -1,7 +1,7 @@
 <template>
   <v-app :ripple="false">
-    <form ref="form">
-      <v-container @click.ctrl="fill()">
+    <v-form ref="form">
+      <v-container @click.ctrl="updateTime()">
         <v-row class="align-center justify-space-around">
           <edn-load message="edn-load" form="double" anim="dots"></edn-load>
           <edn-load message="edn-load" form="simple" anim="blink"></edn-load>
@@ -23,6 +23,7 @@
           v-model="inptMemo"
           :size="'normal'"
           html
+          :required="'Un string'"
         ></edn-memo>
         <edn-mail label="edn-mail" v-model="mail" :required="true" />
         <edn-phone label="edn-phone" v-model="phone"></edn-phone>
@@ -39,11 +40,11 @@
         ></edn-radio>
         <edn-color label="edn-color" v-model="selectedColor"></edn-color>
         <v-row class="justify-center align-self-center">
-          <edn-btn submit>Valider</edn-btn>
-          <edn-btn @click.native="resetForm" alternate>Annuler</edn-btn>
+          <edn-btn @click.native="Validate()">Valider</edn-btn>
+          <edn-btn @click.native="Reset()" alternate>Reset</edn-btn>
         </v-row>
       </v-container>
-    </form>
+    </v-form>
   </v-app>
 </template>
 
@@ -88,6 +89,16 @@ export default {
       phone: ""
     };
   },
-  methods: {}
+  methods: {
+    updateTime() {
+      this.time = "09:00";
+    },
+    Validate() {
+      this.$refs.form.validate();
+    },
+    Reset() {
+      this.$refs.form.reset();
+    }
+  }
 };
 </script>

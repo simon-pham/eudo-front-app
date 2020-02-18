@@ -1,8 +1,7 @@
 <template>
-  <div v-if="$attrs.html == '' || $attrs.html">
+  <div v-if="$attrs.html == '' || $attrs.html" class="cstmMemo">
     <div :class="['cstmQl', $attrs.disabled ? 'disabled' : '']" v-bind="$attrs">
-      <div class="memoLabel">{{ $attrs.label }}</div>
-      <v-input :rules="rules" v-model="content">
+      <v-input :rules="rules" v-model="content" :label="$attrs.label">
         <quill-editor
           ref="myTextEditor"
           :class="$attrs.size"
@@ -79,14 +78,24 @@ export default {
 };
 </script>
 <style lang="stylus">
-div.cstmQl {
-  display: block;
+div.cstmMemo {
+  div.v-input__slot {
+    display: grid;
 
-  &:focus-within {
-    & div.memoLabel {
-      color: var(--v-primary-base);
+    &:focus-within {
+      label.v-label {
+        color: var(--v-primary-base) !important;
+      }
+    }
+
+    label.v-label {
+      font-size: 0.8em;
     }
   }
+}
+
+div.cstmQl {
+  display: block;
 
   & div.memoLabel {
     font-size: 12px;

@@ -9,7 +9,6 @@
   "dependencies": {
     "component-minify": "^1.2.0",
     "core-js": "^3.6.4",
-    "eudo-front": "^0.1.12",
     "highlight.js": "^9.18.1",
     "moment": "^2.24.0",
     "quill": "^1.3.7",

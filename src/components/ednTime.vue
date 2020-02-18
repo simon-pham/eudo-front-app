@@ -55,6 +55,9 @@ export default {
     time() {
       this.$emit("input", this.time);
     }
+    // value() {
+    //   console.log(this.value);
+    // }
   }
 };
 </script>
