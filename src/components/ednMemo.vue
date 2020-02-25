@@ -2,7 +2,7 @@
   <div v-if="$attrs.html == '' || $attrs.html" class="cstmMemo">
     <div :class="['cstmQl', $attrs.disabled ? 'disabled' : '']" v-bind="$attrs">
       <v-input :rules="rules" v-model="content" :label="$attrs.label">
-        <quill-editor
+        <quill-editor 
           ref="myTextEditor"
           :class="$attrs.size"
           v-model="content"
@@ -18,19 +18,16 @@
 </template>
 
 <script>
-import(/* webpackChunkName: "hljs" */ "highlight.js")
-import { quillEditor } from (/* webpackChunkName: "vueQuillEditor" */"vue-quill-editor")
+// import(/* webpackChunkName: "hljs" */ "highlight.js");
+import hljs from "highlight.js";
+import {quillEditor} from 'vue-quill-editor'
 
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
 
-// import hljs from "highlight.js";
 import { ednRequired } from "./mixins/ednRequired";
 import { ednVModel } from "./mixins/ednVModel";
-
-// import toolbar from "quill/modules/toolbar";
-// import validatable from "vuetify/lib/mixins/validatable";
 
 export default {
   inheritAttrs: false,
@@ -62,6 +59,8 @@ export default {
         }
       }
     };
+  },
+  mounted() {
   }
 };
 </script>

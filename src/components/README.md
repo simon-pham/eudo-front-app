@@ -316,8 +316,17 @@ utilisera me message passé en prop comme message de validation.
 </center>
 
 - Intégration de ednVModel à `edn-date`
-- Désormais l'installation de eudo-front se fait sur le main.js, plus dans vuetify.js
--
+- Optimisation du build de production
+
+  Avant
+
+  |   File    |    Size     | Gzipped |
+  | :---------- | :--------: | :--------: |
+  |**build\static\js\chunk-vendors.js**|1409.25 KiB|440.61 KiB|
+  |**build\static\js\app.js**|20.55 KiB|5.38 KiB|
+  |**build\static\css\chunk-vendors.css**|555.61 KiB|64.54 KiB|
+  |**build\static\css\app.css**|6.98 KiB|1.58 KiB|
+
 
 #### @0.1.18
 
