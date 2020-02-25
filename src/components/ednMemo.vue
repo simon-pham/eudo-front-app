@@ -18,8 +18,7 @@
 </template>
 
 <script>
-// import(/* webpackChunkName: "hljs" */ "highlight.js");
-import hljs from "highlight.js";
+import(/* webpackChunkName: "hljs" */ "highlight.js");
 import {quillEditor} from 'vue-quill-editor'
 
 import "quill/dist/quill.core.css";
@@ -60,8 +59,6 @@ export default {
       }
     };
   },
-  mounted() {
-  }
 };
 </script>
 <style lang="stylus">
