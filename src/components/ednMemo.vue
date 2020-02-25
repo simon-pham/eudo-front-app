@@ -6,34 +6,30 @@
           ref="myTextEditor"
           :class="$attrs.size"
           v-model="content"
-    
           :options="editorOption"
         />
       </v-input>
     </div>
   </div>
   <div v-else>
-    <v-textarea
-      :label="$attrs.label"
-      v-model="content"
-      :rules="rules"
-    
-    >
+    <v-textarea :label="$attrs.label" v-model="content" :rules="rules">
     </v-textarea>
   </div>
 </template>
 
 <script>
+import(/* webpackChunkName: "hljs" */ "highlight.js")
+import { quillEditor } from (/* webpackChunkName: "vueQuillEditor" */"vue-quill-editor")
+
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
 
-import hljs from "highlight.js";
+// import hljs from "highlight.js";
 import { ednRequired } from "./mixins/ednRequired";
 import { ednVModel } from "./mixins/ednVModel";
 
 // import toolbar from "quill/modules/toolbar";
-import { quillEditor } from "vue-quill-editor";
 // import validatable from "vuetify/lib/mixins/validatable";
 
 export default {
@@ -66,7 +62,7 @@ export default {
         }
       }
     };
-  },
+  }
 };
 </script>
 <style lang="stylus">

@@ -1,4 +1,8 @@
+ <!-- <link rel="stylesheet" href="./style/style.css" /> -->
+
 # EUDO-FRONT
+
+<img style="margin:0 auto; display:block" src="./images/logo.svg"/>
 
 ## Installation du composant
 
@@ -53,7 +57,6 @@ new Vue({
   vuetify: new Vuetify(opts),
   render: h => h(App)
 }).$mount("#app");
-
 ```
 
 Il faut bien prendre en considération que eudoFront n'est qu'un plugin de Vuetify à ce stade.
@@ -225,16 +228,16 @@ utilisera me message passé en prop comme message de validation.
 
 ## Date `<edn-date/>`
 
-|    Paramètre     |       Type       |             Documentation             |
-| :--------------: | :--------------: | :-----------------------------------: |
-|   **tooltip:**   |     `String`     |                                       |
-| **placeholder:** |     `String`     |                                       |
-|    **label:**    |     `String`     |                                       |
+|    Paramètre     |       Type       |                     Documentation                     |
+| :--------------: | :--------------: | :---------------------------------------------------: |
+|   **tooltip:**   |     `String`     |                                                       |
+| **placeholder:** |     `String`     |                                                       |
+|    **label:**    |     `String`     |                                                       |
 |  **required:**   | `Bool ou String` |
-|     **id:**      |     `Number`     |                                       |
-|    **order:**    |     `Number`     |                                       |
-|  **charsMax:**   |     `Number`     |                                       |
-|   **format:**    |     `String`     | [Moment.js](https://www.momentjs.com) |
+|     **id:**      |     `Number`     |                                                       |
+|    **order:**    |     `Number`     |                                                       |
+|  **charsMax:**   |     `Number`     |                                                       |
+|   **format:**    |     `String`     | [date-fns](https://date-fns.org/docs/Getting-Started) |
 
 #### Exemple
 
@@ -299,13 +302,30 @@ utilisera me message passé en prop comme message de validation.
 
 # Changelog
 
+#### @0.1.19
 
+- Supression de `moment.js` au profit de `date-fns`, le but étant d'alléger le bundle js final de l'application. Voir [bundlephobia](https://bundlephobia.com/scan-results?packages=moment@2.24.0,date-fns@2.9.0), de plus `date-fns` est conçu pour n'utiliser que les fonctions dont on a besoin.
+
+<center>
+
+|   Package    |    Min     | Min + GZIP |
+| :----------: | :--------: | :--------: |
+|  **moment**  | 231.7 `kB` | 65.9 `kB`  |
+| **date-fns** | 79.3 `kB`  | 16.9 `kB`  |
+
+</center>
+
+- Intégration de ednVModel à `edn-date`
+- Désormais l'installation de eudo-front se fait sur le main.js, plus dans vuetify.js
+-
 
 #### @0.1.18
 
 - Après que `@Aagne` ait remonté un soucis de tranfert de v-model sur certains composants, un nouveau mixin a été créé `ednVModel.js` afin de faire hériter ce comportement à tout les composants.
-![alt text](./images/ednVModel.png "Avant/Après ednVModel.js")
-Ci-dessus screenshot du nettoyage des composants grâce à `ednVModel.js`
+  ![alt text](./images/ednVModel.jpg "Avant/Après ednVModel.js")
+  <center>
+  Ci-dessus screenshot du nettoyage des composants grâce à `ednVModel.js`
+  </center>
 - Désormais chaque version aura une VM utilisable en ligne avec un environnement de développement éditable. [VM eudofront 0.1.17](https://codesandbox.io/s/vmeudo-front-0117-x7yx2)
 - Vuetify n'est plus installé sous forme de plug-in, voir initialisation du projet au début de ce document.
 

@@ -1,12 +1,11 @@
 import Vue from "vue";
 import App from "./App.vue";
-import Vuetify from "vuetify";
-import moment from "moment";
+import Vuetify from "vuetify/lib";
 import fr from "vuetify/es5/locale/fr";
 import eudoFront from "./components/eudo-front";
 import "vuetify/dist/vuetify.min.css";
 
-Vue.prototype.$moment = moment;
+
 Vue.use(eudoFront);
 
 const opts = {

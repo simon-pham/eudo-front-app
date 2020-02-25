@@ -1,4 +1,4 @@
-//Mixin de transfert bilatérale du v-model
+//Mixin de transfert bilatéral du v-model
 export const ednVModel = {
     props: {
         value: null

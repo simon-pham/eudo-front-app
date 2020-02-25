@@ -1,5 +1,6 @@
 <template>
   <v-app :ripple="false">
+    <!-- <logo class="mx-auto" :style="{ width: '30em' }"></logo> -->
     <v-form ref="form">
       <v-container @click.ctrl="updateTime()">
         <v-row class="align-center justify-space-around">
@@ -51,8 +52,6 @@
 <script>
 export default {
   name: "App",
-
-  components: {},
 
   data() {
     return {

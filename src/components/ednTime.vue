@@ -38,7 +38,7 @@ import { ednVModel } from "./mixins/ednVModel";
 
 export default {
   inheritAttrs: false,
-  mixins: [ednRequired,ednVModel],
+  mixins: [ednRequired, ednVModel],
   data() {
     return {
       menu: null,
@@ -47,7 +47,7 @@ export default {
         secondary: this.$vuetify.theme.currentTheme.secondary
       }
     };
-  },
+  }
 };
 </script>
 

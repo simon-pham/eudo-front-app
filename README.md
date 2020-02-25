@@ -11,17 +11,21 @@ npm install eudo-front
 ## Initialisation du composant
 
 ```js
-//vuetify.js
+//main.js
 import Vue from "vue";
-import Vuetify from "vuetify/lib";
-import eudoFront from "eudo-front";
-import "@mdi/font/css/materialdesignicons.css";
+import App from "./App.vue";
+import Vuetify from "vuetify";
+import fr from "vuetify/es5/locale/fr";
+import eudoFront from "./components/eudo-front";
+import "vuetify/dist/vuetify.min.css";
 
-Vue.use(Vuetify);
+Vue.prototype.$moment = moment;
 Vue.use(eudoFront);
 
-export default new Vuetify({
-  iconfont: "mdi",
+const opts = {
+  icons: {
+    iconfont: "mdi"
+  },
   theme: {
     options: {
       customProperties: true
@@ -29,12 +33,26 @@ export default new Vuetify({
     themes: {
       light: {
         primary: "#bb1515",
-        secondary: "#c4c4c4"
-        //Pour l'instant il faut faire ces décalartions manuellement.
+        secondary: "#757575",
+        accent: "#82B1FF",
+        error: "#FF5252",
+        info: "#2196F3",
+        success: "#4CAF50",
+        warning: "#FFC107"
       }
     }
+  },
+  lang: {
+    locales: { fr },
+    current: "fr"
   }
-});
+};
+Vue.use(Vuetify);
+
+new Vue({
+  vuetify: new Vuetify(opts),
+  render: h => h(App)
+}).$mount("#app");
 ```
 
 Il faut bien prendre en considération que eudoFront n'est qu'un plugin de Vuetify à ce stade.
@@ -206,16 +224,16 @@ utilisera me message passé en prop comme message de validation.
 
 ## Date `<edn-date/>`
 
-|    Paramètre     |       Type       |             Documentation             |
-| :--------------: | :--------------: | :-----------------------------------: |
-|   **tooltip:**   |     `String`     |                                       |
-| **placeholder:** |     `String`     |                                       |
-|    **label:**    |     `String`     |                                       |
+|    Paramètre     |       Type       |                     Documentation                     |
+| :--------------: | :--------------: | :---------------------------------------------------: |
+|   **tooltip:**   |     `String`     |                                                       |
+| **placeholder:** |     `String`     |                                                       |
+|    **label:**    |     `String`     |                                                       |
 |  **required:**   | `Bool ou String` |
-|     **id:**      |     `Number`     |                                       |
-|    **order:**    |     `Number`     |                                       |
-|  **charsMax:**   |     `Number`     |                                       |
-|   **format:**    |     `String`     | [Moment.js](https://www.momentjs.com) |
+|     **id:**      |     `Number`     |                                                       |
+|    **order:**    |     `Number`     |                                                       |
+|  **charsMax:**   |     `Number`     |                                                       |
+|   **format:**    |     `String`     | [date-fns](https://date-fns.org/docs/Getting-Started) |
 
 #### Exemple
 
@@ -279,6 +297,31 @@ utilisera me message passé en prop comme message de validation.
 ---
 
 # Changelog
+
+#### @0.1.19
+
+- Supression de `moment.js` au profit de `date-fns`, le but étant d'alléger le bundle js final de l'application. Voir [bundlephobia](https://bundlephobia.com/scan-results?packages=moment@2.24.0,date-fns@2.9.0), de plus `date-fns` est conçu pour n'utiliser que les fonctions dont on a besoin.
+
+<center>
+
+|   Package    |    Min     | Min + GZIP |
+| :----------: | :--------: | :--------: |
+|  **moment**  | 231.7 `kB` | 65.9 `kB`  |
+| **date-fns** | 79.3 `kB`  | 16.9 `kB`  |
+
+</center>
+
+- Intégration de ednVModel à `edn-date`
+
+#### @0.1.18
+
+- Après que `@Aagne` ait remonté un soucis de tranfert de v-model sur certains composants, un nouveau mixin a été créé `ednVModel.js` afin de faire hériter ce comportement à tout les composants.
+  ![alt text](./images/ednVModel.jpg "Avant/Après ednVModel.js")
+  <center>
+  Ci-dessus screenshot du nettoyage des composants grâce à `ednVModel.js`
+  </center>
+- Désormais chaque version aura une VM utilisable en ligne avec un environnement de développement éditable. [VM eudofront 0.1.17](https://codesandbox.io/s/vmeudo-front-0117-x7yx2)
+- Vuetify n'est plus installé sous forme de plug-in, voir initialisation du projet au début de ce document.
 
 #### @0.1.17
 
