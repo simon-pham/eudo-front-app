@@ -1,5 +1,21 @@
 <template>
+  <v-card width="300" v-if="$attrs.slots" class="timeSlots mx-auto">
+    <v-card-title class="py-1" v-if="$attrs.label">{{
+      $attrs.label
+    }}</v-card-title>
+    <v-card-text>
+      <v-btn
+        :class="[content.includes(n) ? 'active' : '']"
+        v-ripple="false"
+        v-for="n in $attrs.slots"
+        :key="n.id"
+        @click.native="selectTime(n)"
+        >{{ n }}</v-btn
+      >
+    </v-card-text>
+  </v-card>
   <v-menu
+    v-else
     ref="menu"
     v-model="menu"
     :close-on-content-click="false"
@@ -47,7 +63,47 @@ export default {
         secondary: this.$vuetify.theme.currentTheme.secondary
       }
     };
+  },
+  methods: {
+    selectTime(time) {
+      if (typeof this.content !== "object") {
+        console.log(typeof this.content);
+        this.content = [];
+      }
+      if (
+        this.content == [] ||
+        (this.content != time &&
+          this.content != [] &&
+          !this.content.includes(time))
+      ) {
+        this.content.push(time);
+      } else if (this.content.includes(time)) {
+        console.log(time);
+        console.log(this.content.indexOf(time));
+        let pos = this.content.indexOf(time);
+        this.content.splice(pos, 1);
+      }
+      // else if (this.content == time) {
+      //   this.content = [];
+      // }
+    }
   }
 };
 </script>
+<style lang="stylus">
+.timeSlots {
+  background-color: #fafafa;
 
+  @import 'assets/cstmVbtn';
+
+  button.v-btn.active.v-btn--contained.theme--light {
+    background-color: var(--v-primary-base);
+    color: white;
+  }
+
+  div.v-card__text {
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+}
+</style>

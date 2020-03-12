@@ -41,6 +41,8 @@ export default {
 div.btn {
   user-select: none;
   transition: transform 0.25s;
+  margin: 0 0.8em;
+  display: inline-block;
 
   &.alt {
     text-align: center;
@@ -61,9 +63,6 @@ div.btn {
 
       background: none;
     }
-  }
-
-  &:hover {
   }
 
   &:active {

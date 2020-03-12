@@ -7,6 +7,7 @@
     transition="fade-transition"
     offset-y
     min-width="290px"
+    v-if="$attrs.popup == true || $attrs.popup === ''"
   >
     <template v-slot:activator="{ on }">
       <v-text-field
@@ -32,6 +33,17 @@
       <v-btn text color="primary" @click="$refs.menu.save(content)">OK</v-btn>
     </v-date-picker>
   </v-menu>
+  <v-date-picker
+    v-else
+    :color="colors.primary"
+    no-title
+    scrollable
+    v-bind="$attrs"
+    v-model="content"
+    :locale="'Fr'"
+    :first-day-of-week="1"
+    class="tripStyle"
+  ></v-date-picker>
 </template>
 <script>
 import { ednRequired } from "./mixins/ednRequired";
@@ -64,4 +76,23 @@ export default {
   methods: {}
 };
 </script>
-<style lang="stylus"></style>
+<style lang="stylus">
+div.tripStyle {
+  div.v-date-picker {
+    &-header {
+      background-color: #fafafa;
+    }
+
+    &-table {
+      th {
+        color: black;
+      }
+
+      @import 'assets/cstmVbtn';
+
+      background-color: #fafafa;
+      height: 275px;
+    }
+  }
+}
+</style>

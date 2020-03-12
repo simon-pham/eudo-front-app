@@ -17,8 +17,29 @@
           :items="recette"
           tooltip="Selection de catégories"
         ></edn-cat-x>
-        <edn-date v-model="dateInpt" label="edn-date" :required="true" />
-        <edn-time v-model="time" label="edn-time" :required="true" />
+        <edn-date v-model="dateInpt" label="edn-date" :popup="true" required />
+        <edn-date v-model="dateInpt" :popup="false" :allowed-dates="allowedDates" />
+        <edn-time
+          v-model="time"
+          label="edn-time"
+          required="Ce champs doit être rempli !"
+        />
+        <edn-time
+          v-model="time"
+          label="Choisissez une plage horaire"
+          :slots="[
+          '00:20',
+          '00:40',
+          '01:20',
+          '01:40',
+          '02:40',
+          '03:40',
+          '04:40',
+          '05:40',
+          '06:40',
+         
+          ]"
+        />
         <edn-memo
           label="edn-memo"
           v-model="inptMemo"
@@ -63,6 +84,7 @@ export default {
       mail: "",
       checked: true,
       switched: true,
+      allowedDates: val => parseInt(val.split('-')[2], 10) % 2 === 0,
       inptText: "",
       dateInpt: "",
       inptMemo: "",

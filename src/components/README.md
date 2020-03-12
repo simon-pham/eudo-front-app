@@ -317,8 +317,7 @@ utilisera me message passé en prop comme message de validation.
 
 - Intégration de ednVModel à `edn-date`
 - Optimisation du build de production merci à `@Jbzel`
-
-
+- Désormais l'edn-btn est en `display:inline-block` cela évite les 100% de largeur des boutons
 
 #### @0.1.18
 
