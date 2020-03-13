@@ -1,5 +1,9 @@
 <template>
-  <v-card width="300" v-if="$attrs.slots" class="timeSlots mx-auto">
+  <v-card
+    width="300"
+    v-if="$attrs.slots"
+    :class="['timeSlots mx-auto', $attrs.tripStyle == '' ? 'tripStyle' : '']"
+  >
     <v-card-title class="py-1" v-if="$attrs.label">{{
       $attrs.label
     }}</v-card-title>
@@ -67,7 +71,6 @@ export default {
   methods: {
     selectTime(time) {
       if (typeof this.content !== "object") {
-        console.log(typeof this.content);
         this.content = [];
       }
       if (
@@ -78,14 +81,9 @@ export default {
       ) {
         this.content.push(time);
       } else if (this.content.includes(time)) {
-        console.log(time);
-        console.log(this.content.indexOf(time));
         let pos = this.content.indexOf(time);
         this.content.splice(pos, 1);
       }
-      // else if (this.content == time) {
-      //   this.content = [];
-      // }
     }
   }
 };
@@ -94,7 +92,9 @@ export default {
 .timeSlots {
   background-color: #fafafa;
 
-  @import 'assets/cstmVbtn';
+  &.tripStyle {
+    @import 'assets/cstmVbtn';
+  }
 
   button.v-btn.active.v-btn--contained.theme--light {
     background-color: var(--v-primary-base);
