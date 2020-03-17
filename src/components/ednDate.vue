@@ -6,7 +6,7 @@
     :return-value.sync="content"
     transition="fade-transition"
     offset-y
-    min-width="290px"
+    min-width="300px"
     v-if="$attrs.popup == true || $attrs.popup === ''"
   >
     <template v-slot:activator="{ on }">

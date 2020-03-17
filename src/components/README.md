@@ -59,7 +59,6 @@ new Vue({
 }).$mount("#app");
 ```
 
-Il faut bien prendre en considération que eudoFront n'est qu'un plugin de Vuetify à ce stade.
 N'éspérez pas utiliser eudo-front sur un projet from scratch.
 
 ## LISTE DES COMPOSANTS
@@ -107,14 +106,11 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 ## Champs `<edn-field/>`
 
 |    Paramètre     |       Type       |
-| :--------------: | :--------------: |
+|:----------------:|:----------------:|
 |   **tooltip:**   |     `String`     |
 | **placeholder:** |     `String`     |
 |    **label:**    |     `String`     |
 |  **required:**   | `Bool || String` |
-|     **id:**      |     `Number`     |
-|    **order:**    |     `Number`     |
-|  **charsMax:**   |     `Number`     |
 
 #### Exemple :
 
@@ -123,7 +119,6 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 par défaut.
 
 <edn-field label="Prénom" :required="Le prénom n'est pas rempli" /> // Celui-ci
-utilisera me message passé en prop comme message de validation.
 ```
 
 ---
@@ -131,14 +126,11 @@ utilisera me message passé en prop comme message de validation.
 ## Catalogue `<edn-cat/>`
 
 |    Paramètre     |       Type       |
-| :--------------: | :--------------: |
+|:----------------:|:----------------:|
 |   **tooltip:**   |     `String`     |
 | **placeholder:** |     `String`     |
 |    **label:**    |     `String`     |
 |  **required:**   | `Bool ou String` |
-|     **id:**      |     `Number`     |
-|    **order:**    |     `Number`     |
-|  **charsMax:**   |     `Number`     |
 |   **catalog:**   |     `Array`      |
 
 #### Exemple
@@ -152,14 +144,11 @@ utilisera me message passé en prop comme message de validation.
 ## Catalogue multiple `<edn-cat-x/>`
 
 |    Paramètre     |       Type       |
-| :--------------: | :--------------: |
+|:----------------:|:----------------:|
 |   **tooltip:**   |     `String`     |
 | **placeholder:** |     `String`     |
 |    **label:**    |     `String`     |
 |  **required:**   | `Bool ou String` |
-|     **id:**      |     `Number`     |
-|    **order:**    |     `Number`     |
-|  **charsMax:**   |     `Number`     |
 |   **catalog:**   |     `Array`      |
 
 #### Exemple
@@ -173,7 +162,7 @@ utilisera me message passé en prop comme message de validation.
 ## Mémo `<edn-memo/>`
 
 |    Paramètre     |       Type       |           |            |
-| :--------------: | :--------------: | :-------: | :--------: |
+|:----------------:|:----------------:|:---------:|:----------:|
 | **placeholder:** |     `String`     |           |            |
 |  **required:**   | `Bool ou String` |
 |    **html:**     |      `Bool`      |           |            |
@@ -193,15 +182,13 @@ utilisera me message passé en prop comme message de validation.
 ## Bouton `<edn-btn/>`
 
 | Paramètre  |   Type   |
-| :--------: | :------: |
+|:----------:|:--------:|
 | **label:** | `String` |
-|  **id:**   | `Number` |
 | **color:** | `String` |
 
 #### Exemple
 
 ```html
-<edn-btn label="Valider" @click.native="action()" color="#bb1515" />
 ```
 
 ---
@@ -209,14 +196,11 @@ utilisera me message passé en prop comme message de validation.
 ## Numérique `<edn-num/>`
 
 |    Paramètre     |       Type       |
-| :--------------: | :--------------: |
+|:----------------:|:----------------:|
 |   **tooltip:**   |     `String`     |
 | **placeholder:** |     `String`     |
 |    **label:**    |     `String`     |
 |  **required:**   | `Bool ou String` |
-|     **id:**      |     `Number`     |
-|    **order:**    |     `Number`     |
-|  **charsMax:**   |     `Number`     |
 
 #### Exemple
 
@@ -229,14 +213,12 @@ utilisera me message passé en prop comme message de validation.
 ## Date `<edn-date/>`
 
 |    Paramètre     |       Type       |                     Documentation                     |
-| :--------------: | :--------------: | :---------------------------------------------------: |
+|:----------------:|:----------------:|:-----------------------------------------------------:|
 |   **tooltip:**   |     `String`     |                                                       |
 | **placeholder:** |     `String`     |                                                       |
 |    **label:**    |     `String`     |                                                       |
+|  **tripStyle:**  |    `Attribut`    |
 |  **required:**   | `Bool ou String` |
-|     **id:**      |     `Number`     |                                                       |
-|    **order:**    |     `Number`     |                                                       |
-|  **charsMax:**   |     `Number`     |                                                       |
 |   **format:**    |     `String`     | [date-fns](https://date-fns.org/docs/Getting-Started) |
 
 #### Exemple
@@ -249,20 +231,21 @@ utilisera me message passé en prop comme message de validation.
 
 ## Heure `<edn-time/>`
 
-|    Paramètre     |       Type       |
-| :--------------: | :--------------: |
-|   **tooltip:**   |     `String`     |
-| **placeholder:** |     `String`     |
-|    **label:**    |     `String`     |
-|  **required:**   | `Bool ou String` |
-|     **id:**      |     `Number`     |
-|    **order:**    |     `Number`     |
-|  **charsMax:**   |     `Number`     |
+|   Paramètre    |       Type       |
+|:--------------:|:----------------:|
+|  **tooltip:**  |     `String`     |
+|   **label:**   |     `String`     |
+| **required:**  | `Bool ou String` |
+| **tripStyle:** |    `Attribut`    |
+|   **slots:**   |     `Array`      |
 
 #### Exemple
 
 ```html
-<edn-date label="Choississez votre heure de rendez-vous" />
+<edn-time label="Choississez votre heure de rendez-vous" />
+
+
+<edn-time label="Choississez votre plage horaire" :slots="['20:20','20:40','21:00','21:20','21:40']" />
 ```
 
 ---
@@ -270,7 +253,7 @@ utilisera me message passé en prop comme message de validation.
 ## Heure `<edn-load/>`
 
 |  Paramètre   |    Type    |            |
-| :----------: | :--------: | ---------- |
+|:------------:|:----------:|------------|
 | **message:** |  `String`  |            |
 |  **form:**   |  `String`  |            |
 |   **-->**    | `'simple'` | `'double'` |
@@ -287,10 +270,10 @@ utilisera me message passé en prop comme message de validation.
 
 ## Heure `<edn-radio/>`
 
-|  Paramètre  |   Type   |     |
-| :---------: | :------: | --- |
-| **label:**  | `String` |     |
-| **radios:** | `Array`  |     |
+|  Paramètre  |   Type   |  |
+|:-----------:|:--------:|--|
+| **label:**  | `String` |  |
+| **radios:** | `Array`  |  |
 
 #### Exemple
 
@@ -304,12 +287,13 @@ utilisera me message passé en prop comme message de validation.
 
 #### @0.1.19
 
+- à la demande de `@Mcorr` ajout d'un mode plage horaires pour l'utilisation de `edn-time`, ainsi qu'un nouveau rendu pour `edn-date` voir doc.
 - Supression de `moment.js` au profit de `date-fns`, le but étant d'alléger le bundle js final de l'application. Voir [bundlephobia](https://bundlephobia.com/scan-results?packages=moment@2.24.0,date-fns@2.9.0), de plus `date-fns` est conçu pour n'utiliser que les fonctions dont on a besoin.
 
 <center>
 
 |   Package    |    Min     | Min + GZIP |
-| :----------: | :--------: | :--------: |
+|:------------:|:----------:|:----------:|
 |  **moment**  | 231.7 `kB` | 65.9 `kB`  |
 | **date-fns** | 79.3 `kB`  | 16.9 `kB`  |
 
@@ -348,7 +332,6 @@ utilisera me message passé en prop comme message de validation.
 #### @0.1.14
 
 - `<edn-mail>`
-  - le test du format du mail n'est réalisé que si du texte est inséré dans le champs, si le champs est vide, aucun test ne sera fait.
 
 #### @0.1.13
 
@@ -375,7 +358,6 @@ utilisera me message passé en prop comme message de validation.
 - `<edn-*>`
   - Uniformisation des composant pour qu'ils reprennent bien les valeurs passés en v-model.
 - `<edn-field>`
-  - Correction de la bidirectionnalitée de l'edn-field, désormais il se met à jour et hérite de la String que l'on lui passe en premier lieu.
   - Simplification des rules, il suffit juste d'utiliser la prop `required` afin d'enclencher la vérification sur les champs concernés.
 - `<edn-date/>`
   - Correction de `<edn-date/>` qui ne remontait pas la date aux parents.

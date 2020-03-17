@@ -2,7 +2,7 @@
   <v-card
     width="300"
     v-if="$attrs.slots"
-    :class="['timeSlots mx-auto', $attrs.tripStyle == '' ? 'tripStyle' : '']"
+    :class="['timeSlots', $attrs.tripStyle == '' ? 'tripStyle' : '']"
   >
     <v-card-title class="py-1" v-if="$attrs.label">{{
       $attrs.label
@@ -90,9 +90,9 @@ export default {
 </script>
 <style lang="stylus">
 .timeSlots {
-  background-color: #fafafa;
 
-  &.tripStyle {
+  &.tripStyle.v-card.v-sheet {
+  background-color: #fafafa;
     @import 'assets/cstmVbtn';
   }
 
