@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "build-lib": "vue-cli-service build --target lib --name eudoFront ./src/components/eudo-front.js"
   },
   "dependencies": {
     "component-minify": "^1.2.0",
-    "core-js": "^3.6.4",
-    "date-fns": "^2.9.0",
+    "core-js": "^3.6.5",
+    "date-fns": "^2.14.0",
     "highlight.js": "^9.18.1",
     "quill": "^1.3.7",
     "stylus": "^0.54.7",
@@ -18,15 +19,15 @@
     "vue-quill-editor": "^3.0.6",
     "vue-the-mask": "^0.11.1",
     "vue2-medium-editor": "^1.1.6",
-    "vuetify": "^2.2.13"
+    "vuetify": "^2.2.30"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.2.2",
-    "@vue/cli-service": "^4.2.2",
-    "sass": "^1.25.0",
+    "@vue/cli-plugin-babel": "^4.4.1",
+    "@vue/cli-service": "^4.4.1",
+    "sass": "^1.26.7",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11",
-    "vuetify-loader": "^1.4.3",
+    "vuetify-loader": "^1.4.4",
     "webpack-cli": "^3.3.11"
   },
   "postcss": {

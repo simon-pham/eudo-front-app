@@ -27,7 +27,7 @@ module.exports = {
   filenameHashing: false,
   outputDir: "build",
   assetsDir: "static",
-  publicPath: "./",
+  publicPath: "",
   devServer: {
     // proxy: {
     //   "/services": {

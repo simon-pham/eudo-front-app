@@ -24,31 +24,29 @@
           required="Ce champs doit être rempli !"
         />
         <v-row class="align-center justify-center">
-  
-            <edn-date
-              v-model="dateInpt"
-              :popup="false"
-              :allowed-dates="allowedDates"
-              class="mx-3"
-            />
-            <edn-time
-              class="mx-3"
-              v-model="time"
-              label="Choisissez une plage horaire"
-              tripStyle
-              :slots="[
-                '00:20',
-                '00:40',
-                '01:20',
-                '01:40',
-                '02:40',
-                '03:40',
-                '04:40',
-                '05:40',
-                '06:40'
-              ]"
-            />
-         
+          <edn-date
+            v-model="dateInpt"
+            :popup="false"
+            :allowed-dates="allowedDates"
+            class="mx-3"
+          />
+          <edn-time
+            class="mx-3"
+            v-model="time"
+            label="Choisissez une plage horaire"
+            tripStyle
+            :slots="[
+              '00:20',
+              '00:40',
+              '01:20',
+              '01:40',
+              '02:40',
+              '03:40',
+              '04:40',
+              '05:40',
+              '06:40'
+            ]"
+          />
         </v-row>
         <edn-memo
           label="edn-memo"
@@ -71,9 +69,16 @@
           v-model="radioSelect"
         ></edn-radio>
         <edn-color label="edn-color" v-model="selectedColor"></edn-color>
+        <edn-url label="edn-url" pasteContentRes="URL R O NEZ"></edn-url>
         <v-row class="justify-center align-self-center">
-          <edn-btn @click.native="Validate()">Valider</edn-btn>
-          <edn-btn @click.native="Reset()" alternate>Reset</edn-btn>
+          <edn-btn class="mx-2" validation="skin2019" @click="Validate()"
+            >Valider</edn-btn
+          >
+          <edn-btn class="mx-2" validation @click="Validate()">Valider</edn-btn>
+          <edn-btn class="mx-2" @click="Reset()">Reset</edn-btn>
+          <edn-btn class="mx-2" color="secondary" @click="Reset()"
+            >Reset</edn-btn
+          >
         </v-row>
       </v-container>
     </v-form>
@@ -101,7 +106,7 @@ export default {
       ingredient: [],
       recette: ["Cat 3", "Cat 4", "Cat 5"],
       cat: ["Cat 1", "Cat 2", "Cat 3", "Cat 4", "Cat 5"],
-      selectedCat: "",
+      selectedCat: "Cat 1",
       radioSelect: null,
       selectedColor: "",
       radios: [

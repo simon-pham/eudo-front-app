@@ -20,19 +20,18 @@ import Vue from "vue";
 import App from "./App.vue";
 import Vuetify from "vuetify";
 import fr from "vuetify/es5/locale/fr";
-import eudoFront from "./components/eudo-front";
+import eudoFront from "eudo-front";
 import "vuetify/dist/vuetify.min.css";
 
-Vue.prototype.$moment = moment;
 Vue.use(eudoFront);
 
 const opts = {
   icons: {
-    iconfont: "mdi"
+    iconfont: "mdi",
   },
   theme: {
     options: {
-      customProperties: true
+      customProperties: true,
     },
     themes: {
       light: {
@@ -42,20 +41,20 @@ const opts = {
         error: "#FF5252",
         info: "#2196F3",
         success: "#4CAF50",
-        warning: "#FFC107"
-      }
-    }
+        warning: "#FFC107",
+      },
+    },
   },
   lang: {
     locales: { fr },
-    current: "fr"
-  }
+    current: "fr",
+  },
 };
 Vue.use(Vuetify);
 
 new Vue({
   vuetify: new Vuetify(opts),
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
 ```
 
@@ -106,7 +105,7 @@ N'éspérez pas utiliser eudo-front sur un projet from scratch.
 ## Champs `<edn-field/>`
 
 |    Paramètre     |       Type       |
-|:----------------:|:----------------:|
+| :--------------: | :--------------: |
 |   **tooltip:**   |     `String`     |
 | **placeholder:** |     `String`     |
 |    **label:**    |     `String`     |
@@ -126,17 +125,44 @@ par défaut.
 ## Catalogue `<edn-cat/>`
 
 |    Paramètre     |       Type       |
-|:----------------:|:----------------:|
+| :--------------: | :--------------: |
 |   **tooltip:**   |     `String`     |
 | **placeholder:** |     `String`     |
 |    **label:**    |     `String`     |
 |  **required:**   | `Bool ou String` |
-|   **catalog:**   |     `Array`      |
+|    **items:**    |     `Array`      |
 
 #### Exemple
 
 ```html
+Liste simple
 <edn-cat label="Ville" :items="cities" />
+
+Liste d'objets
+<edn-cat label="Ville" :items="oCities" item-value="id" item-text="text" />
+```
+
+```js
+var cities: ["Lyon", "Toulon", "Paris", "Marseille"];
+
+var oCities: [
+  {
+    id: 1,
+    city: "Lyon",
+  },
+  {
+    id: 2,
+    city: "Toulon",
+  },
+  {
+    id: 3,
+    city: "Paris",
+  },
+  {
+    id: 4,
+    city: "Marseille",
+  }
+];
 ```
 
 ---
@@ -144,12 +170,12 @@ par défaut.
 ## Catalogue multiple `<edn-cat-x/>`
 
 |    Paramètre     |       Type       |
-|:----------------:|:----------------:|
+| :--------------: | :--------------: |
 |   **tooltip:**   |     `String`     |
 | **placeholder:** |     `String`     |
 |    **label:**    |     `String`     |
 |  **required:**   | `Bool ou String` |
-|   **catalog:**   |     `Array`      |
+|    **items:**    |     `Array`      |
 
 #### Exemple
 
@@ -162,7 +188,7 @@ par défaut.
 ## Mémo `<edn-memo/>`
 
 |    Paramètre     |       Type       |           |            |
-|:----------------:|:----------------:|:---------:|:----------:|
+| :--------------: | :--------------: | :-------: | :--------: |
 | **placeholder:** |     `String`     |           |            |
 |  **required:**   | `Bool ou String` |
 |    **html:**     |      `Bool`      |           |            |
@@ -181,22 +207,32 @@ par défaut.
 
 ## Bouton `<edn-btn/>`
 
-| Paramètre  |   Type   |
-|:----------:|:--------:|
-| **label:** | `String` |
-| **color:** | `String` |
+|    Paramètre    |       Type       |            |
+| :-------------: | :--------------: | :--------: |
+|   **color:**    |     `String`     |            |
+| **validation:** | `String ou Bool` | `skin2019` |
 
 #### Exemple
 
 ```html
+<edn-btn class="mx-2" validation="skin2019" @click="Validate()">Valider</edn-btn>
+<edn-btn class="mx-2" validation @click="Validate()">Valider</edn-btn>
+<edn-btn class="mx-2" @click="Reset()">Reset</edn-btn>
+<edn-btn class="mx-2" color="secondary" @click="Reset()">Reset</edn-btn
 ```
+
+<center>
+
+## ![edn-btn](./images/edn-btn.jpg "Utilisation edn-btn")
+
+</center>
 
 ---
 
 ## Numérique `<edn-num/>`
 
 |    Paramètre     |       Type       |
-|:----------------:|:----------------:|
+| :--------------: | :--------------: |
 |   **tooltip:**   |     `String`     |
 | **placeholder:** |     `String`     |
 |    **label:**    |     `String`     |
@@ -213,7 +249,7 @@ par défaut.
 ## Date `<edn-date/>`
 
 |    Paramètre     |       Type       |                     Documentation                     |
-|:----------------:|:----------------:|:-----------------------------------------------------:|
+| :--------------: | :--------------: | :---------------------------------------------------: |
 |   **tooltip:**   |     `String`     |                                                       |
 | **placeholder:** |     `String`     |                                                       |
 |    **label:**    |     `String`     |                                                       |
@@ -232,7 +268,7 @@ par défaut.
 ## Heure `<edn-time/>`
 
 |   Paramètre    |       Type       |
-|:--------------:|:----------------:|
+| :------------: | :--------------: |
 |  **tooltip:**  |     `String`     |
 |   **label:**   |     `String`     |
 | **required:**  | `Bool ou String` |
@@ -244,8 +280,10 @@ par défaut.
 ```html
 <edn-time label="Choississez votre heure de rendez-vous" />
 
-
-<edn-time label="Choississez votre plage horaire" :slots="['20:20','20:40','21:00','21:20','21:40']" />
+<edn-time
+  label="Choississez votre plage horaire"
+  :slots="['20:20','20:40','21:00','21:20','21:40']"
+/>
 ```
 
 ---
@@ -253,7 +291,7 @@ par défaut.
 ## Heure `<edn-load/>`
 
 |  Paramètre   |    Type    |            |
-|:------------:|:----------:|------------|
+| :----------: | :--------: | ---------- |
 | **message:** |  `String`  |            |
 |  **form:**   |  `String`  |            |
 |   **-->**    | `'simple'` | `'double'` |
@@ -270,10 +308,10 @@ par défaut.
 
 ## Heure `<edn-radio/>`
 
-|  Paramètre  |   Type   |  |
-|:-----------:|:--------:|--|
-| **label:**  | `String` |  |
-| **radios:** | `Array`  |  |
+|  Paramètre  |   Type   |     |
+| :---------: | :------: | --- |
+| **label:**  | `String` |     |
+| **radios:** | `Array`  |     |
 
 #### Exemple
 
@@ -283,17 +321,49 @@ par défaut.
 
 ---
 
+## Heure `<edn-url/>`
+
+|      Paramètre       |   Type   |                                  |
+| :------------------: | :------: | -------------------------------- |
+|      **label:**      | `String` |                                  |
+|    **readonly:**     |  `Bool`  |                                  |
+|    **disabled:**     |  `Bool`  |                                  |
+| **pasteContentRes:** | `String` | Message de confirmation de copie |
+
+#### Exemple
+
+```html
+<edn-url label="edn-url"></edn-url>
+```
+
+<center>
+
+## ![edn-url](./images/edn-url.jpg "Utilisation edn-url")
+
+</center>
+
 # Changelog
+
+#### @0.1.20
+
+- Correction de la documentation de `edn-cat`
+- Ajout de `edn-url`
+
+  ![edn-url](https://media.giphy.com/media/f8zlr83qpAe0MHvWoc/giphy.gif "edn-url")
+
+  Voir documentation pour plus d'informations
+
+- Uniformisation de `edn-btn`, il hérite désormais de l'api Vuetify, quelques modifications ont été apportées à ses propriétés. Voir documentation
 
 #### @0.1.19
 
-- à la demande de `@Mcorr` ajout d'un mode plage horaires pour l'utilisation de `edn-time`, ainsi qu'un nouveau rendu pour `edn-date` voir doc.
+- à la demande de `@Mcorr` ajout d'un mode plage horaires pour l'utilisation de `edn-time`, ainsi qu'un nouveau rendu pour `edn-date` à été effectué. Voir doc.
 - Supression de `moment.js` au profit de `date-fns`, le but étant d'alléger le bundle js final de l'application. Voir [bundlephobia](https://bundlephobia.com/scan-results?packages=moment@2.24.0,date-fns@2.9.0), de plus `date-fns` est conçu pour n'utiliser que les fonctions dont on a besoin.
 
 <center>
 
 |   Package    |    Min     | Min + GZIP |
-|:------------:|:----------:|:----------:|
+| :----------: | :--------: | :--------: |
 |  **moment**  | 231.7 `kB` | 65.9 `kB`  |
 | **date-fns** | 79.3 `kB`  | 16.9 `kB`  |
 
