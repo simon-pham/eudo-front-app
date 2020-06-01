@@ -54,7 +54,7 @@ export default {
       type: String,
       default: () => "Url copiée"
     },
-    content: {
+    value: {
       type: String,
       default: () => "http://"
     }

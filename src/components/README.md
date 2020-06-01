@@ -353,7 +353,8 @@ var oCities: [
 
   Voir documentation pour plus d'informations
 
-- Uniformisation de `edn-btn`, il hérite désormais de l'api Vuetify, quelques modifications ont été apportées à ses propriétés. Voir documentation
+- Uniformisation de `edn-btn`, il hérite désormais de l'api Vuetify, quelques modifications ont été apportées à ses propriétés. Voir documentation.
+- Correction d'absence du composant `date-fns` Merci `@Jbzel` pour l'aide
 
 #### @0.1.19
 
