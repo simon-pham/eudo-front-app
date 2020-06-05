@@ -69,7 +69,7 @@
           v-model="radioSelect"
         ></edn-radio>
         <edn-color label="edn-color" v-model="selectedColor"></edn-color>
-        <edn-url label="edn-url" pasteContentRes="URL R O NEZ"></edn-url>
+        <edn-url label="edn-url"></edn-url>
         <v-row class="justify-center align-self-center">
           <edn-btn class="mx-2" validation="skin2019" @click="Validate()"
             >Valider</edn-btn

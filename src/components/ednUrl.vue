@@ -11,6 +11,7 @@
         v-bind="$attrs"
         :rules="rules"
         :clearable="!$attrs.readonly"
+        :placeholder="placeHolder"
       >
         <template v-slot:append v-if="$attrs.tooltip">
           <v-tooltip top>
@@ -56,21 +57,30 @@ export default {
     },
     value: {
       type: String,
+      default: () => ""
+    },
+    wrongUrlMsg: {
+      type: String,
+      default: () => "Vous devez entrer une url valide."
+    },
+    placeHolder: {
+      type: String,
       default: () => "http://"
+    },
+    regexUrl: {
+      type: String,
+      default: () =>
+        /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
     }
   },
   data() {
     return {
       valid: null,
-      copied: false,
-      regexUrl: /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
+      copied: false
     };
   },
   mounted() {
-    this.rules.push(
-      content =>
-        this.regexUrl.test(content) || "Vous devez entrer une url valide."
-    );
+    this.rules.push(content => this.regexUrl.test(content) || this.wrongUrlMsg);
   },
   watch: {
     content() {

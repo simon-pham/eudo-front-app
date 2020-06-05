@@ -329,6 +329,8 @@ var oCities: [
 |    **readonly:**     |  `Bool`  |                                  |
 |    **disabled:**     |  `Bool`  |                                  |
 | **pasteContentRes:** | `String` | Message de confirmation de copie |
+|   **wrongUrlMsg:**   | `String` | Message d'url erronée            |
+|    **regexUrl:**     | `String` | Regex personnalisable            |
 
 #### Exemple
 
@@ -344,6 +346,14 @@ var oCities: [
 
 # Changelog
 
+#### @0.1.21
+
+### `<edn-url/>`
+
+- ajout de la possibilité de modifier la regex déjà en place
+- ajout d'une props pour le message d'url erronnée.
+- ajout du filigrane http://
+
 #### @0.1.20
 
 - Correction de la documentation de `edn-cat`
@@ -354,7 +364,9 @@ var oCities: [
   Voir documentation pour plus d'informations
 
 - Uniformisation de `edn-btn`, il hérite désormais de l'api Vuetify, quelques modifications ont été apportées à ses propriétés. Voir documentation.
-- Correction d'absence du composant `date-fns` Merci `@Jbzel` pour l'aide
+- Correction d'absence du composant `date-fns` Merci `@Jbzel` pour l'aide.
+- Publication d'une version compilée utilisable au travers des balises <script/> pour le dev. Merci encore `@Jbzel`
+- VM de la version 0.1.20 disponible ici : https://codesandbox.io/s/vmeudo-front-0120-pin4u
 
 #### @0.1.19
 

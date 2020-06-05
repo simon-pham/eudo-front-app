@@ -1,12 +1,12 @@
 {
   "name": "eudo-front",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "description": "Framework eudonet",
   "main": "eudo-front.js",
   "author": "Pierre Nowak",
   "license": "MIT",
   "scripts": {
-    "build": "vue-cli-service build"
+    "build": "vue build --target lib --name eudoFront eudo-front.js"
   },
   "dependencies": {
     "hljs": "^6.2.3",
