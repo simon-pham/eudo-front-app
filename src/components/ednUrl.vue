@@ -68,7 +68,7 @@ export default {
       default: () => "http://"
     },
     regexUrl: {
-      type: String,
+      type: RegExp,
       default: () =>
         /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
     }
@@ -100,10 +100,11 @@ export default {
       }, 3000);
     },
     goto() {
-      if (!this.content.includes("http://")) {
+      if (!/(http:\/\/|https:\/\/)/.test(this.content)) {
         this.content = "http://" + this.content;
       }
-      window.open(this.content, "Url");
+
+      window.open(this.content, "_blank");
     }
   }
 };

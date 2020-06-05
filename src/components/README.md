@@ -353,6 +353,7 @@ var oCities: [
 - ajout de la possibilité de modifier la regex déjà en place
 - ajout d'une props pour le message d'url erronnée.
 - ajout du filigrane http://
+- VM de la version 0.1.21 disponible ici : https://codesandbox.io/s/vmeudo-front-0121-g9e86
 
 #### @0.1.20
 
