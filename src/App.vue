@@ -2,14 +2,18 @@
   <v-app :ripple="false">
     <!-- <logo class="mx-auto" :style="{ width: '30em' }"></logo> -->
     <v-form ref="form">
-      <v-container @click.ctrl="updateTime()">
+      <v-container
+        @click.ctrl="updateTime()"
+        @click.alt="$vuetify.theme.dark = !$vuetify.theme.dark"
+      >
         <v-row class="align-center justify-space-around">
           <edn-load message="edn-load" form="double" anim="dots"></edn-load>
           <edn-load message="edn-load" form="simple" anim="blink"></edn-load>
           <edn-load message="edn-load" form="fill"></edn-load>
         </v-row>
         <edn-num label="edn-num" v-model="inptNum" tooltip="NOMBRE"></edn-num>
-        <edn-field label="edn-field" v-model="inptText"></edn-field>
+        <edn-field label="edn-field" v-model="urlString"></edn-field>
+        <edn-url label="edn-url" v-model="urlString" readonly></edn-url>
         <edn-cat label="edn-cat" v-model="selectedCat" :items="cat"></edn-cat>
         <edn-cat-x
           label="edn-cat-x"
@@ -69,7 +73,6 @@
           v-model="radioSelect"
         ></edn-radio>
         <edn-color label="edn-color" v-model="selectedColor"></edn-color>
-        <edn-url label="edn-url"></edn-url>
         <v-row class="justify-center align-self-center">
           <edn-btn class="mx-2" validation="skin2019" @click="Validate()"
             >Valider</edn-btn
@@ -80,6 +83,14 @@
             >Reset</edn-btn
           >
         </v-row>
+        <edn-list-mod
+          ref="infScroll"
+          :headers="headers"
+          :listMaxLength="listMaxLength"
+          :nbItemToAdd="nbItemToAdd"
+          v-if="users"
+          :items="users"
+        ></edn-list-mod>
       </v-container>
     </v-form>
   </v-app>
@@ -100,7 +111,7 @@ export default {
       checked: true,
       switched: true,
       allowedDates: val => parseInt(val.split("-")[2], 10) % 2 === 0,
-      inptText: "",
+      inptText: "efef",
       dateInpt: "",
       inptMemo: "",
       ingredient: [],
@@ -122,7 +133,31 @@ export default {
       contentAbc: "abcdefghijklmnopqtrsuvwxyz",
       date: "",
       time: "",
-      phone: ""
+      phone: "",
+      urlString: "www.google.com",
+      urlErrorUpdate: false,
+
+      //Datas du mode liste
+      users: require("./components/assets/localDatas.json"),
+      nbItemToAdd: 3,
+      listMaxLength: 20,
+      infinityList: [],
+      baseNb: 0,
+      scrollTime: 0,
+      //Header du mode liste
+      headers: [
+        {
+          text: "UserHotcom",
+          align: "start",
+          sortable: false,
+          value: "UserHotcom.Login"
+        },
+        { text: "Portable", value: "Portable" },
+        { text: "Mail", value: "Email" },
+        { text: "Prénom", value: "FirstName" },
+        { text: "Nom", value: "LastName" },
+        { text: "Trigramme", value: "Trigramme" }
+      ]
     };
   },
   methods: {
@@ -134,6 +169,9 @@ export default {
     },
     Reset() {
       this.$refs.form.reset();
+    },
+    testUrl(event) {
+      console.log(event);
     }
   }
 };

@@ -331,6 +331,30 @@ var oCities: [
 | **pasteContentRes:** | `String` | Message de confirmation de copie |
 |   **wrongUrlMsg:**   | `String` | Message d'url erronée            |
 |    **regexUrl:**     | `String` | Regex personnalisable            |
+|     **@onError**     |  `Bool`  | Etat des erreurs du champ        |
+
+#### Exemple
+
+```html
+<edn-url label="edn-url"></edn-url>
+```
+
+<center>
+
+## ![edn-url](./images/edn-url.jpg "Utilisation edn-url")
+
+## </center>
+
+## Heure `<edn-list-mod/>`
+
+|     Paramètre      |   Type   |                                              |
+| :----------------: | :------: | -------------------------------------------- |
+|     **label:**     | `String` |                                              |
+|    **headers:**    | `Array`  | Définition des en-tête du mode liste         |
+|     **items:**     | `Array`  | Tabeau d'élements à passer dans le composant |
+|  **nbItemToAdd:**  | `Number` | Nombre d'élements ajoutés au scroll          |
+| **listMaxLength:** | `Number` | Taille d'une page                            |
+|    **height:**     | `Number` | Taille du mode liste, `default:500`          |
 
 #### Exemple
 
@@ -345,6 +369,22 @@ var oCities: [
 </center>
 
 # Changelog
+
+#### @0.1.22
+
+### `<edn-list-mod/>`
+
+- Ajout du composant mode-liste avec défilement infini
+
+### `Dark Theme`
+
+- Ajout du theme dark ! ~~J'en avais un peu marre de méclater les yeux en bossant la nuit~~
+
+#### @0.1.21b
+
+### `<edn-url/>`
+
+- Ajout d'un event `@onError` qui donne fait le retour de l'état des erreurs sur le champ url
 
 #### @0.1.21
 
@@ -366,7 +406,7 @@ var oCities: [
 
 - Uniformisation de `edn-btn`, il hérite désormais de l'api Vuetify, quelques modifications ont été apportées à ses propriétés. Voir documentation.
 - Correction d'absence du composant `date-fns` Merci `@Jbzel` pour l'aide.
-- Publication d'une version compilée utilisable au travers des balises <script/> pour le dev. Merci encore `@Jbzel`
+- Publication d'une version compilée utilisable au travers des balises `<script/>` pour le dev. Merci encore `@Jbzel`
 - VM de la version 0.1.20 disponible ici : https://codesandbox.io/s/vmeudo-front-0120-pin4u
 
 #### @0.1.19

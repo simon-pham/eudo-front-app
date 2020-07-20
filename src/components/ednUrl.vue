@@ -9,9 +9,13 @@
         type="text"
         v-model="content"
         v-bind="$attrs"
+        v-on="$listeners"
         :rules="rules"
-        :clearable="!$attrs.readonly"
+        :clearable="!$attrs.readonly === ''"
         :placeholder="placeHolder"
+        :outlined="$attrs.readonly === ''"
+        :class="$attrs.readonly === '' ? 'text--disabled' : ''"
+        @blur="errorTest()"
       >
         <template v-slot:append v-if="$attrs.tooltip">
           <v-tooltip top>
@@ -25,7 +29,11 @@
         </template>
       </v-text-field>
     </v-col>
-    <v-col cols="1" align-self="center" class="text-center">
+    <v-col
+      cols="1"
+      :align-self="$attrs.readonly == '' ? 'start' : 'center'"
+      :class="['text-center', $attrs.readonly == '' ? 'mt-4' : '']"
+    >
       <v-tooltip v-model="copied" top>
         <template v-slot:activator="{ click }">
           <v-btn icon :disabled="!valid" class="pb-2" @click="copy()">
@@ -35,7 +43,11 @@
         <span> {{ pasteContentRes }}</span>
       </v-tooltip>
     </v-col>
-    <v-col cols="1" align-self="center" class="text-center">
+    <v-col
+      cols="1"
+      :align-self="$attrs.readonly == '' ? 'start' : 'center'"
+      :class="['text-center', $attrs.readonly == '' ? 'mt-4' : '']"
+    >
       <v-btn icon :disabled="!valid" class="pb-2" @click="goto()">
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
@@ -81,6 +93,7 @@ export default {
   },
   mounted() {
     this.rules.push(content => this.regexUrl.test(content) || this.wrongUrlMsg);
+    this.valid = this.regexUrl.test(this.content);
   },
   watch: {
     content() {
@@ -89,7 +102,7 @@ export default {
   },
   methods: {
     copy() {
-      let contentUrl = document.getElementById("urlToCopy");
+      let contentUrl = this.$el.querySelector("input");
       contentUrl.select();
       document.execCommand("copy");
       contentUrl.blur();
@@ -105,7 +118,15 @@ export default {
       }
 
       window.open(this.content, "_blank");
+    },
+    errorTest() {
+      this.$emit("onError", !this.valid);
     }
   }
 };
 </script>
+<style lang="stylus">
+div.v-input--is-readonly
+  pointer-events none
+  user-select none
+</style>

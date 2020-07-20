@@ -5,16 +5,17 @@ import fr from "vuetify/es5/locale/fr";
 import eudoFront from "./components/eudo-front";
 import "vuetify/dist/vuetify.min.css";
 
+var script = "";
 
 Vue.use(eudoFront);
 
 const opts = {
   icons: {
-    iconfont: "mdi"
+    iconfont: "mdi",
   },
   theme: {
     options: {
-      customProperties: true
+      customProperties: true,
     },
     themes: {
       light: {
@@ -24,18 +25,22 @@ const opts = {
         error: "#FF5252",
         info: "#2196F3",
         success: "#4CAF50",
-        warning: "#FFC107"
-      }
-    }
+        warning: "#FFC107",
+      },
+      dark: {
+        primary: "#bb1515",
+        secondary: "#757575",
+      },
+    },
   },
   lang: {
     locales: { fr },
-    current: "fr"
-  }
+    current: "fr",
+  },
 };
 Vue.use(Vuetify);
 
 new Vue({
   vuetify: new Vuetify(opts),
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
