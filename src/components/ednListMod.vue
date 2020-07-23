@@ -1,11 +1,7 @@
 <template>
   <v-row colspan="12" :ripple="false">
     <v-col cols="2" v-show="false">
-      <v-list
-        dense
-        height="25em"
-        :style="showAllFilters ? 'overflow:overlay' : 'overflow:hidden'"
-      >
+      <v-list dense height="25em" :style="showAllFilters ? 'overflow:overlay' : 'overflow:hidden'">
         <v-list-item
           v-show="
             !infinityList.filter(itm => itm.UserHotcom.Group.Name == item.Name)
@@ -23,12 +19,12 @@
             :color="selectedFilter == item.Id ? 'primary' : ''"
             text
           >
-            <span> {{ item.Name }} </span>
+            <span>{{ item.Name }}</span>
             <span>
               {{
-                (item.Number = infinityList.filter(
-                  itm => itm.UserHotcom.Group.Name == item.Name
-                ).length)
+              (item.Number = infinityList.filter(
+              itm => itm.UserHotcom.Group.Name == item.Name
+              ).length)
               }}
             </span>
           </v-btn>
@@ -40,8 +36,7 @@
         class="d-block mx-auto my-2"
         x-small
         @click="showAllFilters = !showAllFilters"
-        >Afficher tout les résultats</v-btn
-      >
+      >Afficher tout les résultats</v-btn>
     </v-col>
     <v-col cols="12">
       <v-data-table
@@ -58,8 +53,7 @@
         disable-pagination
         hide-default-footer
         :height="height"
-      >
-      </v-data-table>
+      ></v-data-table>
     </v-col>
   </v-row>
 </template>
@@ -69,23 +63,38 @@ export default {
   props: {
     headers: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
+
+    monevent: {
+      type: Function,
+      default: () => {
+        () => "toto";
+      },
+    },
+
+    page: {
+      type: Number,
+      default: () => {
+        () => 1;
+      },
+    },
+
     items: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     nbItemToAdd: {
       type: Number,
-      default: () => 3
+      default: () => 3,
     },
     listMaxLength: {
       type: Number,
-      default: () => 20
+      default: () => 20,
     },
     height: {
       type: Number,
-      default: () => 500
+      default: () => 500,
     },
 
     groupHeader: {
@@ -95,31 +104,39 @@ export default {
           text: "",
           align: "start",
           sortable: false,
-          value: "Name"
+          value: "Name",
         },
-        { text: "", value: "Portable" }
-      ]
-    }
+        { text: "", value: "Portable" },
+      ],
+    },
   },
   data() {
     return {
       scrollTime: 0,
       currentOrder: 0,
+      currentPage: 1,
 
-      //Gestion de la liste
-      infinityList: [],
+      //Gestion de la liste      
       infinityListFltrd: [],
 
       //Gestion des filtres
       itemsFilters: [],
       selectedFilter: null,
       itemSelected: [],
-      showAllFilters: false
+      showAllFilters: false,
     };
   },
+
+
+computed : {
+
+    infinityList : function(){
+      return this.items;
+    }
+}  ,
   methods: {
-    getItems(e) {
-      if (!e) e = WheelEvent;
+    async getItems(e) {
+       
 
       let direction;
       let position = this.$refs["edn-scroll"].$el.children[0].scrollTop;
@@ -129,24 +146,22 @@ export default {
       if (e.wheelDeltaY > 0) direction = "up";
       if (e.wheelDeltaY < 0) direction = "down";
 
-      if (direction != "down" && direction != "up") {
-        if (this.currentOrder < this.infinityList.length + this.listMaxLength) {
-          this.infinityList = this.infinityList.concat(
-            this.items.slice(
-              this.infinityList.length,
-              this.infinityList.length + this.listMaxLength
-            )
-          );
-
-          this.currentOrder = this.listMaxLength;
-        }
-      }
+ 
+ console.log("getitems")
+      if (direction == "down") 
+        this.currentPage = this.currentPage + 1;
+      else if (direction == "up")
+         this.currentPage = this.currentPage - 1;
+ 
+      await this.monevent(this.currentPage);
+/*
+      this.infinityList = this.users;
 
       //WHEEL UP
       if (this.currentOrder > this.listMaxLength && direction == "up") {
         this.infinityList.unshift(
           this.items.filter(
-            item =>
+            (item) =>
               item.order >=
               this.currentOrder - this.listMaxLength - this.nbItemToAdd
           )[0]
@@ -160,39 +175,45 @@ export default {
         this.infinityList.shift();
 
         this.infinityList.push(
-          this.items.filter(item => item.order >= this.currentOrder)[0]
+          this.items.filter((item) => item.order >= this.currentOrder)[0]
         );
 
         this.currentOrder = this.currentOrder + this.nbItemToAdd;
       }
+*/
       setTimeout(() => {
         this.itemsFilters.sort((a, b) => b.Number - a.Number), 300;
       });
     },
+
     addFltr(id) {
       if (this.selectedFilter != id) {
         this.selectedFilter = id;
         this.infinityListFltrd = this.infinityList.filter(
-          itm => itm.UserHotcom.Group.Id == id
+          (itm) => itm.UserHotcom.Group.Id == id
         );
       } else {
         this.selectedFilter = null;
       }
-    }
+    },
   },
-  mounted() {
+
+  async mounted() {
     if (this.items.length != 0)
       this.items.forEach((item, index) => {
         if (
-          !this.itemsFilters.filter(itm => itm.Id == item.UserHotcom.Group.Id)
+          !this.itemsFilters.filter((itm) => itm.Id == item.UserHotcom.Group.Id)
             .length != 0
         ) {
           this.itemsFilters.push(item.UserHotcom.Group);
         }
         item.order = index;
       });
-    this.getItems();
-  }
+
+    this.currentPage = 0;
+
+    await this.getItems(this.page);
+  },
 };
 </script>
 
