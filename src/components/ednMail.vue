@@ -17,13 +17,16 @@
 import { ednRequired } from "./mixins/ednRequired";
 import { ednVModel } from "./mixins/ednVModel";
 export default {
+  props: {
+    invalidMailMsg: {
+      type: String,
+      default: () => "Vous devez entrer une adresse mail valide."
+    }
+  },
   mixins: [ednRequired, ednVModel],
   inheritAttrs: false,
   mounted() {
-    this.rules.push(
-      v =>
-        /^$|^.*@.*\..*$/.test(v) || "Vous devez entrer une adresse mail valide."
-    );
+    this.rules.push(v => /^$|^.*@.*\..*$/.test(v) || this.invalidMailMsg);
   }
 };
 </script>

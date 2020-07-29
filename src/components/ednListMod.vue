@@ -143,7 +143,9 @@ export default {
       }
 
       //WHEEL UP
+      // On s'assure que l'ordre de la liste est supérieur au nombre définit pour une page et que la direction est bien vers le haut
       if (this.currentOrder > this.listMaxLength && direction == "up") {
+        //On ajoute
         this.infinityList.unshift(
           this.items.filter(
             item =>

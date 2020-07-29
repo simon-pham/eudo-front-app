@@ -118,7 +118,7 @@ export default {
       recette: ["Cat 3", "Cat 4", "Cat 5"],
       cat: ["Cat 1", "Cat 2", "Cat 3", "Cat 4", "Cat 5"],
       selectedCat: "Cat 1",
-      radioSelect: null,
+      radioSelect: "1",
       selectedColor: "",
       radios: [
         {

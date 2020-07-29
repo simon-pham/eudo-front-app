@@ -321,6 +321,24 @@ var oCities: [
 
 ---
 
+## Téléphone `<edn-phone/>`
+
+|    Paramètre     |   Type   |              |
+| :--------------: | :------: | :----------: |
+|   **tooltip:**   | `String` |              |
+| **placeholder:** | `String` |              |
+|    **label:**    | `String` |              |
+|  **required:**   |  `Bool`  |              |
+|    **mask:**     | `String` | Voir exemple |
+
+#### Exemple
+
+```html
+<edn-phone :label="Votre numéro de téléphone" mask="+## (#) # ## ## ###" />
+```
+
+---
+
 ## Heure `<edn-url/>`
 
 |      Paramètre       |   Type   |                                  |
@@ -366,7 +384,23 @@ var oCities: [
 
 ## ![edn-url](./images/edn-url.jpg "Utilisation edn-url")
 
-</center>
+## </center>
+
+## E-mail `<edn-mail/>`
+
+|      Paramètre      |       Type       |                                                                                                                      |
+| :-----------------: | :--------------: | -------------------------------------------------------------------------------------------------------------------- |
+|     **label:**      |     `String`     |                                                                                                                      |
+|    **required:**    | `Bool ou String` | Si une string est renseignée elle s'affichera en tant que message lorsqu'une erreur de type champs requis apparaîtra |
+| **invalidMailMsg:** |     `String`     | Le texte entré sera affiché lors de l'affichage d'une erreur de type... erreur de typage                             |
+|    **readonly:**    |      `Bool`      |                                                                                                                      |
+|    **disabled:**    |      `Bool`      |                                                                                                                      |
+
+#### Exemple
+
+```html
+<edn-mail label="edn-mail"></edn-mail>
+```
 
 # Changelog
 
@@ -375,6 +409,15 @@ var oCities: [
 ### `<edn-list-mod/>`
 
 - Ajout du composant mode-liste avec défilement infini
+
+### `<edn-phone/>`
+
+- Ajout de la possibilité d'ajouter son propre mask
+
+### `<edn-mail/>`
+
+- Ajout de la documentation de `<edn-mail>`
+- Ajout d'une props de modification du message d'erreur de typage
 
 ### `Dark Theme`
 

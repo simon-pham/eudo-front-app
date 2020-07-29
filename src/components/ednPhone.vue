@@ -1,5 +1,10 @@
 <template>
-  <v-text-field v-model="content" v-mask="mask" type="tel" v-bind="$attrs" :rules="rules"
+  <v-text-field
+    v-model="content"
+    v-mask="mask"
+    type="tel"
+    v-bind="$attrs"
+    :rules="rules"
   >
     <template v-slot:append v-if="$attrs.tooltip">
       <v-tooltip top>
@@ -24,12 +29,14 @@ import { ednVModel } from "./mixins/ednVModel";
 Vue.use(VueTheMask);
 
 export default {
+  props: {
+    mask: {
+      type: String,
+      default: () => "##.##.##.##.##"
+    }
+  },
+
   inheritAttrs: false,
-  mixins:[ednRequired,ednVModel],
-  data() {
-    return {
-      mask: "##.##.##.##.##"
-    };
-  }
+  mixins: [ednRequired, ednVModel]
 };
 </script>
