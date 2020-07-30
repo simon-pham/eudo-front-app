@@ -90,6 +90,8 @@
           :nbItemToAdd="nbItemToAdd"
           v-if="users"
           :items="users"
+          :page="1"
+          :updateList="fetchItems"
         ></edn-list-mod>
       </v-container>
     </v-form>
@@ -97,6 +99,8 @@
 </template>
 
 <script>
+import apiModule from "@/modules/api.js";
+
 export default {
   name: "App",
 
@@ -138,29 +142,48 @@ export default {
       urlErrorUpdate: false,
 
       //Datas du mode liste
-      users: require("./components/assets/localDatas.json"),
+      users: [],
       nbItemToAdd: 3,
       listMaxLength: 20,
       infinityList: [],
       baseNb: 0,
-      scrollTime: 0,
-      //Header du mode liste
-      headers: [
-        {
-          text: "UserHotcom",
-          align: "start",
-          sortable: false,
-          value: "UserHotcom.Login"
-        },
-        { text: "Portable", value: "Portable" },
-        { text: "Mail", value: "Email" },
-        { text: "Prénom", value: "FirstName" },
-        { text: "Nom", value: "LastName" },
-        { text: "Trigramme", value: "Trigramme" }
-      ]
+      scrollTime: 0
     };
   },
   methods: {
+    async fetchItems(pageNumber) {
+      if (pageNumber < 0) pageNumber = 0;
+
+      let myApi = new apiModule(
+        "https://ww2.eudonet.com/eudoapi",
+        "SOW+adoaTCXmFo8vrgxE/7FCjWqDqLxKScqTBuQOFeLai+b86dIFgfuLEH1tS628nAxD1Yx8z+ghlUMNvg2cWS3/ts2QFdjEwGZEmkGRtl6OKIyEIAPk4rNi8rhpF/7o6Keg1wukC4EIw1bFM2Kk4iRgWV6pnQ0hPHBzqQleXm7biu1fJnsDylIT2AQo6prj"
+      );
+
+      let resp = await myApi.APIGetList(
+        200,
+        [201, 202, 212, 275, 237],
+        pageNumber,
+        5867
+      );
+
+      resp.Rows.forEach(element => {
+        var a = element.Fields[0].Value;
+        var b = element.Fields[1].Value;
+        var c = element.Fields[2].Value;
+
+        var myPP = {
+          LastName: a,
+          FirstName: b,
+          Email: c
+        };
+
+        this.users.push(myPP);
+        if (this.users.length > 40) {
+          this.users.shift(0);
+        }
+      });
+    },
+
     updateTime() {
       this.time = "09:00";
     },

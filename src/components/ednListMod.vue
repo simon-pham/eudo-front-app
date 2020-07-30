@@ -23,7 +23,7 @@
             :color="selectedFilter == item.Id ? 'primary' : ''"
             text
           >
-            <span> {{ item.Name }} </span>
+            <span>{{ item.Name }}</span>
             <span>
               {{
                 (item.Number = infinityList.filter(
@@ -46,7 +46,6 @@
     <v-col cols="12">
       <v-data-table
         color="primary"
-        item-key="nom"
         v-model="itemSelected"
         show-select
         @mousewheel.native="getItems"
@@ -58,8 +57,7 @@
         disable-pagination
         hide-default-footer
         :height="height"
-      >
-      </v-data-table>
+      ></v-data-table>
     </v-col>
   </v-row>
 </template>
@@ -67,6 +65,20 @@
 <script>
 export default {
   props: {
+    updateList: {
+      type: Function,
+      default: () => {
+        () => {};
+      }
+    },
+
+    page: {
+      type: Number,
+      default: () => {
+        () => 1;
+      }
+    },
+
     items: {
       type: Array,
       default: () => []
@@ -102,9 +114,9 @@ export default {
       scrollTime: 0,
       currentOrder: 0,
       headers: [],
+      currentPage: 1,
 
       //Gestion de la liste
-      infinityList: [],
       infinityListFltrd: [],
 
       //Gestion des filtres
@@ -114,10 +126,14 @@ export default {
       showAllFilters: false
     };
   },
-  methods: {
-    getItems(e) {
-      if (!e) e = WheelEvent;
 
+  computed: {
+    infinityList: function() {
+      return this.items;
+    }
+  },
+  methods: {
+    async getItems(e) {
       let direction;
       let position = this.$refs["edn-scroll"].$el.children[0].scrollTop;
       let height = this.$refs["edn-scroll"].$el.children[0].scrollHeight;
@@ -126,18 +142,13 @@ export default {
       if (e.wheelDeltaY > 0) direction = "up";
       if (e.wheelDeltaY < 0) direction = "down";
 
-      if (direction != "down" && direction != "up") {
-        if (this.currentOrder < this.infinityList.length + this.listMaxLength) {
-          this.infinityList = this.infinityList.concat(
-            this.items.slice(
-              this.infinityList.length,
-              this.infinityList.length + this.listMaxLength
-            )
-          );
+      console.log("getitems");
+      if (direction == "down") this.currentPage = this.currentPage + 1;
+      else if (direction == "up") this.currentPage = this.currentPage - 1;
 
-          this.currentOrder = this.listMaxLength;
-        }
-      }
+      await this.updateList(this.currentPage);
+      /*
+      this.infinityList = this.users;
 
       //WHEEL UP
       // On s'assure que l'ordre de la liste est supérieur au nombre définit pour une page et que la direction est bien vers le haut
@@ -145,7 +156,7 @@ export default {
         //On ajoute
         this.infinityList.unshift(
           this.items.filter(
-            item =>
+            (item) =>
               item.order >=
               this.currentOrder - this.listMaxLength - this.nbItemToAdd
           )[0]
@@ -159,53 +170,40 @@ export default {
         this.infinityList.shift();
 
         this.infinityList.push(
-          this.items.filter(item => item.order >= this.currentOrder)[0]
+          this.items.filter((item) => item.order >= this.currentOrder)[0]
         );
 
         this.currentOrder = this.currentOrder + this.nbItemToAdd;
       }
-      setTimeout(() => {
-        this.itemsFilters.sort((a, b) => b.Number - a.Number), 300;
-      });
-    },
-    addFltr(id) {
-      if (this.selectedFilter != id) {
-        this.selectedFilter = id;
-        this.infinityListFltrd = this.infinityList.filter(
-          itm => itm.UserHotcom.Group.Id == id
-        );
-      } else {
-        this.selectedFilter = null;
-      }
+*/
     }
   },
-  mounted() {
-    if (this.items.length != 0)
-      Object.getOwnPropertyNames(this.items[0])
-        .filter(itm => itm != "__ob__")
-        .forEach((item, index) => {
-          let buffer = {};
-          // if (index == 0) {
-          //   (buffer.align = "start"), (buffer.sortable = false);
-          // }
-          buffer.align = "start";
-          buffer.sortable = false;
-          buffer.text = item;
-          buffer.value = item;
-          console.log(buffer);
-          this.headers.push(buffer);
-        });
 
-    // this.items.forEach((item, index) => {
-    //   if (
-    //     !this.itemsFilters.filter(itm => itm.Id == item.UserHotcom.Group.Id)
-    //       .length != 0
-    //   ) {
-    //     this.itemsFilters.push(item.UserHotcom.Group);
-    //   }
-    //   item.order = index;
-    // });
-    this.getItems();
+  async mounted() {
+    if (this.items.length != 0)
+      this.items.forEach((item, index) => {
+        Object.getOwnPropertyNames(this.items[0])
+          .filter(itm => itm != "__ob__")
+          .forEach((item, index) => {
+            let buffer = {};
+            // if (index == 0) {
+            //   (buffer.align = "start"), (buffer.sortable = false);
+            // }
+            buffer.align = "start";
+            buffer.sortable = false;
+            buffer.text = item;
+            buffer.value = item;
+            // buffer.index = index;
+            console.log(buffer);
+            this.headers.push(buffer);
+          });
+
+        item.order = index;
+      });
+
+    this.currentPage = 0;
+
+    await this.getItems(this.page);
   }
 };
 </script>

@@ -1,5 +1,5 @@
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   configureWebpack: {
@@ -21,7 +21,7 @@ module.exports = {
             return [camelTag, `import ${camelTag} from '@/components/core/${camelTag.substring(4)}.vue'`]
           }
         }
-      }), new BundleAnalyzerPlugin({ openAnalyzer: false })],
+      })],
   },
   transpileDependencies: ["vuetify"],
   filenameHashing: false,
