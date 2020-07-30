@@ -181,25 +181,22 @@ export default {
 
   async mounted() {
     if (this.items.length != 0)
-      this.items.forEach((item, index) => {
-        Object.getOwnPropertyNames(this.items[0])
-          .filter(itm => itm != "__ob__")
-          .forEach((item, index) => {
-            let buffer = {};
-            // if (index == 0) {
-            //   (buffer.align = "start"), (buffer.sortable = false);
-            // }
-            buffer.align = "start";
-            buffer.sortable = false;
-            buffer.text = item;
-            buffer.value = item;
-            // buffer.index = index;
-            console.log(buffer);
-            this.headers.push(buffer);
-          });
+      Object.getOwnPropertyNames(this.items[0])
+        .filter(itm => itm != "__ob__")
+        .forEach((item, index) => {
+          let buffer = {};
+          // if (index == 0) {
+          //   (buffer.align = "start"), (buffer.sortable = false);
+          // }
+          buffer.align = "start";
+          buffer.sortable = false;
+          buffer.text = item;
+          buffer.value = item;
+          console.log(buffer);
+          this.headers.push(buffer);
+        });
 
-        item.order = index;
-      });
+    // item.order = index;
 
     this.currentPage = 0;
 
