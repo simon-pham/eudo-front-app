@@ -406,6 +406,14 @@ var oCities: [
 
 #### @0.1.22
 
+### `<edn-date/>`
+
+- Ajout d'une icone representative
+
+### `<edn-time/>`
+
+- Ajout d'une icone representative
+
 ### `<edn-list-mod/>`
 
 - Ajout du composant mode-liste avec défilement infini
@@ -421,7 +429,7 @@ var oCities: [
 
 ### `Dark Theme`
 
-- Ajout du theme dark ! ~~J'en avais un peu marre de méclater les yeux en bossant la nuit~~
+- Ajout du theme dark ! ~~J'en avais un peu marre de m'éclater les yeux en bossant la nuit~~
 
 #### @0.1.21b
 

@@ -1,6 +1,5 @@
 <template>
   <v-card
-    width="300"
     v-if="$attrs.slots"
     :class="['timeSlots', $attrs.tripStyle == '' ? 'tripStyle' : '']"
   >
@@ -32,10 +31,10 @@
       <v-text-field
         v-model="content"
         :disabled="$attrs.disabled"
-        readonly
         :label="$attrs.label"
         v-on="on"
         :rules="rules"
+        append-icon="mdi-clock-time-four"
       ></v-text-field>
     </template>
 
@@ -89,21 +88,17 @@ export default {
 };
 </script>
 <style lang="stylus">
-.timeSlots {
+.timeSlots
+  &.tripStyle.v-card.v-sheet
+    background-color #fafafa
 
-  &.tripStyle.v-card.v-sheet {
-  background-color: #fafafa;
-    @import 'assets/cstmVbtn';
-  }
+    @import 'assets/cstmVbtn'
 
-  button.v-btn.active.v-btn--contained.theme--light {
-    background-color: var(--v-primary-base);
-    color: white;
-  }
+  button.v-btn.active.v-btn--contained.theme--light
+    background-color var(--v-primary-base)
+    color white
 
-  div.v-card__text {
-    display: grid;
-    grid-template-columns: auto auto auto;
-  }
-}
+  div.v-card__text
+    display grid
+    grid-template-columns auto auto auto
 </style>

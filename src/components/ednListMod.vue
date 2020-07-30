@@ -46,7 +46,7 @@
     <v-col cols="12">
       <v-data-table
         color="primary"
-        item-key="Trigramme"
+        item-key="nom"
         v-model="itemSelected"
         show-select
         @mousewheel.native="getItems"
@@ -67,10 +67,6 @@
 <script>
 export default {
   props: {
-    headers: {
-      type: Array,
-      default: () => []
-    },
     items: {
       type: Array,
       default: () => []
@@ -105,6 +101,7 @@ export default {
     return {
       scrollTime: 0,
       currentOrder: 0,
+      headers: [],
 
       //Gestion de la liste
       infinityList: [],
@@ -184,15 +181,30 @@ export default {
   },
   mounted() {
     if (this.items.length != 0)
-      this.items.forEach((item, index) => {
-        if (
-          !this.itemsFilters.filter(itm => itm.Id == item.UserHotcom.Group.Id)
-            .length != 0
-        ) {
-          this.itemsFilters.push(item.UserHotcom.Group);
-        }
-        item.order = index;
-      });
+      Object.getOwnPropertyNames(this.items[0])
+        .filter(itm => itm != "__ob__")
+        .forEach((item, index) => {
+          let buffer = {};
+          // if (index == 0) {
+          //   (buffer.align = "start"), (buffer.sortable = false);
+          // }
+          buffer.align = "start";
+          buffer.sortable = false;
+          buffer.text = item;
+          buffer.value = item;
+          console.log(buffer);
+          this.headers.push(buffer);
+        });
+
+    // this.items.forEach((item, index) => {
+    //   if (
+    //     !this.itemsFilters.filter(itm => itm.Id == item.UserHotcom.Group.Id)
+    //       .length != 0
+    //   ) {
+    //     this.itemsFilters.push(item.UserHotcom.Group);
+    //   }
+    //   item.order = index;
+    // });
     this.getItems();
   }
 };

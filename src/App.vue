@@ -22,6 +22,7 @@
           tooltip="Selection de catégories"
         ></edn-cat-x>
         <edn-date v-model="dateInpt" label="edn-date" :popup="true" required />
+
         <edn-time
           v-model="time"
           label="edn-time"
@@ -60,7 +61,7 @@
           :required="'Un string'"
         ></edn-memo>
         <edn-mail label="edn-mail" v-model="mail" :required="true" />
-        <edn-phone label="edn-phone" v-model="phone"></edn-phone>
+        <edn-phone label="edn-phone" v-model="phone" />
         <edn-check
           label="edn-check"
           v-model="checked"
@@ -85,7 +86,6 @@
         </v-row>
         <edn-list-mod
           ref="infScroll"
-          :headers="headers"
           :listMaxLength="listMaxLength"
           :nbItemToAdd="nbItemToAdd"
           v-if="users"

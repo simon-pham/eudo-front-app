@@ -1,8 +1,8 @@
 <template>
   <v-text-field
+    type="number"
     ref="input"
     v-model="numberInput"
-    @keypress="numCheck()"
     v-bind="$attrs"
     :rules="rules"
   >
@@ -20,17 +20,26 @@
 </template>
 
 <script>
+import VueTheMask from "vue-the-mask";
+import Vue from "vue";
+
+Vue.use(VueTheMask);
+
 import { ednRequired } from "./mixins/ednRequired";
 export default {
   inheritAttrs: false,
   mixins: [ednRequired],
   props: {
     value: "",
+    mask: {
+      type: String,
+      default: () => "##.##.##.##.##"
+    }
   },
   data() {
     return {
       regEx: /[0-9+-.,]/,
-      numberInput: this.value,
+      numberInput: this.value
     };
   },
   methods: {
@@ -43,7 +52,7 @@ export default {
       } else {
         evt.preventDefault();
       }
-    },
-  },
+    }
+  }
 };
 </script>

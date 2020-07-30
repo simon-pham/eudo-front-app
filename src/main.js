@@ -5,8 +5,6 @@ import fr from "vuetify/es5/locale/fr";
 import eudoFront from "./components/eudo-front";
 import "vuetify/dist/vuetify.min.css";
 
-var script = "";
-
 Vue.use(eudoFront);
 
 const opts = {
