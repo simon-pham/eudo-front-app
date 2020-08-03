@@ -8,8 +8,9 @@
       >
         <v-list-item
           v-show="
-            !infinityList.filter(itm => itm.UserHotcom.Group.Name == item.Name)
-              .length == 0
+            !infinityList.filter(
+              (itm) => itm.UserHotcom.Group.Name == item.Name
+            ).length == 0
           "
           v-for="item in itemsFilters"
           :key="item.Id"
@@ -35,7 +36,7 @@
         </v-list-item>
       </v-list>
       <v-btn
-        v-if="itemsFilters.filter(itm => itm.Number > 10).length > 2"
+        v-if="itemsFilters.filter((itm) => itm.Number > 10).length > 2"
         :color="showAllFilters ? 'normal' : 'primary'"
         class="d-block mx-auto my-2"
         x-small
@@ -69,53 +70,57 @@ import Sortable from "sortablejs";
 export default {
   directives: {
     "sortable-table": {
-      componentUpdated: (el, binding, vnode) => {
-        vnode.context.sortTableRows(el);
-      },
       bind: (el, binding, vnode) => {
-        el.querySelectorAll("th").forEach(draggableEl => {
+        el.querySelectorAll("th").forEach((draggableEl) => {
           console.log(draggableEl);
           // Need a class watcher because sorting v-data-table rows asc/desc removes the sortHandle class
           vnode.context.watchClass(draggableEl, "sortHandle");
           draggableEl.classList.add("sortHandle");
         });
         vnode.context.sortTableRows(el);
-      }
-    }
+
+        //Resize
+        vnode.context.resizableGrid(el.getElementsByTagName("table")[0]);
+      },
+      componentUpdated: (el, binding, vnode) => {
+        vnode.context.resizableGrid(el.getElementsByTagName("table")[0]);
+        vnode.context.sortTableRows(el);
+      },
+    },
   },
   props: {
     updateList: {
       type: Function,
       default: () => {
         () => {};
-      }
+      },
     },
     headers: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     page: {
       type: Number,
       default: () => {
         () => 1;
-      }
+      },
     },
 
     items: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     nbItemToAdd: {
       type: Number,
-      default: () => 3
+      default: () => 3,
     },
     listMaxLength: {
       type: Number,
-      default: () => 20
+      default: () => 20,
     },
     height: {
       type: Number,
-      default: () => 500
+      default: () => 500,
     },
 
     groupHeader: {
@@ -125,11 +130,11 @@ export default {
           text: "",
           align: "start",
           sortable: false,
-          value: "Name"
+          value: "Name",
         },
-        { text: "", value: "Portable" }
-      ]
-    }
+        { text: "", value: "Portable" },
+      ],
+    },
   },
   data() {
     return {
@@ -145,15 +150,15 @@ export default {
       itemsFilters: [],
       selectedFilter: null,
       itemSelected: [],
-      showAllFilters: false
+      showAllFilters: false,
     };
   },
 
   computed: {
-    infinityList: function() {
+    infinityList: function () {
       if (this.items.length > 1 && this.headers.length == 0) {
         Object.getOwnPropertyNames(this.items[0])
-          .filter(itm => itm != "__ob__")
+          .filter((itm) => itm != "__ob__")
           .forEach((item, index) => {
             let buffer = {};
             // if (index == 0) {
@@ -163,11 +168,12 @@ export default {
             buffer.sortable = false;
             buffer.text = item;
             buffer.value = item;
+            buffer.class = "sortHandle";
             this.headers.push(buffer);
           });
       }
       return this.items;
-    }
+    },
   },
   methods: {
     setNewPos(parentNode, oldIndex, oldNode, newIndex, newNode) {
@@ -182,7 +188,7 @@ export default {
     // Add back the sortHandle class if it gets stripped away by external code
     watchClass(targetNode, classToWatch) {
       let lastClassState = targetNode.classList.contains(classToWatch);
-      const observer = new MutationObserver(mutationsList => {
+      const observer = new MutationObserver((mutationsList) => {
         for (let i = 0; i < mutationsList.length; i++) {
           const mutation = mutationsList[i];
           if (
@@ -207,19 +213,19 @@ export default {
       const options = {
         handle: ".sortHandle",
         animation: 150,
-        onStart: evt => {
-          console.log(evt);
+        onStart: (evt) => {
+          console.log("");
           // Flag all cells in the column being dragged by adding a class to them
-          el.querySelectorAll("tr").forEach(row => {
+          el.querySelectorAll("tr").forEach((row) => {
             const draggedTd = row.querySelectorAll("td")[evt.oldIndex];
             if (draggedTd) {
               draggedTd.classList.add("sorting");
             }
           });
         },
-        onEnd: evt => {
+        onEnd: (evt) => {
           // Take the dragged cells and move them over to the new column location
-          el.querySelectorAll("tr").forEach(row => {
+          el.querySelectorAll("tr").forEach((row) => {
             if (!row.querySelector("th")) {
               const oldNode = row.querySelector(".sorting");
               const newNode = row.querySelectorAll("td")[evt.newIndex];
@@ -228,12 +234,13 @@ export default {
               oldNode.classList.remove("sorting");
             }
           });
-        }
+        },
       };
       const initEl = el
         .getElementsByTagName("thead")[0]
         .getElementsByTagName("tr")[0];
-      console.log(Sortable);
+      console.log("test");
+
       return Sortable.create(initEl, options);
     },
 
@@ -248,7 +255,9 @@ export default {
 
       if (direction == "down") this.currentPage = this.currentPage + 1;
       else if (direction == "up") this.currentPage = this.currentPage - 1;
-
+      try {
+        await this.sortTableRows(null);
+      } catch (aea) {}
       await this.updateList(this.currentPage);
       /*
       this.infinityList = this.users;
@@ -279,13 +288,102 @@ export default {
         this.currentOrder = this.currentOrder + this.nbItemToAdd;
       }
 */
-    }
+    },
+
+    resizableGrid(table) {
+      console.log(table);
+      var row = table.getElementsByTagName("tr")[0],
+        cols = row ? row.children : undefined;
+      if (!cols) return;
+
+      table.style.overflow = "hidden";
+
+      var tableHeight = table.offsetHeight;
+
+      for (var i = 0; i < cols.length; i++) {
+        var div = createDiv(tableHeight);
+        cols[i].appendChild(div);
+        cols[i].style.position = "relative";
+        setListeners(div);
+      }
+
+      function setListeners(div) {
+        console.log(div);
+        var pageX, curCol, nxtCol, curColWidth, nxtColWidth;
+
+        div.addEventListener("mousedown", function (e) {
+          curCol = e.target.parentElement;
+          nxtCol = curCol.nextElementSibling;
+          pageX = e.pageX;
+
+          var padding = paddingDiff(curCol);
+
+          curColWidth = curCol.offsetWidth - padding;
+          if (nxtCol) nxtColWidth = nxtCol.offsetWidth - padding;
+        });
+
+        div.addEventListener("mouseover", function (e) {
+          e.target.style.borderRight = "2px solid #0000ff";
+        });
+
+        div.addEventListener("mouseout", function (e) {
+          e.target.style.borderRight = "";
+        });
+
+        document.addEventListener("mousemove", function (e) {
+          if (curCol) {
+            var diffX = e.pageX - pageX;
+
+            if (nxtCol) nxtCol.style.width = nxtColWidth - diffX + "px";
+
+            curCol.style.width = curColWidth + diffX + "px";
+          }
+        });
+
+        document.addEventListener("mouseup", function (e) {
+          curCol = undefined;
+          nxtCol = undefined;
+          pageX = undefined;
+          nxtColWidth = undefined;
+          curColWidth = undefined;
+        });
+      }
+      function createDiv(height) {
+        console.log(height);
+        var div = document.createElement("div");
+        div.style.top = 0;
+        div.style.right = 0;
+        div.style.width = "5px";
+        div.style.position = "absolute";
+        div.style.cursor = "col-resize";
+        div.style.userSelect = "none";
+        div.style.height = height + "px";
+        return div;
+      }
+
+      function paddingDiff(col) {
+        if (getStyleVal(col, "box-sizing") == "border-box") {
+          return 0;
+        }
+
+        var padLeft = getStyleVal(col, "padding-left");
+        var padRight = getStyleVal(col, "padding-right");
+        return parseInt(padLeft) + parseInt(padRight);
+      }
+      function getStyleVal(elm, css) {
+        return window.getComputedStyle(elm, null).getPropertyValue(css);
+      }
+    },
   },
+
   async mounted() {
     await this.getItems(this.page);
     this.currentPage = 0;
-  }
+  },
 };
 </script>
 
-<style lang="stylus"></style>
+<style lang="stylus">
+th, td
+  border-right 1px solid grey
+</style>

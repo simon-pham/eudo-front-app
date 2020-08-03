@@ -1,6 +1,6 @@
 <template>
   <v-app :ripple="false">
-    <!-- <logo class="mx-auto" :style="{ width: '30em' }"></logo> -->
+    <logo class="mx-auto" :style="{ width: '30em' }"></logo>
     <v-form ref="form">
       <v-container
         @click.ctrl="updateTime()"
@@ -49,7 +49,7 @@
               '03:40',
               '04:40',
               '05:40',
-              '06:40'
+              '06:40',
             ]"
           />
         </v-row>
@@ -114,7 +114,7 @@ export default {
       mail: "",
       checked: true,
       switched: true,
-      allowedDates: val => parseInt(val.split("-")[2], 10) % 2 === 0,
+      allowedDates: (val) => parseInt(val.split("-")[2], 10) % 2 === 0,
       inptText: "efef",
       dateInpt: "",
       inptMemo: "",
@@ -127,12 +127,12 @@ export default {
       radios: [
         {
           label: "Choix 1",
-          value: "1"
+          value: "1",
         },
         {
           label: "Choix 2",
-          value: "2"
-        }
+          value: "2",
+        },
       ],
       contentAbc: "abcdefghijklmnopqtrsuvwxyz",
       date: "",
@@ -147,16 +147,32 @@ export default {
       listMaxLength: 20,
       infinityList: [],
       baseNb: 0,
-      scrollTime: 0
+      scrollTime: 0,
     };
   },
   methods: {
     async fetchItems(pageNumber) {
       if (pageNumber < 0) pageNumber = 0;
+      /*
+          let call = {
+        SubscriberLogin: "EUDOCOMM",
+        SubscriberPassword: "KOMODO80",
+        BaseName: "EUDO_HOTCOM_EUDOWEB",
+        UserLogin: "SIMON",
+        UserPassword: "toto123!",
+        ProductName: "string",
+        ExtendedProperties: true,
+      };
 
+      var myApi = new apiModule("https://ww2.eudonet.com/eudoapi");
+
+      let tot = await myApi.APIGetToken(call);
+      console.log(tot);
+      this.token = tot.Toke
+    */
       let myApi = new apiModule(
         "https://ww2.eudonet.com/eudoapi",
-        "SOW+adoaTCXmFo8vrgxE/7FCjWqDqLxKScqTBuQOFeLai+b86dIFgfuLEH1tS628nAxD1Yx8z+ghlUMNvg2cWS3/ts2QFdjEwGZEmkGRtl6OKIyEIAPk4rNi8rhpF/7o6Keg1wukC4EIw1bFM2Kk4iRgWV6pnQ0hPHBzqQleXm7biu1fJnsDylIT2AQo6prj"
+        "gcOncaGC7m4BVXnAdePohjGnTN6a+qJNphIfZtLss7x3sHr0z15qyur8u0rssJppKy0AXudHE39foX+gGGYDOC3/ts2QFdjEwGZEmkGRtl6OKIyEIAPk4rNi8rhpF/7o6Keg1wukC4EIw1bFM2Kk4iRgWV6pnQ0hPHBzqQleXm7biu1fJnsDylIT2AQo6prj"
       );
 
       let resp = await myApi.APIGetList(
@@ -166,7 +182,7 @@ export default {
         5867
       );
 
-      resp.Rows.forEach(element => {
+      resp.Rows.forEach((element) => {
         var a = element.Fields[0].Value;
         var b = element.Fields[1].Value;
         var c = element.Fields[2].Value;
@@ -174,7 +190,7 @@ export default {
         var myPP = {
           LastName: a,
           FirstName: b,
-          Email: c
+          Email: c,
         };
 
         this.users.push(myPP);
@@ -195,7 +211,7 @@ export default {
     },
     testUrl(event) {
       console.log(event);
-    }
-  }
+    },
+  },
 };
 </script>
