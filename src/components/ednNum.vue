@@ -2,14 +2,15 @@
   <v-text-field
     type="number"
     ref="input"
-    v-model="numberInput"
+    v-model="content"
     v-bind="$attrs"
     :rules="rules"
+    v-mask="$attrs.mask"
   >
     <template v-slot:append v-if="$attrs.tooltip">
       <v-tooltip top>
         <template v-slot:activator="{ on }">
-          <v-icon v-on="on" style="cursor:pointer;"
+          <v-icon v-on="on" style="cursor: pointer;"
             >mdi-help-circle-outline</v-icon
           >
         </template>
@@ -26,22 +27,11 @@ import Vue from "vue";
 Vue.use(VueTheMask);
 
 import { ednRequired } from "./mixins/ednRequired";
+import { ednVModel } from "./mixins/ednVModel";
+
 export default {
   inheritAttrs: false,
-  mixins: [ednRequired],
-  props: {
-    value: "",
-    mask: {
-      type: String,
-      default: () => "##.##.##.##.##"
-    }
-  },
-  data() {
-    return {
-      regEx: /[0-9+-.,]/,
-      numberInput: this.value
-    };
-  },
+  mixins: [ednRequired, ednVModel],
   methods: {
     numCheck() {
       let evt = window.event;
@@ -52,7 +42,7 @@ export default {
       } else {
         evt.preventDefault();
       }
-    }
-  }
+    },
+  },
 };
 </script>
