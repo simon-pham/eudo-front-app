@@ -231,17 +231,18 @@ var oCities: [
 
 ## Numérique `<edn-num/>`
 
-|    Paramètre     |       Type       |
-| :--------------: | :--------------: |
-|   **tooltip:**   |     `String`     |
-| **placeholder:** |     `String`     |
-|    **label:**    |     `String`     |
-|  **required:**   | `Bool ou String` |
+|    Paramètre     |       Type       | Documentation |
+| :--------------: | :--------------: | :-----------: |
+|   **tooltip:**   |     `String`     |               |
+| **placeholder:** |     `String`     |               |
+|    **label:**    |     `String`     |               |
+|  **required:**   | `Bool ou String` |               |
+|    **mask:**     |     `String`     | Voir exemple  |
 
 #### Exemple
 
 ```html
-<edn-num label="Âge" />
+<edn-num :label="Revenu" mask="### ### ###,##" />
 ```
 
 ---
@@ -405,6 +406,10 @@ var oCities: [
 # Changelog
 
 #### @0.1.22
+
+### `<edn-num/>`
+
+- Ajout du support du mask (covid oblige)
 
 ### `<edn-date/>`
 
