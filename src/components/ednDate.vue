@@ -17,6 +17,7 @@
         v-on="on"
         :rules="rules"
         append-icon="mdi-calendar-range"
+        :id="$attrs.id"
       ></v-text-field>
     </template>
     <v-date-picker
@@ -56,16 +57,16 @@ export default {
   props: {
     format: {
       type: String,
-      default: () => "dd-MM-yyyy"
-    }
+      default: () => "dd-MM-yyyy",
+    },
   },
   data() {
     return {
       menu: null,
       colors: {
         primary: this.$vuetify.theme.currentTheme.primary,
-        secondary: this.$vuetify.theme.currentTheme.secondary
-      }
+        secondary: this.$vuetify.theme.currentTheme.secondary,
+      },
     };
   },
   mounted() {
@@ -73,7 +74,7 @@ export default {
     this.$format = format;
     this.$parseISO = parseISO;
   },
-  methods: {}
+  methods: {},
 };
 </script>
 <style lang="stylus">

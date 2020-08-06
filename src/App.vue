@@ -6,12 +6,28 @@
         @click.ctrl="updateTime()"
         @click.alt="$vuetify.theme.dark = !$vuetify.theme.dark"
       >
-        <v-row class="align-center justify-space-around">
+        <v-row>
+          <img
+            height="400"
+            src="./components/images/logo.svg"
+            class="mx-auto"
+          />
+        </v-row>
+        <v-row class="mb-10">
+          <h2 class="mx-auto">Version 0.1.22</h2>
+        </v-row>
+
+        <!-- <v-row class="align-center justify-space-around">
           <edn-load message="edn-load" form="double" anim="dots"></edn-load>
           <edn-load message="edn-load" form="simple" anim="blink"></edn-load>
           <edn-load message="edn-load" form="fill"></edn-load>
-        </v-row>
-        <edn-num label="edn-num" v-model="inptNum" tooltip="NOMBRE"></edn-num>
+        </v-row> -->
+        <edn-num
+          label="edn-num"
+          v-model="inptNum"
+          mask="##"
+          tooltip="NOMBRE"
+        ></edn-num>
         <edn-field label="edn-field" v-model="urlString"></edn-field>
         <edn-url label="edn-url" v-model="urlString" readonly></edn-url>
         <edn-cat label="edn-cat" v-model="selectedCat" :items="cat"></edn-cat>
@@ -21,7 +37,13 @@
           :items="recette"
           tooltip="Selection de catégories"
         ></edn-cat-x>
-        <edn-date v-model="dateInpt" label="edn-date" :popup="true" required />
+        <edn-date
+          v-model="dateInpt"
+          label="edn-date"
+          id="ef456"
+          :popup="true"
+          required
+        />
 
         <edn-time
           v-model="time"

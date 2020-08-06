@@ -8,8 +8,9 @@
       >
         <v-list-item
           v-show="
-            !infinityList.filter(itm => itm.UserHotcom.Group.Name == item.Name)
-              .length == 0
+            !infinityList.filter(
+              (itm) => itm.UserHotcom.Group.Name == item.Name
+            ).length == 0
           "
           v-for="item in itemsFilters"
           :key="item.Id"
@@ -35,7 +36,7 @@
         </v-list-item>
       </v-list>
       <v-btn
-        v-if="itemsFilters.filter(itm => itm.Number > 10).length > 2"
+        v-if="itemsFilters.filter((itm) => itm.Number > 10).length > 2"
         :color="showAllFilters ? 'normal' : 'primary'"
         class="d-block mx-auto my-2"
         x-small
@@ -73,49 +74,48 @@ export default {
         vnode.context.sortTableRows(el);
       },
       bind: (el, binding, vnode) => {
-        el.querySelectorAll("th").forEach(draggableEl => {
-          console.log(draggableEl);
+        el.querySelectorAll("th").forEach((draggableEl) => {
           // Need a class watcher because sorting v-data-table rows asc/desc removes the sortHandle class
           vnode.context.watchClass(draggableEl, "sortHandle");
           draggableEl.classList.add("sortHandle");
         });
         vnode.context.sortTableRows(el);
-      }
-    }
+      },
+    },
   },
   props: {
     updateList: {
       type: Function,
       default: () => {
         () => {};
-      }
+      },
     },
     headers: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     page: {
       type: Number,
       default: () => {
         () => 1;
-      }
+      },
     },
 
     items: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     nbItemToAdd: {
       type: Number,
-      default: () => 3
+      default: () => 3,
     },
     listMaxLength: {
       type: Number,
-      default: () => 20
+      default: () => 20,
     },
     height: {
       type: Number,
-      default: () => 500
+      default: () => 500,
     },
 
     groupHeader: {
@@ -125,11 +125,11 @@ export default {
           text: "",
           align: "start",
           sortable: false,
-          value: "Name"
+          value: "Name",
         },
-        { text: "", value: "Portable" }
-      ]
-    }
+        { text: "", value: "Portable" },
+      ],
+    },
   },
   data() {
     return {
@@ -145,15 +145,15 @@ export default {
       itemsFilters: [],
       selectedFilter: null,
       itemSelected: [],
-      showAllFilters: false
+      showAllFilters: false,
     };
   },
 
   computed: {
-    infinityList: function() {
+    infinityList: function () {
       if (this.items.length > 1 && this.headers.length == 0) {
         Object.getOwnPropertyNames(this.items[0])
-          .filter(itm => itm != "__ob__")
+          .filter((itm) => itm != "__ob__")
           .forEach((item, index) => {
             let buffer = {};
             // if (index == 0) {
@@ -167,7 +167,7 @@ export default {
           });
       }
       return this.items;
-    }
+    },
   },
   methods: {
     setNewPos(parentNode, oldIndex, oldNode, newIndex, newNode) {
@@ -182,7 +182,7 @@ export default {
     // Add back the sortHandle class if it gets stripped away by external code
     watchClass(targetNode, classToWatch) {
       let lastClassState = targetNode.classList.contains(classToWatch);
-      const observer = new MutationObserver(mutationsList => {
+      const observer = new MutationObserver((mutationsList) => {
         for (let i = 0; i < mutationsList.length; i++) {
           const mutation = mutationsList[i];
           if (
@@ -207,19 +207,18 @@ export default {
       const options = {
         handle: ".sortHandle",
         animation: 150,
-        onStart: evt => {
-          console.log(evt);
+        onStart: (evt) => {
           // Flag all cells in the column being dragged by adding a class to them
-          el.querySelectorAll("tr").forEach(row => {
+          el.querySelectorAll("tr").forEach((row) => {
             const draggedTd = row.querySelectorAll("td")[evt.oldIndex];
             if (draggedTd) {
               draggedTd.classList.add("sorting");
             }
           });
         },
-        onEnd: evt => {
+        onEnd: (evt) => {
           // Take the dragged cells and move them over to the new column location
-          el.querySelectorAll("tr").forEach(row => {
+          el.querySelectorAll("tr").forEach((row) => {
             if (!row.querySelector("th")) {
               const oldNode = row.querySelector(".sorting");
               const newNode = row.querySelectorAll("td")[evt.newIndex];
@@ -228,12 +227,11 @@ export default {
               oldNode.classList.remove("sorting");
             }
           });
-        }
+        },
       };
       const initEl = el
         .getElementsByTagName("thead")[0]
         .getElementsByTagName("tr")[0];
-      console.log(Sortable);
       return Sortable.create(initEl, options);
     },
 
@@ -279,12 +277,12 @@ export default {
         this.currentOrder = this.currentOrder + this.nbItemToAdd;
       }
 */
-    }
+    },
   },
   async mounted() {
     await this.getItems(this.page);
     this.currentPage = 0;
-  }
+  },
 };
 </script>
 
