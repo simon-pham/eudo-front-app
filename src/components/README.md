@@ -407,21 +407,29 @@ var oCities: [
 
 #### @0.1.22
 
+### `<edn-memo/>`
+
+- Hérite de l'attribut id et ename
+
 ### `<edn-num/>`
 
 - Ajout du support du mask (covid oblige)
+- Hérite de l'attribut id et ename
 
 ### `<edn-date/>`
 
 - Ajout d'une icone representative
+- Hérite de l'attribut id et ename
 
 ### `<edn-time/>`
 
 - Ajout d'une icone representative
+- Hérite de l'attribut id et ename
 
 ### `<edn-list-mod/>`
 
 - Ajout du composant mode-liste avec défilement infini
+- Câblage avec l'api eudo
 
 ### `<edn-phone/>`
 

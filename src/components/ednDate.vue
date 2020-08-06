@@ -11,13 +11,14 @@
   >
     <template v-slot:activator="{ on }">
       <v-text-field
+        :ename="$attrs.ename"
+        :id="$attrs.id"
         :disabled="$attrs.disabled"
         :label="$attrs.label"
         :value="content ? $format($parseISO(content), format) : ''"
         v-on="on"
         :rules="rules"
         append-icon="mdi-calendar-range"
-        :id="$attrs.id"
       ></v-text-field>
     </template>
     <v-date-picker

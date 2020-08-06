@@ -38,6 +38,7 @@
           tooltip="Selection de catégories"
         ></edn-cat-x>
         <edn-date
+          ename="COL11_4545"
           v-model="dateInpt"
           label="edn-date"
           id="ef456"
@@ -77,6 +78,7 @@
         </v-row>
         <edn-memo
           label="edn-memo"
+          ename="carotte"
           v-model="inptMemo"
           :size="'normal'"
           html

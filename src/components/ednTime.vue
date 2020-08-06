@@ -8,7 +8,6 @@
     }}</v-card-title>
     <v-card-text>
       <v-btn
-        :id="$attrs.id"
         :class="[content.includes(n) ? 'active' : '']"
         v-ripple="false"
         v-for="n in $attrs.slots"
@@ -30,6 +29,7 @@
   >
     <template v-slot:activator="{ on }">
       <v-text-field
+        :ename="$attrs.ename"
         :id="$attrs.id"
         v-model="content"
         :disabled="$attrs.disabled"
