@@ -8,6 +8,7 @@
     }}</v-card-title>
     <v-card-text>
       <v-btn
+        :id="$attrs.id"
         :class="[content.includes(n) ? 'active' : '']"
         v-ripple="false"
         v-for="n in $attrs.slots"
@@ -29,6 +30,7 @@
   >
     <template v-slot:activator="{ on }">
       <v-text-field
+        :id="$attrs.id"
         v-model="content"
         :disabled="$attrs.disabled"
         :label="$attrs.label"
@@ -63,8 +65,8 @@ export default {
       menu: null,
       colors: {
         primary: this.$vuetify.theme.currentTheme.primary,
-        secondary: this.$vuetify.theme.currentTheme.secondary
-      }
+        secondary: this.$vuetify.theme.currentTheme.secondary,
+      },
     };
   },
   methods: {
@@ -83,8 +85,8 @@ export default {
         let pos = this.content.indexOf(time);
         this.content.splice(pos, 1);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="stylus">
