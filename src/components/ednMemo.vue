@@ -15,6 +15,7 @@
   </div>
   <div v-else>
     <v-textarea
+      :rows="$attrs.rows"
       :label="$attrs.label"
       v-model="content"
       :rules="rules"

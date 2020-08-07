@@ -1,12 +1,9 @@
 <template>
   <v-text-field
-    label="coucou"
     v-if="$attrs.mask != null || undefined || ''"
     v-mask="$attrs.mask"
-    masked
     v-bind="$attrs"
     :rules="rules"
-    type="number"
     v-model="content"
   >
     <template v-slot:append v-if="$attrs.tooltip">
@@ -21,7 +18,6 @@
     </template>
   </v-text-field>
   <v-text-field
-    label="keket"
     v-else
     type="number"
     ref="input"
@@ -43,7 +39,7 @@
 </template>
 
 <script>
-import mask from "vue-the-mask";
+import { mask } from "vue-the-mask";
 import Vue from "vue";
 
 import { ednRequired } from "./mixins/ednRequired";

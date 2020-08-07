@@ -25,7 +25,7 @@
         <edn-num
           label="edn-num"
           v-model="inptNum"
-          mask="##"
+          :mask="'###'"
           tooltip="NOMBRE"
         ></edn-num>
         <edn-field label="edn-field" v-model="urlString"></edn-field>
@@ -78,11 +78,9 @@
         </v-row>
         <edn-memo
           label="edn-memo"
-          ename="carotte"
-          v-model="inptMemo"
-          :size="'normal'"
           html
-          :required="'Un string'"
+          v-model="inptMemo"
+          size="normal"
         ></edn-memo>
         <edn-mail label="edn-mail" v-model="mail" :required="true" />
         <edn-phone label="edn-phone" v-model="phone" />

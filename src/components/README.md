@@ -187,15 +187,15 @@ var oCities: [
 
 ## Mémo `<edn-memo/>`
 
-|    Paramètre     |       Type       |           |            |
-| :--------------: | :--------------: | :-------: | :--------: |
-| **placeholder:** |     `String`     |           |            |
+|    Paramètre     |       Type       |                                                   |
+| :--------------: | :--------------: | :-----------------------------------------------: |
+| **placeholder:** |     `String`     |                                                   |
 |  **required:**   | `Bool ou String` |
-|    **html:**     |      `Bool`      |           |            |
-|    **label:**    |     `String`     |           |            |
-|  **disabled:**   |      `Bool`      |           |            |
-|    **size:**     |     `String`     |           |            |
-|     **-->**      |    `'normal'`    | `'large'` | `'fatass'` |
+|    **html:**     |      `Bool`      |                                                   |
+|    **label:**    |     `String`     |                                                   |
+|  **disabled:**   |      `Bool`      |                                                   |
+|    **size:**     |     `String`     |        `'normal'`,`'large'` ou `'fatass'`         |
+|     **rows**     |     `Number`     | Définition du nombre de ligne la version non-html |
 
 #### Exemple
 
@@ -410,6 +410,7 @@ var oCities: [
 ### `<edn-memo/>`
 
 - Hérite de l'attribut id et ename
+- ajout de l'attribut rows, pour préciser le nombre de lignes à afficher par défaut `5`
 
 ### `<edn-num/>`
 
