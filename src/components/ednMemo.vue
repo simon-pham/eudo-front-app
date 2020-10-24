@@ -2,7 +2,9 @@
   <div v-if="$attrs.html == '' || $attrs.html" class="cstmMemo">
     <div :class="['cstmQl', $attrs.disabled ? 'disabled' : '']" v-bind="$attrs">
       <v-input :rules="rules" v-model="content" :label="$attrs.label">
-        <quill-editor 
+        <quill-editor
+          :ename="$attrs.ename"
+          :id="$attrs.id"
           ref="myTextEditor"
           :class="$attrs.size"
           v-model="content"
@@ -12,14 +14,21 @@
     </div>
   </div>
   <div v-else>
-    <v-textarea :label="$attrs.label" v-model="content" :rules="rules">
+    <v-textarea
+      :rows="$attrs.rows"
+      :label="$attrs.label"
+      v-model="content"
+      :rules="rules"
+      :ename="$attrs.ename"
+      :id="$attrs.id"
+    >
     </v-textarea>
   </div>
 </template>
 
 <script>
 import(/* webpackChunkName: "hljs" */ "highlight.js");
-import {quillEditor} from 'vue-quill-editor'
+import { quillEditor } from "vue-quill-editor";
 
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
@@ -32,7 +41,7 @@ export default {
   inheritAttrs: false,
   mixins: [ednRequired, ednVModel],
   components: {
-    quillEditor
+    quillEditor,
   },
   data() {
     return {
@@ -50,111 +59,88 @@ export default {
             [{ color: [] }, { background: [] }],
             [{ align: [] }],
             ["clean"],
-            ["link", "image", "video"]
+            ["link", "image", "video"],
           ],
           syntax: {
-            highlight: text => hljs.highlightAuto(text).value
-          }
-        }
-      }
+            highlight: (text) => hljs.highlightAuto(text).value,
+          },
+        },
+      },
     };
   },
 };
 </script>
 <style lang="stylus">
-div.cstmMemo {
-  div.v-input__slot {
-    display: grid;
+div.cstmMemo
+  div.v-input__slot
+    display grid
 
-    &:focus-within {
-      label.v-label {
-        color: var(--v-primary-base) !important;
-      }
-    }
+    &:focus-within
+      label.v-label
+        color var(--v-primary-base) !important
 
-    label.v-label {
-      font-size: 0.8em;
-    }
-  }
-}
+    label.v-label
+      font-size 0.8em
 
-div.cstmQl {
-  display: block;
+div.cstmQl
+  display block
 
-  & div.memoLabel {
-    font-size: 12px;
-    margin-bottom: 0.2em;
-    color: var(--v-secondary-base);
-  }
+  & div.memoLabel
+    font-size 12px
+    margin-bottom 0.2em
+    color var(--v-secondary-base)
 
-  div.quill-editor {
-    flex: 1;
+  div.quill-editor
+    flex 1
 
-    &.normal {
-      > div.ql-container {
-        height: 10rem;
-      }
-    }
+    &.normal
+      > div.ql-container
+        height 10rem
 
-    &.large {
-      > div.ql-container {
-        height: 15rem;
-      }
-    }
+    &.large
+      > div.ql-container
+        height 15rem
 
-    &.fatass {
-      > div.ql-container {
-        height: 20rem;
-      }
-    }
+    &.fatass
+      > div.ql-container
+        height 20rem
 
-    > div.ql-container {
-      &:focus-within {
-        &:after {
-          transform: scaleX(1);
-          transition: 250ms;
-        }
-      }
+    > div.ql-container
+      &:focus-within
+        &:after
+          transform scaleX(1)
+          transition 250ms
 
-      &:after {
-        content: '';
-        width: 100%;
-        transition: 250ms;
-        transform: scaleX(0);
-        bottom: 0;
-        height: 2px;
-        background-color: var(--v-primary-base);
-        z-index: 10;
-        display: block;
-      }
+      &:after
+        content ''
+        width 100%
+        transition 250ms
+        transform scaleX(0)
+        bottom 0
+        height 2px
+        background-color var(--v-primary-base)
+        z-index 10
+        display block
 
-      position: relative;
-    }
-  }
+      position relative
 
-  &.disabled * {
-    :hover {
-      &:focus-within {
-        & div.memoLabel {
-          color: #ccc !important;
-          pointer-events: none;
-        }
-      }
+  &.disabled *
+    :hover
+      &:focus-within
+        & div.memoLabel
+          color #ccc !important
+          pointer-events none
 
-      color: #ccc !important;
+      color #ccc !important
       // fill #ccc !important
-      stroke: #ccc !important;
-      pointer-events: none;
-    }
+      stroke #ccc !important
+      pointer-events none
 
-    :before {
-      color: #ccc !important;
-    }
+    :before
+      color #ccc !important
 
-    color: #ccc !important;
+    color #ccc !important
     // fill #ccc !important
-    stroke: #ccc !important;
-    pointer-events: none;
-  }
-}
+    stroke #ccc !important
+    pointer-events none
 </style>

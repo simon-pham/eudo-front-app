@@ -1,48 +1,75 @@
 <template>
-  <div>
-    <div v-if="alternate" :style="{ backgroundColor: color }" class="btn alt">
-      <div class="mask">
-        <span><slot></slot></span>
+  <div v-on="$listeners">
+    <v-btn
+      text
+      :ripple="false"
+      v-if="$attrs.validation == 'skin2019'"
+      :style="
+        $attrs.disabled == '' || $attrs.disabled == true
+          ? { filter: 'grayscale(1)' }
+          : ''
+      "
+      class="inheritCss"
+      v-bind="$attrs"
+    >
+      <div class="btn">
+        <div class="mask">
+          <div class="rect-left"></div>
+          <div class="rect-top"></div>
+          <span><slot></slot></span>
+        </div>
       </div>
-    </div>
-    <div v-else class="btn">
-      <div class="mask">
-        <div class="rect-left"></div>
-        <div class="rect-top"></div>
-        <span><slot></slot></span>
-      </div>
-    </div>
+    </v-btn>
+    <v-btn
+      v-else
+      :ripple="false"
+      v-bind="$attrs"
+      :color="
+        $attrs.validation == '' || $attrs.validation == true
+          ? 'primary'
+          : $attrs.color
+      "
+    >
+      <span><slot></slot></span>
+    </v-btn>
   </div>
 </template>
 
 <script>
 export default {
-  inheritAttrs: false,
-  props: {
-    alternate: {
-      type: Boolean,
-      default: () => false
-    },
-    disable: {
-      type: Boolean,
-      default: () => false
-    },
-    color: {
-      type: String,
-      default: () => "#727272"
-    }
-  }
+  inheritAttrs: false
 };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus" 
+>
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+button.v-btn.inheritCss {
+  > span.v-btn__content {
+    line-height: 2;
+  }
+
+  min-width: 0;
+  height: inherit !important;
+  will-change: inherit;
+  font-size: inherit;
+  margin: 0;
+  text-transform: inherit;
+  padding: 0 !important;
+  min-width: inherit !important;
+
+  &:before {
+    display: none;
+  }
+}
 
 div.btn {
   user-select: none;
   transition: transform 0.25s;
   margin: 0 0.8em;
   display: inline-block;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 
   &.alt {
     text-align: center;
@@ -128,7 +155,7 @@ div.btn {
     background: linear-gradient(309deg, #d13076 0%, #fc4a4a 53%, #bb1515 100%);
     position: relative;
 
-    div {
+    > div {
       background-color: #bb1515;
       opacity: 0.5;
       position: absolute;

@@ -1,6 +1,5 @@
 <template>
   <v-card
-    width="300"
     v-if="$attrs.slots"
     :class="['timeSlots', $attrs.tripStyle == '' ? 'tripStyle' : '']"
   >
@@ -30,12 +29,14 @@
   >
     <template v-slot:activator="{ on }">
       <v-text-field
+        :ename="$attrs.ename"
+        :id="$attrs.id"
         v-model="content"
         :disabled="$attrs.disabled"
-        readonly
         :label="$attrs.label"
         v-on="on"
         :rules="rules"
+        append-icon="mdi-clock-time-four"
       ></v-text-field>
     </template>
 
@@ -64,8 +65,8 @@ export default {
       menu: null,
       colors: {
         primary: this.$vuetify.theme.currentTheme.primary,
-        secondary: this.$vuetify.theme.currentTheme.secondary
-      }
+        secondary: this.$vuetify.theme.currentTheme.secondary,
+      },
     };
   },
   methods: {
@@ -84,26 +85,22 @@ export default {
         let pos = this.content.indexOf(time);
         this.content.splice(pos, 1);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="stylus">
-.timeSlots {
+.timeSlots
+  &.tripStyle.v-card.v-sheet
+    background-color #fafafa
 
-  &.tripStyle.v-card.v-sheet {
-  background-color: #fafafa;
-    @import 'assets/cstmVbtn';
-  }
+    @import 'assets/cstmVbtn'
 
-  button.v-btn.active.v-btn--contained.theme--light {
-    background-color: var(--v-primary-base);
-    color: white;
-  }
+  button.v-btn.active.v-btn--contained.theme--light
+    background-color var(--v-primary-base)
+    color white
 
-  div.v-card__text {
-    display: grid;
-    grid-template-columns: auto auto auto;
-  }
-}
+  div.v-card__text
+    display grid
+    grid-template-columns auto auto auto
 </style>
