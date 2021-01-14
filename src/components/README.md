@@ -1,5 +1,7 @@
  <!-- <link rel="stylesheet" href="./style/style.css" /> -->
-![logo.svg](https://github.com/Flatoupix/eudo-front-app/blob/master/src/components/images/logo.svg =600x){.align-abstopright}
+
+![logo.svg](https://github.com/Flatoupix/eudo-front-app/blob/master/src/components/images/logo.svg)
+
 
 # Installation du composant
 
@@ -218,7 +220,7 @@ var oCities: [
 <edn-btn class="mx-2" color="secondary" @click="Reset()">Reset</edn-btn
 ```
 
-![edn-btn.jpg](https://github.com/Flatoupix/eudo-front-app/blob/master/src/components/images/edn-btn.jpg){.align-center}
+![edn-btn.jpg](https://github.com/Flatoupix/eudo-front-app/blob/master/src/components/images/edn-btn.jpg)
 
 ---
 
